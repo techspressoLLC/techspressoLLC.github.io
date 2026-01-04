@@ -59,7 +59,7 @@
             transform: translateY(0);
         }
 
-        /* ドロップダウンメニュー */
+        /* ドロップダウンメニュー（ホバー時に表示） */
         .dropdown-content {
             opacity: 0;
             visibility: hidden;
@@ -76,7 +76,7 @@
             transform: translateY(0);
         }
 
-        /* ページ切り替え表示制御 */
+        /* ページ切り替え用表示制御 */
         .page-content {
             display: none;
             opacity: 0;
@@ -92,6 +92,7 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
+        /* スマホメニューのアニメーション */
         #mobile-menu {
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             transform: translateY(-20px);
@@ -119,8 +120,9 @@
             <div class="flex items-center space-x-3 shrink-0 mr-4">
                 <a href="javascript:void(0)" onclick="navigateTo('home')" class="flex items-center space-x-3 group">
                     <div class="w-10 h-10 bg-slate-100 rounded-lg flex items-center justify-center overflow-hidden border border-slate-200 shadow-sm transition group-hover:scale-105">
+                        <!-- 【画像挿入箇所：ヘッダーロゴ】TCロゴ(20251111).JPG をここに配置 -->
                         <img src="./TCロゴ(20251111).JPG" alt="TECHSPRESSO Logo" class="w-full h-full object-contain" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                        <span class="text-[8px] font-bold text-gray-400 hidden">LOGO</span>
+                        <span class="text-[8px] font-bold text-gray-400 hidden text-center">LOGO</span>
                     </div>
                     <span class="font-en font-black text-sm md:text-lg tracking-tighter text-slate-800 uppercase">
                         TECHSPRESSO <span class="text-[10px] font-normal opacity-40 ml-1">LLC</span>
@@ -128,50 +130,76 @@
                 </a>
             </div>
 
-            <!-- メインメニュー -->
+            <!-- メインメニュー（デスクトップ） -->
             <div class="hidden sm:flex flex-1 justify-center space-x-1 text-[9px] font-bold tracking-[0.2em] uppercase h-full items-center text-slate-600">
+                <!-- Event -->
                 <div class="relative group px-2 md:px-4 py-2">
-                    <button class="hover:text-cyan-600 transition flex items-center gap-1 uppercase font-bold text-[10px]">Event <svg class="w-2.5 h-2.5 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M19 9l-7 7-7-7"></path></svg></button>
+                    <button class="hover:text-cyan-600 transition flex items-center gap-1 uppercase font-bold text-[10px]">Event <svg class="w-2.5 h-2.5 opacity-50 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M19 9l-7 7-7-7"></path></svg></button>
                     <div class="dropdown-content absolute left-1/2 -translate-x-1/2 mt-4 w-56 rounded-2xl p-2">
-                        <a href="javascript:void(0)" onclick="navigateTo('event1')" class="block px-4 py-3 rounded-xl hover:bg-slate-50 transition text-slate-800 font-bold">Coming Soon 1</a>
-                        <a href="javascript:void(0)" onclick="navigateTo('event2')" class="block px-4 py-3 rounded-xl hover:bg-slate-50 transition text-slate-800 font-bold">Coming Soon 2</a>
+                        <a href="javascript:void(0)" onclick="navigateTo('event1')" class="block px-4 py-3 rounded-xl hover:bg-slate-50 transition text-slate-800 font-bold text-[10px]">Coming Soon 1</a>
+                        <a href="javascript:void(0)" onclick="navigateTo('event2')" class="block px-4 py-3 rounded-xl hover:bg-slate-50 transition text-slate-800 font-bold text-[10px]">Coming Soon 2</a>
                     </div>
                 </div>
+                <!-- Guide -->
                 <div class="relative group px-2 md:px-4 py-2">
-                    <button class="hover:text-cyan-600 transition flex items-center gap-1 uppercase font-bold text-[10px]">Guide <svg class="w-2.5 h-2.5 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M19 9l-7 7-7-7"></path></svg></button>
+                    <button class="hover:text-cyan-600 transition flex items-center gap-1 uppercase font-bold text-[10px]">Guide <svg class="w-2.5 h-2.5 opacity-50 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M19 9l-7 7-7-7"></path></svg></button>
                     <div class="dropdown-content absolute left-1/2 -translate-x-1/2 mt-4 w-56 rounded-2xl p-2">
-                        <a href="javascript:void(0)" onclick="navigateTo('guide-access')" class="block px-4 py-3 rounded-xl hover:bg-slate-50 transition text-slate-800 font-bold">Access Map</a>
+                        <a href="javascript:void(0)" onclick="navigateTo('guide-access')" class="block px-4 py-3 rounded-xl hover:bg-slate-50 transition text-slate-800 font-bold text-[10px]">Access Map</a>
                     </div>
                 </div>
+                <!-- About -->
                 <div class="relative group px-2 md:px-4 py-2">
-                    <button class="hover:text-cyan-600 transition flex items-center gap-1 uppercase font-bold text-[10px]">About <svg class="w-2.5 h-2.5 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M19 9l-7 7-7-7"></path></svg></button>
+                    <button class="hover:text-cyan-600 transition flex items-center gap-1 uppercase font-bold text-[10px]">About <svg class="w-2.5 h-2.5 opacity-50 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M19 9l-7 7-7-7"></path></svg></button>
                     <div class="dropdown-content absolute left-1/2 -translate-x-1/2 mt-4 w-56 rounded-2xl p-2">
-                        <a href="javascript:void(0)" onclick="navigateTo('about-story')" class="block px-4 py-3 rounded-xl hover:bg-slate-50 transition text-slate-800 font-bold">Our Story</a>
-                        <a href="javascript:void(0)" onclick="navigateTo('about-support')" class="block px-4 py-3 rounded-xl hover:bg-slate-50 transition text-slate-800 font-bold">School Support</a>
+                        <a href="javascript:void(0)" onclick="navigateTo('about-story')" class="block px-4 py-3 rounded-xl hover:bg-slate-50 transition text-slate-800 font-bold text-[10px]">Our Story</a>
+                        <a href="javascript:void(0)" onclick="navigateTo('about-support')" class="block px-4 py-3 rounded-xl hover:bg-slate-50 transition text-slate-800 font-bold text-[10px]">School Support</a>
                     </div>
                 </div>
+                <!-- Company -->
                 <div class="relative group px-2 md:px-4 py-2">
-                    <button class="hover:text-cyan-600 transition flex items-center gap-1 uppercase font-bold text-[10px]">Company <svg class="w-2.5 h-2.5 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M19 9l-7 7-7-7"></path></svg></button>
+                    <button class="hover:text-cyan-600 transition flex items-center gap-1 uppercase font-bold text-[10px]">Company <svg class="w-2.5 h-2.5 opacity-50 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M19 9l-7 7-7-7"></path></svg></button>
                     <div class="dropdown-content absolute left-1/2 -translate-x-1/2 mt-4 w-56 rounded-2xl p-2">
-                        <a href="javascript:void(0)" onclick="navigateTo('company-profile')" class="block px-4 py-3 rounded-xl hover:bg-slate-50 transition text-slate-800 font-bold">Profile</a>
-                        <a href="javascript:void(0)" onclick="navigateTo('company-business')" class="block px-4 py-3 rounded-xl hover:bg-slate-50 transition text-slate-800 font-bold">Business</a>
+                        <a href="javascript:void(0)" onclick="navigateTo('company-profile')" class="block px-4 py-3 rounded-xl hover:bg-slate-50 transition text-slate-800 font-bold text-[10px]">Profile</a>
+                        <a href="javascript:void(0)" onclick="navigateTo('company-business')" class="block px-4 py-3 rounded-xl hover:bg-slate-50 transition text-slate-800 font-bold text-[10px]">Business</a>
                     </div>
                 </div>
             </div>
 
             <!-- アクション -->
             <div class="flex items-center space-x-4 shrink-0">
-                <a href="#contact" class="bg-slate-900 text-white text-[10px] font-black px-6 py-2 rounded-full hover:bg-cyan-600 transition uppercase shadow-lg">Contact</a>
+                <a href="#contact" class="bg-slate-900 text-white text-[10px] font-black px-6 py-2 rounded-full hover:bg-cyan-600 transition uppercase shadow-lg shadow-slate-200">Contact</a>
                 <button id="menu-toggle" class="sm:hidden text-slate-600 p-2"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg></button>
             </div>
 
-            <!-- モバイルメニュー -->
-            <div id="mobile-menu" class="absolute top-full left-0 right-0 mt-4 rounded-[2.5rem] p-8 sm:hidden glass border border-slate-200 shadow-2xl">
-                <div class="space-y-6">
-                    <a href="javascript:void(0)" onclick="navigateTo('home')" class="block text-sm font-bold text-slate-700 uppercase tracking-widest text-left">Home</a>
-                    <a href="javascript:void(0)" onclick="navigateTo('event1')" class="block text-sm font-bold text-slate-700 uppercase tracking-widest text-left">Event</a>
-                    <a href="javascript:void(0)" onclick="navigateTo('about-story')" class="block text-sm font-bold text-slate-700 uppercase tracking-widest text-left text-left">About</a>
-                    <a href="javascript:void(0)" onclick="navigateTo('company-profile')" class="block text-sm font-bold text-slate-700 uppercase tracking-widest text-left text-left">Company</a>
+            <!-- スマホ版モバイルメニュー -->
+            <div id="mobile-menu" class="absolute top-full left-0 right-0 mt-4 rounded-[2.5rem] p-8 sm:hidden glass border border-slate-200 shadow-2xl overflow-y-auto max-h-[80vh]">
+                <div class="space-y-8 text-left">
+                    <div><a href="javascript:void(0)" onclick="navigateTo('home')" class="block text-sm font-black text-slate-900 uppercase tracking-[0.2em]">Home</a></div>
+                    <div class="space-y-4">
+                        <p class="text-[10px] font-black text-cyan-600 uppercase tracking-widest">Event</p>
+                        <div class="space-y-3 pl-4 border-l border-slate-100">
+                            <a href="javascript:void(0)" onclick="navigateTo('event1')" class="block text-sm font-bold text-slate-700">Coming Soon 1</a>
+                            <a href="javascript:void(0)" onclick="navigateTo('event2')" class="block text-sm font-bold text-slate-700">Coming Soon 2</a>
+                        </div>
+                    </div>
+                    <div class="space-y-4">
+                        <p class="text-[10px] font-black text-cyan-600 uppercase tracking-widest">Guide</p>
+                        <div class="space-y-3 pl-4 border-l border-slate-100"><a href="javascript:void(0)" onclick="navigateTo('guide-access')" class="block text-sm font-bold text-slate-700">Access Map</a></div>
+                    </div>
+                    <div class="space-y-4">
+                        <p class="text-[10px] font-black text-cyan-600 uppercase tracking-widest">About</p>
+                        <div class="space-y-3 pl-4 border-l border-slate-100">
+                            <a href="javascript:void(0)" onclick="navigateTo('about-story')" class="block text-sm font-bold text-slate-700">Our Story</a>
+                            <a href="javascript:void(0)" onclick="navigateTo('about-support')" class="block text-sm font-bold text-slate-700">School Support</a>
+                        </div>
+                    </div>
+                    <div class="space-y-4">
+                        <p class="text-[10px] font-black text-cyan-600 uppercase tracking-widest">Company</p>
+                        <div class="space-y-3 pl-4 border-l border-slate-100">
+                            <a href="javascript:void(0)" onclick="navigateTo('company-profile')" class="block text-sm font-bold text-slate-700">Corporate Profile</a>
+                            <a href="javascript:void(0)" onclick="navigateTo('company-business')" class="block text-sm font-bold text-slate-700">Business Segments</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </nav>
@@ -181,7 +209,6 @@
 
         <!-- [HOME PAGE] -->
         <div id="page-home" class="page-content active">
-            <!-- ヒーロー -->
             <section class="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-white">
                 <div class="absolute top-1/4 -left-20 w-80 h-80 bg-orange-50 rounded-full blur-[100px]"></div>
                 <div class="absolute bottom-1/4 -right-20 w-80 h-80 bg-blue-50 rounded-full blur-[100px]"></div>
@@ -189,6 +216,7 @@
                     <div class="reveal active">
                         <span class="font-en text-amber-800 font-bold tracking-[0.4em] text-[10px] mb-8 block uppercase">Technology & Premium Coffee</span>
                         <div class="mb-12 flex justify-center items-center">
+                            <!-- 【画像挿入箇所：ヒーローメインロゴ】TCロゴ(20251111).JPG をここに配置 -->
                             <img src="./TCロゴ(20251111).JPG" alt="TECHSPRESSO Logo" class="max-w-[70%] md:max-w-[500px] h-auto object-contain" onerror="this.parentElement.innerHTML='<h1 class=\'heading-style text-6xl md:text-[9rem] mb-10 leading-[0.9] text-slate-900 pr-4\'>TECH<span class=\'text-cyan-500\'>SPRESSO</span><span class=\'block text-xl md:text-2xl font-normal opacity-40 mt-4 tracking-[0.3em]\'>LLC</span></h1>'">
                         </div>
                         <p class="text-slate-500 max-w-2xl mx-auto leading-loose text-sm md:text-base tracking-wide mt-12">
@@ -204,19 +232,19 @@
             <!-- Introduction -->
             <section id="introduction" class="py-32 px-6 bg-white relative overflow-hidden">
                 <div class="container mx-auto max-w-5xl">
-                    <div class="grid md:grid-cols-2 gap-16 items-center">
+                    <div class="grid md:grid-cols-2 gap-16 items-center text-left">
                         <div class="reveal">
                             <h2 class="heading-style text-3xl mb-8 uppercase tracking-widest text-slate-900">Introduction</h2>
                             <p class="text-slate-600 leading-relaxed mb-6">
                                 TECHSPRESSO合同会社は、東京科学大学発のコーヒーサークル「TECHSPRESSO COFFEE STAND」から誕生したテック・スタートアップです。
                             </p>
                             <p class="text-slate-600 leading-relaxed">
-                                テクノロジーによる抽出の最適化と、教育支援を通じて、新たな価値創造を加速させます。
+                                私たちは、コーヒーを単なる飲料ではなく、アイデアが生まれるための「触媒」と捉えています。
                             </p>
                         </div>
                         <div class="reveal">
-                            <div class="glass p-8 md:p-12 rounded-[3rem] border border-cyan-100 bg-gradient-to-br from-white to-cyan-50/20 relative group">
-                                <h3 class="text-xs font-black text-cyan-600 uppercase tracking-[0.3em] mb-4 font-en">Our Origin</h3>
+                            <div class="glass p-8 md:p-12 rounded-[3rem] border border-cyan-100 bg-gradient-to-br from-white to-cyan-50/20 relative group shadow-sm">
+                                <h3 class="text-xs font-black text-cyan-600 uppercase tracking-[0.3em] mb-4">Our Origin</h3>
                                 <h4 class="text-xl font-bold text-slate-800 mb-6 leading-tight uppercase font-en">TECHSPRESSO<br>COFFEE STAND</h4>
                                 <p class="text-[12px] text-slate-500 mb-8 leading-loose">活動の原点であるサークルサイト。最新の出店情報をチェック。</p>
                                 <a href="https://techspresso.jp/" target="_blank" class="inline-flex items-center px-6 py-3 bg-slate-900 text-white rounded-full font-bold text-[10px] uppercase tracking-widest hover:bg-cyan-600 transition shadow-lg">
@@ -234,12 +262,12 @@
                 <div class="container mx-auto max-w-5xl">
                     <div class="reveal">
                         <div class="glass p-8 md:p-16 rounded-[4rem] border border-amber-100 bg-gradient-to-br from-white to-amber-50/20 shadow-sm group">
-                            <div class="flex flex-col md:flex-row justify-between items-center gap-12">
-                                <div class="flex-1 text-center md:text-left">
-                                    <h3 class="text-xs font-black text-amber-700 uppercase tracking-[0.4em] mb-4 font-en">Direct to your cup</h3>
-                                    <h2 class="heading-style text-3xl md:text-5xl text-slate-900 mb-8">TECHSPRESSO<br>ONLINE SHOP</h2>
-                                    <p class="text-slate-500 text-sm md:text-base leading-loose max-w-lg">
-                                        厳選された豆やオリジナルウェアをオンラインで。自宅で楽しむ「最高の一杯」をお届けします。
+                            <div class="flex flex-col md:flex-row justify-between items-center gap-12 text-left">
+                                <div class="flex-1">
+                                    <h3 class="text-xs font-black text-amber-700 uppercase tracking-[0.4em] mb-4 font-en text-left">Direct to your cup</h3>
+                                    <h2 class="heading-style text-3xl md:text-5xl text-slate-900 mb-8 text-left">TECHSPRESSO<br>ONLINE SHOP</h2>
+                                    <p class="text-slate-500 text-sm md:text-base leading-loose max-w-lg text-left">
+                                        厳選された豆やウェアをオンラインで。自宅で楽しむ「最高の一杯」をお届けします。
                                     </p>
                                 </div>
                                 <div class="shrink-0">
@@ -256,15 +284,15 @@
 
             <!-- News -->
             <section id="news" class="py-24 px-6 bg-slate-50 relative z-10">
-                <div class="container mx-auto max-w-4xl">
-                    <div class="flex items-center justify-between mb-12 reveal text-slate-900 text-left">
+                <div class="container mx-auto max-w-4xl text-left">
+                    <div class="flex items-center justify-between mb-12 reveal text-slate-900">
                         <h2 class="text-2xl font-black font-en tracking-tighter uppercase leading-none italic">News / Updates</h2>
                     </div>
                     <div class="space-y-4 text-left text-sm">
                         <a href="#" class="reveal block bg-white p-6 rounded-2xl group border border-slate-100 hover:shadow-xl transition duration-500 shadow-sm">
                             <div class="flex flex-col md:flex-row md:items-center gap-4">
                                 <span class="text-[10px] font-en font-bold text-slate-400 w-24 tracking-widest text-left">2024.11.27</span>
-                                <span class="bg-amber-100 text-amber-800 text-[9px] font-bold px-3 py-1 rounded-full w-fit uppercase tracking-widest">Info</span>
+                                <span class="bg-amber-100 text-amber-800 text-[9px] font-bold px-3 py-1 rounded-full w-fit uppercase tracking-widest text-center">Info</span>
                                 <p class="flex-1 font-bold text-slate-700 group-hover:text-amber-900 transition">冬季限定のシングルオリジン豆が入荷しました。</p>
                             </div>
                         </a>
@@ -272,23 +300,24 @@
                 </div>
             </section>
 
-            <!-- Crowdfunding (New Section) -->
+            <!-- Crowdfunding -->
             <section id="crowdfunding" class="py-32 px-6 bg-white relative overflow-hidden">
                 <div class="container mx-auto max-w-5xl">
-                    <div class="reveal">
+                    <div class="reveal text-left">
                         <div class="glass p-8 md:p-16 rounded-[4rem] border border-blue-100 bg-gradient-to-br from-white to-blue-50/20 shadow-sm group">
                             <div class="flex flex-col md:flex-row justify-between items-center gap-12">
                                 <div class="shrink-0 order-2 md:order-1">
-                                    <!-- 【画像挿入箇所】焙煎機やプロジェクトのイメージ画像 -->
+                                    <!-- 【画像挿入箇所：クラウドファンディング】焙煎機やプロジェクト画像 -->
                                     <div class="w-64 h-64 bg-slate-100 rounded-3xl border border-slate-200 overflow-hidden flex items-center justify-center">
+                                        <!-- <img src="./crowdfund-image.jpg" class="w-full h-full object-cover"> -->
                                         <svg class="w-16 h-16 text-slate-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.691.387a2 2 0 01-1.132.252 2 2 0 01-1.132-.252l-.69-.387a6 6 0 00-3.86-.517l-2.387.477a2 2 0 00-1.022.547"></path></svg>
                                     </div>
                                 </div>
-                                <div class="flex-1 text-center md:text-left order-1 md:order-2">
+                                <div class="flex-1 order-1 md:order-2">
                                     <h3 class="text-xs font-black text-blue-700 uppercase tracking-[0.4em] mb-4 font-en">Project Launch</h3>
                                     <h2 class="heading-style text-3xl md:text-5xl text-slate-900 mb-8 uppercase">Crowdfunding</h2>
                                     <p class="text-slate-600 text-sm md:text-base leading-loose mb-10 max-w-lg">
-                                        TECHSPRESSOの次なる挑戦。独自の焙煎理論を具現化するための「専用焙煎機」取得に向けた資金調達を開始します。共創のパートナーとして、私たちと共に最高の一杯を追求しませんか。
+                                        独自の焙煎理論を具現化するための「専用焙煎機」取得に向けた資金調達を開始します。
                                     </p>
                                     <a href="#" class="inline-flex items-center px-12 py-6 bg-slate-900 text-white rounded-full font-bold text-xs uppercase tracking-[0.2em] hover:bg-blue-600 transition shadow-2xl shadow-blue-200">
                                         Support Our Project
@@ -302,13 +331,46 @@
             </section>
         </div>
 
-        <!-- [EVENT / GUIDE / ABOUT / COMPANY PAGES] -->
-        <div id="page-event1" class="page-content pt-32"><section class="py-32 px-6 bg-white text-center"><h2 class="heading-style text-4xl md:text-6xl mb-12">Event 1</h2><div class="max-w-4xl mx-auto p-24 border-2 border-dashed border-slate-200 rounded-[3rem] bg-slate-50 text-slate-400 tracking-widest uppercase">Coming Soon</div></section></div>
-        <div id="page-guide-access" class="page-content pt-32"><section class="py-32 px-6 bg-white text-center"><div class="container mx-auto max-w-4xl text-center"><h2 class="heading-style text-4xl md:text-6xl mb-12 uppercase">Access</h2><div class="glass p-12 rounded-[3rem] text-left border border-slate-100"><h3 class="font-bold text-xl mb-4 uppercase">Office</h3><p class="text-slate-500 mb-8 font-bold">神奈川県横浜市神奈川区</p><div class="aspect-video bg-slate-50 rounded-2xl border border-slate-200 flex items-center justify-center"><span class="text-slate-300 font-bold uppercase tracking-widest text-[10px] font-en">Map Area</span></div></div></div></section></div>
-        <div id="page-about-story" class="page-content pt-32"><section class="py-32 px-6 bg-white text-left"><div class="container mx-auto max-w-4xl"><h2 class="heading-style text-4xl md:text-6xl mb-12 text-center uppercase leading-tight">Our Story</h2><p class="text-slate-600 leading-loose">サークル活動で培った情熱を、社会に実装する。私たちはコーヒーという媒体を通して、クリエイティビティの「余白」をデザインします。</p></div></section></div>
+        <!-- [SUB PAGES] -->
+        <div id="page-event1" class="page-content pt-32 text-center">
+            <section class="py-32 px-6">
+                <h2 class="heading-style text-4xl md:text-6xl my-16">Event 1</h2>
+                <div class="max-w-4xl mx-auto aspect-video bg-slate-50 rounded-3xl flex items-center justify-center border border-slate-100">
+                    <!-- 【画像挿入箇所：イベント1ビジュアル】 -->
+                    <!-- <img src="./event1.jpg" class="w-full h-full object-cover"> -->
+                    <span class="text-slate-300 font-bold uppercase tracking-widest">Visual Area</span>
+                </div>
+            </section>
+        </div>
+
+        <div id="page-guide-access" class="page-content pt-32 text-center">
+            <section class="py-32 px-6">
+                <h2 class="heading-style text-4xl md:text-6xl mb-12 uppercase">Access Map</h2>
+                <div class="container mx-auto max-w-4xl text-left glass p-12 rounded-[3rem] border border-slate-100">
+                    <p class="text-slate-500 mb-8 font-bold">神奈川県横浜市神奈川区</p>
+                    <div class="aspect-video bg-slate-50 rounded-2xl border border-slate-200 flex items-center justify-center">
+                        <span class="text-slate-300 font-bold uppercase tracking-widest text-[10px] font-en">Map Visualization</span>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <div id="page-about-story" class="page-content pt-32 text-left">
+            <section class="py-32 px-6">
+                <div class="container mx-auto max-w-4xl">
+                    <h2 class="heading-style text-4xl md:text-6xl mb-12 text-center uppercase leading-tight">Our Story</h2>
+                    <div class="grid md:grid-cols-2 gap-16 items-start">
+                        <p class="text-slate-600 leading-loose">サークル活動で培った情熱を、社会に実装する。私たちはコーヒーという媒体を通して、クリエイティビティの「余白」をデザインします。</p>
+                        <!-- 【画像挿入箇所：ストーリービジュアル】 -->
+                        <div class="rounded-3xl bg-slate-50 aspect-[4/3] overflow-hidden border border-slate-100"><img src="./image_2cd2a5.jpg" alt="Origin Image" class="w-full h-full object-cover"></div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
         <div id="page-company-profile" class="page-content pt-32">
-            <section class="py-32 px-6 bg-white">
-                <div class="container mx-auto max-w-4xl text-center">
+            <section class="py-32 px-6 text-center">
+                <div class="container mx-auto max-w-4xl">
                     <h2 class="heading-style text-4xl md:text-6xl mb-12 uppercase">Profile</h2>
                     <div class="glass p-12 rounded-[3rem] border border-slate-100 text-left">
                         <div class="grid grid-cols-1 gap-1">
@@ -324,41 +386,54 @@
 
     </main>
 
-    <!-- フッター -->
+    <!-- フッター (全ページ構成) -->
     <footer class="bg-white pt-32 pb-16 px-6 border-t border-slate-200">
         <div class="container mx-auto">
             <div class="grid grid-cols-2 md:grid-cols-4 gap-12 mb-20 text-left uppercase font-bold text-[10px] tracking-[0.3em]">
+                <!-- Col 1: SECTION (薄字) -->
                 <div class="space-y-6">
-                    <p class="text-slate-900 border-b pb-2 italic border-slate-100 font-en">Section</p>
+                    <p class="text-slate-900 border-b pb-2 italic border-slate-100 font-en uppercase">Section</p>
                     <ul class="space-y-4 text-slate-300">
                         <li><a href="javascript:void(0)" onclick="navigateTo('home')" class="hover:text-cyan-600 transition text-[9px]">HOME</a></li>
                         <li><a href="javascript:void(0)" onclick="navigateTo('home'); document.getElementById('introduction').scrollIntoView();" class="hover:text-cyan-600 transition text-[9px]">Introduction</a></li>
                         <li><a href="javascript:void(0)" onclick="navigateTo('home'); document.getElementById('news').scrollIntoView();" class="hover:text-cyan-600 transition text-[9px]">NEWS/UPDATES</a></li>
                     </ul>
                 </div>
+                <!-- Col 2: EVENT -->
                 <div class="space-y-6">
-                    <p class="text-slate-900 border-b pb-2 italic border-slate-100 font-en">Event</p>
-                    <ul class="space-y-4 text-slate-500 font-black"><li><a href="javascript:void(0)" onclick="navigateTo('event1')" class="hover:text-cyan-600 transition">Coming Soon 1</a></li></ul>
+                    <p class="text-slate-900 border-b pb-2 italic border-slate-100 font-en uppercase">Event</p>
+                    <ul class="space-y-4 text-slate-500 font-black">
+                        <li><a href="javascript:void(0)" onclick="navigateTo('event1')" class="hover:text-cyan-600 transition text-[10px]">Coming Soon 1</a></li>
+                    </ul>
                 </div>
+                <!-- Col 3: ABOUT -->
                 <div class="space-y-6">
-                    <p class="text-slate-900 border-b pb-2 italic border-slate-100 font-en">About</p>
-                    <ul class="space-y-4 text-slate-500 font-black"><li><a href="javascript:void(0)" onclick="navigateTo('about-story')" class="hover:text-cyan-600 transition uppercase">Our Story</a></li></ul>
+                    <p class="text-slate-900 border-b pb-2 italic border-slate-100 font-en uppercase">About</p>
+                    <ul class="space-y-4 text-slate-500 font-black text-left">
+                        <li><a href="javascript:void(0)" onclick="navigateTo('about-story')" class="hover:text-cyan-600 transition text-[10px]">Our Story</a></li>
+                        <li><a href="javascript:void(0)" onclick="navigateTo('about-support')" class="hover:text-cyan-600 transition text-[10px]">School Support</a></li>
+                    </ul>
                 </div>
+                <!-- Col 4: COMPANY -->
                 <div class="space-y-6">
-                    <p class="text-slate-900 border-b pb-2 italic border-slate-100 font-en">Company</p>
-                    <ul class="space-y-4 text-slate-500 font-black"><li><a href="javascript:void(0)" onclick="navigateTo('company-profile')" class="hover:text-cyan-600 transition uppercase">Profile</a></li></ul>
+                    <p class="text-slate-900 border-b pb-2 italic border-slate-100 font-en uppercase">Company</p>
+                    <ul class="space-y-4 text-slate-500 font-black text-left">
+                        <li><a href="javascript:void(0)" onclick="navigateTo('company-profile')" class="hover:text-cyan-600 transition text-[10px]">Profile</a></li>
+                    </ul>
                 </div>
             </div>
 
-            <div class="pt-12 border-t border-slate-100 flex flex-col md:flex-row justify-between items-center gap-8">
+            <!-- フッター最下部 -->
+            <div class="pt-12 border-t border-slate-100 flex flex-col md:flex-row justify-between items-center gap-8 text-center md:text-left">
                 <div class="flex items-center space-x-3 shrink-0">
+                    <!-- 【画像挿入箇所：フッターロゴ】 -->
                     <div class="w-8 h-8 bg-white border border-slate-200 rounded-lg flex items-center justify-center overflow-hidden shadow-sm">
                         <img src="./TCロゴ(20251111).JPG" alt="Footer Logo" class="w-full h-full object-contain" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                        <span class="text-[6px] font-bold text-gray-300 hidden text-center">TC</span>
+                        <span class="text-[6px] font-bold text-gray-300 hidden text-center uppercase">TC</span>
                     </div>
-                    <div class="font-en font-black text-xl text-slate-900 uppercase tracking-tighter">TECHSPRESSO <span class="opacity-30 text-[10px] font-normal tracking-widest uppercase">LLC</span></div>
+                    <div class="font-en font-black text-xl text-slate-900 uppercase italic">TECHSPRESSO <span class="opacity-30 text-[10px] font-normal tracking-widest uppercase">LLC</span></div>
                 </div>
-                <p class="text-[9px] text-slate-400 tracking-[0.4em] uppercase text-center md:text-left flex-1">© 2026 TECHSPRESSO LLC. ALL RIGHTS RESERVED.</p>
+                <p class="text-[9px] text-slate-400 tracking-[0.4em] uppercase flex-1">© 2026 TECHSPRESSO LLC. ALL RIGHTS RESERVED.</p>
                 <div class="flex space-x-8 shrink-0">
                     <a href="#" class="text-slate-400 hover:text-slate-900 transition"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231 5.451-6.231zm-1.161 17.52h1.833L7.084 4.126H5.117l11.966 15.644z"/></svg></a>
                     <a href="#" class="text-slate-400 hover:text-pink-600 transition"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
@@ -389,7 +464,9 @@
         const menuToggle = document.getElementById('menu-toggle');
         const mobileMenu = document.getElementById('mobile-menu');
         if (menuToggle && mobileMenu) {
-            menuToggle.addEventListener('click', () => mobileMenu.classList.toggle('active'));
+            menuToggle.addEventListener('click', () => {
+                mobileMenu.classList.toggle('active');
+            });
         }
         window.onload = () => {
             const observer = new IntersectionObserver((entries) => {
