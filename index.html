@@ -8,108 +8,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700;900&family=Montserrat:wght@700;900&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --bg-light: #ffffff;
-            --bg-sub: #f8fafc;
-            --text-main: #1e293b;
-            --accent-cyan: #06b6d4;
-            --accent-navy: #1e3a8a;
-            --coffee-brown: #463020;
-        }
-        body {
-            font-family: 'Noto Sans JP', sans-serif;
-            background-color: var(--bg-light);
-            color: var(--text-main);
-            overflow-x: hidden;
-        }
-        .font-en { font-family: 'Montserrat', sans-serif; }
-
-        /* 背景グリッド */
-        .bg-grid {
-            background-image: radial-gradient(circle, rgba(0,0,0,0.03) 1px, transparent 1px);
-            background-size: 40px 40px;
-        }
-
-        /* グラスモーフィズム */
-        .glass {
-            background: rgba(255, 255, 255, 0.7);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(0, 0, 0, 0.05);
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.03);
-        }
-
-        /* 見出しスタイル（太字・大文字・斜体なし） */
-        .heading-style {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 900;
-            text-transform: uppercase;
-            letter-spacing: -0.05em;
-        }
-
-        /* スクロールフェードイン */
-        .reveal {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s ease-out;
-        }
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* ドロップダウンメニュー（ホバー時に表示） */
-        .dropdown-content {
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(10px);
-            transition: all 0.2s ease-out;
-            background: rgba(255, 255, 255, 0.98);
-            border: 1px solid rgba(0, 0, 0, 0.08);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-            z-index: 100;
-        }
-        .group:hover .dropdown-content {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-
-        /* ページ切り替え用表示制御 */
-        .page-content {
-            display: none;
-            opacity: 0;
-        }
-        .page-content.active {
-            display: block;
-            opacity: 1;
-            animation: fadeIn 0.4s ease-out forwards;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* スマホメニューのアニメーション */
-        #mobile-menu {
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            transform: translateY(-20px);
-            opacity: 0;
-            pointer-events: none;
-        }
-        #mobile-menu.active {
-            transform: translateY(0);
-            opacity: 1;
-            pointer-events: auto;
-        }
-
-        html { scroll-behavior: smooth; }
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: var(--bg-light); }
-        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
-    </style>
+        <link rel="stylesheet" href="./styles.css">
 </head>
 <body class="bg-grid">
 
@@ -125,7 +24,7 @@
                         <span class="text-[8px] font-bold text-gray-400 hidden text-center">LOGO</span>
                     </div>
                     <span class="font-en font-black text-sm md:text-lg tracking-tighter text-slate-800 uppercase not-italic">
-                        テスト <span class="text-[10px] font-normal opacity-40 ml-1">LLC</span>
+                        テスト<span class="text-[10px] font-normal opacity-40 ml-1">LLC</span>
                     </span>
                 </a>
             </div>
@@ -443,38 +342,6 @@
         </div>
     </footer>
 
-    <script>
-        function navigateTo(pageId) {
-            document.querySelectorAll('.page-content').forEach(p => p.classList.remove('active'));
-            const mobileMenu = document.getElementById('mobile-menu');
-            if (mobileMenu) mobileMenu.classList.remove('active');
-            const targetPage = document.getElementById('page-' + pageId);
-            if (targetPage) {
-                targetPage.classList.add('active');
-                window.scrollTo(0, 0);
-            }
-        }
-        window.addEventListener('scroll', () => {
-            const header = document.getElementById('header');
-            if (window.scrollY > 80) {
-                header.classList.add('py-2'); header.classList.remove('py-4');
-            } else {
-                header.classList.add('py-4'); header.classList.remove('py-2');
-            }
-        });
-        const menuToggle = document.getElementById('menu-toggle');
-        const mobileMenu = document.getElementById('mobile-menu');
-        if (menuToggle && mobileMenu) {
-            menuToggle.addEventListener('click', () => {
-                mobileMenu.classList.toggle('active');
-            });
-        }
-        window.onload = () => {
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('active'); });
-            }, { threshold: 0.1 });
-            document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-        };
-    </script>
+        <script src="./script.js"></script>
 </body>
 </html>

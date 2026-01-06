@@ -1,0 +1,100 @@
+:root {
+    --bg-light: #ffffff;
+    --bg-sub: #f8fafc;
+    --text-main: #1e293b;
+    --accent-cyan: #06b6d4;
+    --accent-navy: #1e3a8a;
+    --coffee-brown: #463020;
+}
+body {
+    font-family: 'Noto Sans JP', sans-serif;
+    background-color: var(--bg-light);
+    color: var(--text-main);
+    overflow-x: hidden;
+}
+.font-en { font-family: 'Montserrat', sans-serif; }
+
+/* 背景グリチE�� */
+.bg-grid {
+    background-image: radial-gradient(circle, rgba(0,0,0,0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+}
+
+/* グラスモーフィズム */
+.glass {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.03);
+}
+
+/* 見�Eしスタイル�E�太字�E大斁E���E斜体なし！E*/
+.heading-style {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: -0.05em;
+}
+
+/* スクロールフェードイン */
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease-out;
+}
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ドロチE�Eダウンメニュー�E��Eバ�E時に表示�E�E*/
+.dropdown-content {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: all 0.2s ease-out;
+    background: rgba(255, 255, 255, 0.98);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    z-index: 100;
+}
+.group:hover .dropdown-content {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+/* ペ�Eジ刁E��替え用表示制御 */
+.page-content {
+    display: none;
+    opacity: 0;
+}
+.page-content.active {
+    display: block;
+    opacity: 1;
+    animation: fadeIn 0.4s ease-out forwards;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* スマ�Eメニューのアニメーション */
+#mobile-menu {
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transform: translateY(-20px);
+    opacity: 0;
+    pointer-events: none;
+}
+#mobile-menu.active {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+}
+
+html { scroll-behavior: smooth; }
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg-light); }
+::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
