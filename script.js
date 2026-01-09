@@ -35,6 +35,8 @@ let newsItems = [];
 let newsLoadFailed = false;
 let revealObserver = null;
 let newsReadyPromise = null;
+let selectedCategory = 'ALL';
+let selectedTag = 'ALL';
 
 const getNewsBadgeClasses = (category) => {
     const key = String(category || '').toUpperCase();
@@ -52,6 +54,8 @@ const getNewsBadgeClasses = (category) => {
     }
 };
 
+const normalizeFilterValue = (value) => String(value || '').toUpperCase();
+
 const getDateKey = (dateString) => {
     if (!dateString) return 0;
     return Number(String(dateString).replace(/\./g, '')) || 0;
@@ -65,12 +69,61 @@ const sortNewsItems = (items) => {
     });
 };
 
+const applyFilters = (items) => {
+    return items.filter((item) => {
+        const categoryMatch = selectedCategory === 'ALL'
+            || normalizeFilterValue(item.category) === selectedCategory;
+        const tagMatch = selectedTag === 'ALL'
+            || (Array.isArray(item.tags)
+                && item.tags.map(normalizeFilterValue).includes(selectedTag));
+        return categoryMatch && tagMatch;
+    });
+};
+
 const setupRevealObserver = () => {
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('active'); });
     }, { threshold: 0.1 });
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
     return observer;
+};
+
+const createFilterButton = (label, type, value, isActive) => {
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.dataset.filterType = type;
+    button.dataset.filterValue = value;
+    button.className = `text-[9px] font-bold uppercase tracking-widest px-3 py-1 rounded-full border transition ${isActive ? 'bg-slate-900 text-white border-slate-900' : 'border-slate-200 text-slate-600 hover:text-slate-900'}`;
+    button.textContent = label;
+    return button;
+};
+
+const renderFilters = () => {
+    const categoryContainer = document.getElementById('news-filter-categories');
+    const tagContainer = document.getElementById('news-filter-tags');
+    if (!categoryContainer || !tagContainer) return;
+
+    const categories = Array.from(new Set(
+        newsItems.map(item => item.category).filter(Boolean)
+    ));
+    const tags = Array.from(new Set(
+        newsItems.flatMap(item => Array.isArray(item.tags) ? item.tags : []).filter(Boolean)
+    ));
+
+    categoryContainer.textContent = '';
+    tagContainer.textContent = '';
+
+    categoryContainer.appendChild(createFilterButton('ALL', 'category', 'ALL', selectedCategory === 'ALL'));
+    categories.forEach((category) => {
+        const key = normalizeFilterValue(category);
+        categoryContainer.appendChild(createFilterButton(category, 'category', key, selectedCategory === key));
+    });
+
+    tagContainer.appendChild(createFilterButton('ALL', 'tag', 'ALL', selectedTag === 'ALL'));
+    tags.forEach((tag) => {
+        const key = normalizeFilterValue(tag);
+        tagContainer.appendChild(createFilterButton(tag, 'tag', key, selectedTag === key));
+    });
 };
 
 const createNewsCard = (item) => {
@@ -86,7 +139,10 @@ const createNewsCard = (item) => {
     date.className = 'text-[10px] font-en font-bold text-slate-400 w-24 tracking-widest text-left';
     date.textContent = item.date || '';
 
-    const badge = document.createElement('span');
+    const badge = document.createElement('button');
+    badge.type = 'button';
+    badge.dataset.filterType = 'category';
+    badge.dataset.filterValue = normalizeFilterValue(item.category);
     badge.className = `${getNewsBadgeClasses(item.category)} text-[9px] font-bold px-3 py-1 rounded-full w-fit uppercase tracking-widest text-center`;
     badge.textContent = item.category || 'INFO';
 
@@ -116,16 +172,24 @@ const renderNewsList = () => {
         return;
     }
 
-    const sorted = sortNewsItems(newsItems).slice(0, NEWS_LIMIT);
-    if (!sorted.length) {
+    const sorted = sortNewsItems(newsItems);
+    const filtered = applyFilters(sorted).slice(0, NEWS_LIMIT);
+    if (!filtered.length) {
         const empty = document.createElement('p');
         empty.className = 'text-xs text-slate-400 tracking-wide';
-        empty.textContent = '現在お知らせはありません。';
+        empty.textContent = '条件に一致するNewsがありません。';
         container.appendChild(empty);
+
+        const reset = document.createElement('button');
+        reset.type = 'button';
+        reset.dataset.filterType = 'clear';
+        reset.className = 'mt-4 text-[10px] font-bold uppercase tracking-widest text-slate-500 hover:text-slate-900 transition';
+        reset.textContent = 'Clear Filters';
+        container.appendChild(reset);
         return;
     }
 
-    sorted.forEach((item) => {
+    filtered.forEach((item) => {
         const card = createNewsCard(item);
         container.appendChild(card);
         if (revealObserver) revealObserver.observe(card);
@@ -180,6 +244,12 @@ const renderNewsDetail = (slug) => {
         note.className = 'text-sm text-slate-500';
         note.textContent = '一覧へ戻って別の記事をご確認ください。';
         container.appendChild(note);
+
+        const backLink = document.createElement('a');
+        backLink.href = '#news';
+        backLink.className = 'inline-flex items-center text-xs font-bold uppercase tracking-widest text-slate-500 hover:text-slate-900 transition';
+        backLink.textContent = 'Back to News';
+        container.appendChild(backLink);
         return;
     }
 
@@ -195,7 +265,10 @@ const renderNewsDetail = (slug) => {
     date.className = 'text-[10px] font-en font-bold text-slate-400 tracking-widest';
     date.textContent = item.date || '';
 
-    const badge = document.createElement('span');
+    const badge = document.createElement('button');
+    badge.type = 'button';
+    badge.dataset.filterType = 'category';
+    badge.dataset.filterValue = normalizeFilterValue(item.category);
     badge.className = `${getNewsBadgeClasses(item.category)} text-[9px] font-bold px-3 py-1 rounded-full w-fit uppercase tracking-widest text-center`;
     badge.textContent = item.category || 'INFO';
 
@@ -207,8 +280,11 @@ const renderNewsDetail = (slug) => {
         const tagWrap = document.createElement('div');
         tagWrap.className = 'flex flex-wrap gap-2';
         item.tags.forEach((tag) => {
-            const chip = document.createElement('span');
-            chip.className = 'text-[9px] font-bold uppercase tracking-widest text-slate-500 border border-slate-200 rounded-full px-3 py-1';
+            const chip = document.createElement('button');
+            chip.type = 'button';
+            chip.dataset.filterType = 'tag';
+            chip.dataset.filterValue = normalizeFilterValue(tag);
+            chip.className = 'text-[9px] font-bold uppercase tracking-widest text-slate-500 border border-slate-200 rounded-full px-3 py-1 hover:text-slate-900 transition';
             chip.textContent = tag;
             tagWrap.appendChild(chip);
         });
@@ -254,6 +330,46 @@ const loadNews = async () => {
     }
 };
 
+const resetFilters = () => {
+    selectedCategory = 'ALL';
+    selectedTag = 'ALL';
+    renderFilters();
+    renderNewsList();
+};
+
+const applyFilterSelection = (type, value) => {
+    if (type === 'category') selectedCategory = value;
+    if (type === 'tag') selectedTag = value;
+    renderFilters();
+    renderNewsList();
+
+    if (window.location.hash.startsWith('#news/')) {
+        window.location.hash = '#news';
+    } else {
+        showNewsList();
+    }
+};
+
+const handleFilterClick = (event) => {
+    const target = event.target.closest('[data-filter-type]');
+    if (!target) return;
+
+    const type = target.dataset.filterType;
+    if (!type) return;
+
+    event.preventDefault();
+    event.stopPropagation();
+
+    if (type === 'clear') {
+        resetFilters();
+        return;
+    }
+
+    const value = target.dataset.filterValue;
+    if (!value) return;
+    applyFilterSelection(type, value);
+};
+
 const showNewsList = () => {
     navigateTo('home');
     const section = document.getElementById('news');
@@ -282,10 +398,14 @@ const handleHashRoute = async () => {
 
 document.addEventListener('DOMContentLoaded', () => {
     revealObserver = setupRevealObserver();
-    newsReadyPromise = loadNews().then(renderNewsList);
+    newsReadyPromise = loadNews().then(() => {
+        renderFilters();
+        renderNewsList();
+    });
     handleHashRoute();
 
     window.addEventListener('hashchange', handleHashRoute);
+    document.addEventListener('click', handleFilterClick);
 
     const backButton = document.getElementById('news-back');
     if (backButton) {
