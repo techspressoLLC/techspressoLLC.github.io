@@ -3,7 +3,10 @@
     {
       "slug": "corporate-registration",
       "date": "2026.01.15",
-      "category": "NEWS",
+      "category": [
+        "NEWS",
+        "IMPORTANT"
+      ],
       "title": "法人登記が完了しました",
       "excerpt": "TECHSPRESSO合同会社の法人登記が完了しました。",
       "cover": "./pic/news/registration.jpg",
@@ -23,7 +26,9 @@
     {
       "slug": "spring-blend-preorder",
       "date": "2026.03.12",
-      "category": "NEWS",
+      "category": [
+        "NEWS"
+      ],
       "title": "春の限定ブレンドの先行予約を開始しました",
       "excerpt": "数量限定の春ブレンドをオンラインで先行予約いただけます。",
       "cover": "./pic/news/spring-blend.jpg",
@@ -43,7 +48,9 @@
     {
       "slug": "early-spring-release",
       "date": "2026.03.01",
-      "category": "PRODUCT",
+      "category": [
+        "PRODUCT"
+      ],
       "title": "新作ブレンド「Early Spring」を発売しました",
       "excerpt": "春の訪れを感じる軽やかなブレンドを発売しました。",
       "cover": "./pic/news/early-spring.jpg",
@@ -61,7 +68,9 @@
     {
       "slug": "spring-tasting-yokohama",
       "date": "2026.02.20",
-      "category": "EVENT",
+      "category": [
+        "EVENT"
+      ],
       "title": "春のコーヒー試飲会 in 横浜を開催します",
       "excerpt": "新作の試飲とハンドドリップ体験を行います。",
       "cover": "./pic/news/tasting-yokohama.jpg",
@@ -81,7 +90,9 @@
     {
       "slug": "shop-maintenance",
       "date": "2026.02.10",
-      "category": "INFO",
+      "category": [
+        "INFO"
+      ],
       "title": "オンラインショップのメンテナンス予定を公開しました",
       "excerpt": "一部の購入機能が一時停止します。",
       "cover": "",
@@ -99,7 +110,9 @@
     {
       "slug": "classic-beans-update",
       "date": "2026.01.15",
-      "category": "PRODUCT",
+      "category": [
+        "PRODUCT"
+      ],
       "title": "定番豆ラインナップをアップデートしました",
       "excerpt": "人気の定番豆を飲み比べしやすいラインナップに刷新しました。",
       "cover": "./pic/news/classic-beans.jpg",

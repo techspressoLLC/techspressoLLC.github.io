@@ -56,6 +56,12 @@ const getNewsBadgeClasses = (category) => {
 
 const normalizeFilterValue = (value) => String(value || '').toUpperCase();
 
+const getCategoryValues = (category) => {
+    if (Array.isArray(category)) return category.filter(Boolean);
+    if (category) return [category];
+    return [];
+};
+
 const getDateKey = (dateString) => {
     if (!dateString) return 0;
     return Number(String(dateString).replace(/\./g, '')) || 0;
@@ -71,8 +77,9 @@ const sortNewsItems = (items) => {
 
 const applyFilters = (items) => {
     return items.filter((item) => {
+        const categories = getCategoryValues(item.category).map(normalizeFilterValue);
         const categoryMatch = selectedCategory === 'ALL'
-            || normalizeFilterValue(item.category) === selectedCategory;
+            || categories.includes(selectedCategory);
         const tagMatch = selectedTag === 'ALL'
             || (Array.isArray(item.tags)
                 && item.tags.map(normalizeFilterValue).includes(selectedTag));
@@ -104,7 +111,7 @@ const renderFilters = () => {
     if (!categoryContainer || !tagContainer) return;
 
     const categories = Array.from(new Set(
-        newsItems.map(item => item.category).filter(Boolean)
+        newsItems.flatMap(item => getCategoryValues(item.category)).filter(Boolean)
     ));
     const tags = Array.from(new Set(
         newsItems.flatMap(item => Array.isArray(item.tags) ? item.tags : []).filter(Boolean)
@@ -139,19 +146,31 @@ const createNewsCard = (item) => {
     date.className = 'text-[10px] font-en font-bold text-slate-400 w-24 tracking-widest text-left';
     date.textContent = item.date || '';
 
-    const badge = document.createElement('button');
-    badge.type = 'button';
-    badge.dataset.filterType = 'category';
-    badge.dataset.filterValue = normalizeFilterValue(item.category);
-    badge.className = `${getNewsBadgeClasses(item.category)} text-[9px] font-bold px-3 py-1 rounded-full w-fit uppercase tracking-widest text-center`;
-    badge.textContent = item.category || 'INFO';
+    const badgeWrap = document.createElement('div');
+    badgeWrap.className = 'flex flex-wrap items-center gap-2';
+    const categories = getCategoryValues(item.category);
+    categories.forEach((category) => {
+        const badge = document.createElement('button');
+        badge.type = 'button';
+        badge.dataset.filterType = 'category';
+        badge.dataset.filterValue = normalizeFilterValue(category);
+        badge.className = `${getNewsBadgeClasses(category)} text-[9px] font-bold px-3 py-1 rounded-full w-fit uppercase tracking-widest text-center`;
+        badge.textContent = category || 'INFO';
+        badgeWrap.appendChild(badge);
+    });
 
     const title = document.createElement('p');
     title.className = 'flex-1 font-bold text-slate-700 group-hover:text-slate-900 transition';
     title.textContent = item.title || '';
 
     row.appendChild(date);
-    row.appendChild(badge);
+    if (badgeWrap.childNodes.length) row.appendChild(badgeWrap);
+    if (item.pinned) {
+        const pinnedBadge = document.createElement('span');
+        pinnedBadge.className = 'text-[9px] font-bold uppercase tracking-widest px-2 py-1 rounded-full bg-slate-100 text-slate-600';
+        pinnedBadge.textContent = 'Pinned';
+        row.appendChild(pinnedBadge);
+    }
     row.appendChild(title);
     link.appendChild(row);
 
@@ -265,15 +284,27 @@ const renderNewsDetail = (slug) => {
     date.className = 'text-[10px] font-en font-bold text-slate-400 tracking-widest';
     date.textContent = item.date || '';
 
-    const badge = document.createElement('button');
-    badge.type = 'button';
-    badge.dataset.filterType = 'category';
-    badge.dataset.filterValue = normalizeFilterValue(item.category);
-    badge.className = `${getNewsBadgeClasses(item.category)} text-[9px] font-bold px-3 py-1 rounded-full w-fit uppercase tracking-widest text-center`;
-    badge.textContent = item.category || 'INFO';
+    const badgeWrap = document.createElement('div');
+    badgeWrap.className = 'flex flex-wrap items-center gap-2';
+    const categories = getCategoryValues(item.category);
+    categories.forEach((category) => {
+        const badge = document.createElement('button');
+        badge.type = 'button';
+        badge.dataset.filterType = 'category';
+        badge.dataset.filterValue = normalizeFilterValue(category);
+        badge.className = `${getNewsBadgeClasses(category)} text-[9px] font-bold px-3 py-1 rounded-full w-fit uppercase tracking-widest text-center`;
+        badge.textContent = category || 'INFO';
+        badgeWrap.appendChild(badge);
+    });
 
     meta.appendChild(date);
-    meta.appendChild(badge);
+    if (badgeWrap.childNodes.length) meta.appendChild(badgeWrap);
+    if (item.pinned) {
+        const pinnedBadge = document.createElement('span');
+        pinnedBadge.className = 'text-[9px] font-bold uppercase tracking-widest px-2 py-1 rounded-full bg-slate-100 text-slate-600';
+        pinnedBadge.textContent = 'Pinned';
+        meta.appendChild(pinnedBadge);
+    }
     container.appendChild(meta);
 
     if (Array.isArray(item.tags) && item.tags.length) {
