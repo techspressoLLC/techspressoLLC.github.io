@@ -20,6 +20,24 @@
       ],
       "externalUrl": "",
       "pinned": true
+    },
+    {
+      "slug": "crowdfunding-launch",
+      "date": "2026.02.15",
+      "category": [
+        "NEWS"
+      ],
+      "title": "クラウドファンディングを開始しました",
+      "excerpt": "TECHSPRESSOは次なる目標達成のためのクラウドファンディングを開始しました。",
+      "cover": "",
+      "body": [
+        "この度TECHSPRESSOは次なる目標達成のためのクラウドファンディングを開始しました。"
+      ],
+      "tags": [
+        "INFO"
+      ],
+      "externalUrl": "",
+      "pinned": false
     }
   ],
   "archivedItems": [
