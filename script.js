@@ -9,6 +9,23 @@ function navigateTo(pageId) {
     }
 }
 
+function updateCrowdfundingOffsets() {
+    const header = document.getElementById('header');
+    const bar = document.getElementById('crowdfunding-bar');
+    const showButton = document.getElementById('crowdfunding-show');
+    const main = document.querySelector('main');
+    if (!header || !bar || !showButton || !main) return;
+
+    const headerHeight = header.getBoundingClientRect().height;
+    const barVisible = !bar.classList.contains('hidden');
+    const barHeight = barVisible ? bar.getBoundingClientRect().height : 0;
+    const topOffset = headerHeight + 8;
+
+    bar.style.top = `${topOffset}px`;
+    showButton.style.top = `${topOffset}px`;
+    main.style.paddingTop = `${headerHeight + barHeight + 16}px`;
+}
+
 window.addEventListener('scroll', () => {
     const header = document.getElementById('header');
     if (window.scrollY > 80) {
@@ -18,6 +35,7 @@ window.addEventListener('scroll', () => {
         header.classList.add('py-4');
         header.classList.remove('py-2');
     }
+    updateCrowdfundingOffsets();
 });
 
 const menuToggle = document.getElementById('menu-toggle');
@@ -461,11 +479,16 @@ document.addEventListener('DOMContentLoaded', () => {
             crowdfundingBar.classList.add('hidden');
             showCrowdfunding.classList.remove('hidden');
             showCrowdfunding.classList.add('flex');
+            updateCrowdfundingOffsets();
         });
         showCrowdfunding.addEventListener('click', () => {
             crowdfundingBar.classList.remove('hidden');
             showCrowdfunding.classList.add('hidden');
             showCrowdfunding.classList.remove('flex');
+            updateCrowdfundingOffsets();
         });
     }
+
+    updateCrowdfundingOffsets();
+    window.addEventListener('resize', updateCrowdfundingOffsets);
 });
