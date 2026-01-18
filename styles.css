@@ -143,3 +143,13 @@ html {
     scrollbar-width: none;
     /* Firefox */
 }
+
+#crowdfunding {
+    scroll-margin-top: 130px;
+}
+
+@media (max-width: 640px) {
+    #crowdfunding {
+        scroll-margin-top: 160px;
+    }
+}
