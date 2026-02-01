@@ -65,6 +65,7 @@ let selectedCategory = 'ALL';
 let selectedTag = 'ALL';
 let ignoreHashUntil = 0;
 let restoreScrollTimers = [];
+const isDiscordWebView = /Discord/i.test(navigator.userAgent);
 
 const getNewsBadgeClasses = (category) => {
     const key = String(category || '').toUpperCase();
@@ -463,6 +464,10 @@ const applyFilterSelection = (type, value) => {
         requestAnimationFrame(restoreScroll);
         restoreScrollTimers.push(setTimeout(restoreScroll, 60));
         restoreScrollTimers.push(setTimeout(restoreScroll, 160));
+        if (isDiscordWebView) {
+            restoreScrollTimers.push(setTimeout(restoreScroll, 320));
+            restoreScrollTimers.push(setTimeout(restoreScroll, 520));
+        }
     }
 };
 
@@ -490,6 +495,7 @@ const showNewsDetail = (slug) => {
 
 const handleHashRoute = async () => {
     if (Date.now() < ignoreHashUntil) return;
+    if (isDiscordWebView) return;
     if (newsReadyPromise) await newsReadyPromise;
     const hash = window.location.hash || '';
 
@@ -512,7 +518,9 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     handleHashRoute();
 
-    window.addEventListener('hashchange', handleHashRoute);
+    if (!isDiscordWebView) {
+        window.addEventListener('hashchange', handleHashRoute);
+    }
     document.addEventListener('click', closeMobileMenuOnOutsideClick);
 
     const backButton = document.getElementById('news-back');
