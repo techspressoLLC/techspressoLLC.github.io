@@ -570,9 +570,6 @@ const showNewsList = () => {
     const homePage = document.getElementById('page-home');
     const alreadyHome = homePage && homePage.classList.contains('active');
     if (isDiscordWebView) {
-        if (!alreadyHome) {
-            navigateTo('home', { skipScroll: true });
-        }
         return;
     }
     if (!alreadyHome) {
