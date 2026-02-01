@@ -67,6 +67,27 @@ let ignoreHashUntil = 0;
 let restoreScrollTimers = [];
 const isDiscordWebView = /Discord/i.test(navigator.userAgent);
 
+const forceScrollRestore = (scrollX, scrollY) => {
+    if (!isDiscordWebView) return;
+    restoreScrollTimers.forEach((timerId) => clearTimeout(timerId));
+    restoreScrollTimers = [];
+    const start = performance.now();
+    const duration = 1200;
+    const restore = () => {
+        if (window.scrollY !== scrollY || window.scrollX !== scrollX) {
+            window.scrollTo(scrollX, scrollY);
+        }
+        if (performance.now() - start < duration) {
+            restoreScrollTimers.push(requestAnimationFrame(restore));
+        }
+    };
+    restoreScrollTimers.push(requestAnimationFrame(restore));
+    restoreScrollTimers.push(setTimeout(() => window.scrollTo(scrollX, scrollY), 80));
+    restoreScrollTimers.push(setTimeout(() => window.scrollTo(scrollX, scrollY), 240));
+    restoreScrollTimers.push(setTimeout(() => window.scrollTo(scrollX, scrollY), 520));
+    restoreScrollTimers.push(setTimeout(() => window.scrollTo(scrollX, scrollY), 900));
+};
+
 const getNewsBadgeClasses = (category) => {
     const key = String(category || '').toUpperCase();
     switch (key) {
@@ -137,6 +158,7 @@ const createFilterButton = (label, type, value, isActive) => {
         event.preventDefault();
         event.stopPropagation();
         ignoreHashUntil = Date.now() + 800;
+        forceScrollRestore(window.scrollX, window.scrollY);
         applyFilterSelection(type, value);
     });
     return button;
@@ -197,6 +219,7 @@ const createNewsCard = (item) => {
             event.preventDefault();
             event.stopPropagation();
             ignoreHashUntil = Date.now() + 800;
+            forceScrollRestore(window.scrollX, window.scrollY);
             applyFilterSelection('category', normalizeFilterValue(category));
         });
         badgeWrap.appendChild(badge);
@@ -257,6 +280,7 @@ const renderNewsList = () => {
             event.preventDefault();
             event.stopPropagation();
             ignoreHashUntil = Date.now() + 800;
+            forceScrollRestore(window.scrollX, window.scrollY);
             resetFilters();
         });
         container.appendChild(reset);
@@ -353,6 +377,7 @@ const renderNewsDetail = (slug) => {
             event.preventDefault();
             event.stopPropagation();
             ignoreHashUntil = Date.now() + 800;
+            forceScrollRestore(window.scrollX, window.scrollY);
             applyFilterSelection('category', normalizeFilterValue(category));
         });
         badgeWrap.appendChild(badge);
@@ -382,6 +407,7 @@ const renderNewsDetail = (slug) => {
                 event.preventDefault();
                 event.stopPropagation();
                 ignoreHashUntil = Date.now() + 800;
+                forceScrollRestore(window.scrollX, window.scrollY);
                 applyFilterSelection('tag', normalizeFilterValue(tag));
             });
             tagWrap.appendChild(chip);
@@ -511,6 +537,9 @@ const handleHashRoute = async () => {
 };
 
 document.addEventListener('DOMContentLoaded', () => {
+    if (isDiscordWebView && 'scrollRestoration' in history) {
+        history.scrollRestoration = 'manual';
+    }
     revealObserver = setupRevealObserver();
     newsReadyPromise = loadNews().then(() => {
         renderFilters();
