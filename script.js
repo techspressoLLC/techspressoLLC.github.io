@@ -63,6 +63,7 @@ let revealObserver = null;
 let newsReadyPromise = null;
 let selectedCategory = 'ALL';
 let selectedTag = 'ALL';
+let suppressNextHashRoute = false;
 
 const getNewsBadgeClasses = (category) => {
     const key = String(category || '').toUpperCase();
@@ -435,6 +436,11 @@ const handleFilterClick = (event) => {
 
     event.preventDefault();
     event.stopPropagation();
+    if (event.stopImmediatePropagation) event.stopImmediatePropagation();
+
+    if (event.type === 'pointerdown' || event.type === 'touchstart') {
+        return;
+    }
 
     if (type === 'clear') {
         resetFilters();
@@ -443,7 +449,11 @@ const handleFilterClick = (event) => {
 
     const value = target.dataset.filterValue;
     if (!value) return;
+    suppressNextHashRoute = true;
     applyFilterSelection(type, value);
+    requestAnimationFrame(() => {
+        suppressNextHashRoute = false;
+    });
 };
 
 const showNewsList = () => {
@@ -469,6 +479,7 @@ const showNewsDetail = (slug) => {
 };
 
 const handleHashRoute = async () => {
+    if (suppressNextHashRoute) return;
     if (newsReadyPromise) await newsReadyPromise;
     const hash = window.location.hash || '';
 
@@ -492,7 +503,9 @@ document.addEventListener('DOMContentLoaded', () => {
     handleHashRoute();
 
     window.addEventListener('hashchange', handleHashRoute);
-    document.addEventListener('click', handleFilterClick);
+    document.addEventListener('pointerdown', handleFilterClick, { capture: true, passive: false });
+    document.addEventListener('touchstart', handleFilterClick, { capture: true, passive: false });
+    document.addEventListener('click', handleFilterClick, true);
     document.addEventListener('click', closeMobileMenuOnOutsideClick);
 
     const backButton = document.getElementById('news-back');
