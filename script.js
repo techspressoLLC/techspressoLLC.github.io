@@ -1,4 +1,5 @@
 function navigateTo(pageId, options = {}) {
+    debugCaller(`navigateTo(${pageId})`);
     document.querySelectorAll('.page-content').forEach(p => p.classList.remove('active'));
     const mobileMenu = document.getElementById('mobile-menu');
     if (mobileMenu) mobileMenu.classList.remove('active');
@@ -68,6 +69,23 @@ let selectedTag = 'ALL';
 let ignoreHashUntil = 0;
 let restoreScrollTimers = [];
 const isDiscordWebView = /Discord/i.test(navigator.userAgent);
+const debugLog = (message) => {
+    const logger = window.__debugOverlayLog;
+    if (typeof logger === 'function') {
+        logger(message);
+        return;
+    }
+    if (typeof console !== 'undefined' && console.log) {
+        console.log(message);
+    }
+};
+
+const debugCaller = (label) => {
+    if (!isDiscordWebView) return;
+    const stack = new Error().stack || '';
+    const firstLine = stack.split('\n').slice(2, 3).join('').trim();
+    debugLog(`${label} ${firstLine}`);
+};
 let frozenScrollY = 0;
 
 const freezeScrollForDiscord = () => {
@@ -499,6 +517,7 @@ const applyFilterSelection = (type, value) => {
     const alreadyHome = homePage && homePage.classList.contains('active');
     const currentScrollX = window.scrollX;
     const currentScrollY = window.scrollY;
+    debugLog(`applyFilterSelection type=${type} value=${value} alreadyHome=${alreadyHome}`);
 
     if (type === 'category') selectedCategory = value;
     if (type === 'tag') selectedTag = value;
@@ -547,6 +566,7 @@ const applyFilterSelection = (type, value) => {
 };
 
 const showNewsList = () => {
+    debugCaller('showNewsList()');
     const homePage = document.getElementById('page-home');
     const alreadyHome = homePage && homePage.classList.contains('active');
     if (isDiscordWebView) {
@@ -570,11 +590,13 @@ const showNewsList = () => {
 };
 
 const showNewsDetail = (slug) => {
+    debugLog(`showNewsDetail slug=${slug}`);
     navigateTo('news-detail');
     renderNewsDetail(slug);
 };
 
 const handleHashRoute = async () => {
+    debugLog(`handleHashRoute hash=${window.location.hash || '(empty)'}`);
     if (Date.now() < ignoreHashUntil) return;
     if (isDiscordWebView) return;
     if (newsReadyPromise) await newsReadyPromise;
