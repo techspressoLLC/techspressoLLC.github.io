@@ -63,6 +63,7 @@ let revealObserver = null;
 let newsReadyPromise = null;
 let selectedCategory = 'ALL';
 let selectedTag = 'ALL';
+let ignoreHashUntil = 0;
 
 const getNewsBadgeClasses = (category) => {
     const key = String(category || '').toUpperCase();
@@ -438,6 +439,8 @@ const handleFilterClick = (event) => {
     event.preventDefault();
     event.stopPropagation();
 
+    ignoreHashUntil = Date.now() + 800;
+
     if (type === 'clear') {
         resetFilters();
         return;
@@ -471,6 +474,7 @@ const showNewsDetail = (slug) => {
 };
 
 const handleHashRoute = async () => {
+    if (Date.now() < ignoreHashUntil) return;
     if (newsReadyPromise) await newsReadyPromise;
     const hash = window.location.hash || '';
 
