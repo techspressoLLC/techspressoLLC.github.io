@@ -64,6 +64,7 @@ let newsReadyPromise = null;
 let selectedCategory = 'ALL';
 let selectedTag = 'ALL';
 let ignoreHashUntil = 0;
+let restoreScrollTimers = [];
 
 const getNewsBadgeClasses = (category) => {
     const key = String(category || '').toUpperCase();
@@ -131,6 +132,12 @@ const createFilterButton = (label, type, value, isActive) => {
     button.dataset.filterValue = value;
     button.className = `text-[9px] font-bold uppercase tracking-widest px-3 py-1 rounded-full border transition ${isActive ? 'bg-slate-900 text-white border-slate-900' : 'border-slate-200 text-slate-600 hover:text-slate-900'}`;
     button.textContent = label;
+    button.addEventListener('click', (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        ignoreHashUntil = Date.now() + 800;
+        applyFilterSelection(type, value);
+    });
     return button;
 };
 
@@ -185,6 +192,12 @@ const createNewsCard = (item) => {
         badge.dataset.filterValue = normalizeFilterValue(category);
         badge.className = `${getNewsBadgeClasses(category)} text-[9px] font-bold px-3 py-1 rounded-full w-fit uppercase tracking-widest text-center`;
         badge.textContent = category || 'INFO';
+        badge.addEventListener('click', (event) => {
+            event.preventDefault();
+            event.stopPropagation();
+            ignoreHashUntil = Date.now() + 800;
+            applyFilterSelection('category', normalizeFilterValue(category));
+        });
         badgeWrap.appendChild(badge);
     });
 
@@ -239,6 +252,12 @@ const renderNewsList = () => {
         reset.dataset.filterType = 'clear';
         reset.className = 'mt-4 text-[10px] font-bold uppercase tracking-widest text-slate-500 hover:text-slate-900 transition';
         reset.textContent = 'Clear Filters';
+        reset.addEventListener('click', (event) => {
+            event.preventDefault();
+            event.stopPropagation();
+            ignoreHashUntil = Date.now() + 800;
+            resetFilters();
+        });
         container.appendChild(reset);
         return;
     }
@@ -329,6 +348,12 @@ const renderNewsDetail = (slug) => {
         badge.dataset.filterValue = normalizeFilterValue(category);
         badge.className = `${getNewsBadgeClasses(category)} text-[9px] font-bold px-3 py-1 rounded-full w-fit uppercase tracking-widest text-center`;
         badge.textContent = category || 'INFO';
+        badge.addEventListener('click', (event) => {
+            event.preventDefault();
+            event.stopPropagation();
+            ignoreHashUntil = Date.now() + 800;
+            applyFilterSelection('category', normalizeFilterValue(category));
+        });
         badgeWrap.appendChild(badge);
     });
 
@@ -352,6 +377,12 @@ const renderNewsDetail = (slug) => {
             chip.dataset.filterValue = normalizeFilterValue(tag);
             chip.className = 'text-[9px] font-bold uppercase tracking-widest text-slate-500 border border-slate-200 rounded-full px-3 py-1 hover:text-slate-900 transition';
             chip.textContent = tag;
+            chip.addEventListener('click', (event) => {
+                event.preventDefault();
+                event.stopPropagation();
+                ignoreHashUntil = Date.now() + 800;
+                applyFilterSelection('tag', normalizeFilterValue(tag));
+            });
             tagWrap.appendChild(chip);
         });
         container.appendChild(tagWrap);
@@ -421,36 +452,18 @@ const applyFilterSelection = (type, value) => {
             showNewsList();
             return;
         }
-        requestAnimationFrame(() => {
-            window.scrollTo(currentScrollX, currentScrollY);
-        });
+        restoreScrollTimers.forEach((timerId) => clearTimeout(timerId));
+        restoreScrollTimers = [];
+        const restoreScroll = () => {
+            if (!homePage || !homePage.classList.contains('active')) return;
+            if (window.scrollY < currentScrollY - 10) {
+                window.scrollTo(currentScrollX, currentScrollY);
+            }
+        };
+        requestAnimationFrame(restoreScroll);
+        restoreScrollTimers.push(setTimeout(restoreScroll, 60));
+        restoreScrollTimers.push(setTimeout(restoreScroll, 160));
     }
-};
-
-const handleFilterClick = (event) => {
-    const rawTarget = event.target;
-    const elementTarget = rawTarget instanceof Element ? rawTarget : rawTarget?.parentElement;
-    if (!elementTarget) return;
-    const target = elementTarget.closest('[data-filter-type]');
-    if (!target) return;
-
-    const type = target.dataset.filterType;
-    if (!type) return;
-
-    event.preventDefault();
-    event.stopPropagation();
-    if (event.stopImmediatePropagation) event.stopImmediatePropagation();
-
-    ignoreHashUntil = Date.now() + 800;
-
-    if (type === 'clear') {
-        resetFilters();
-        return;
-    }
-
-    const value = target.dataset.filterValue;
-    if (!value) return;
-    applyFilterSelection(type, value);
 };
 
 const showNewsList = () => {
@@ -500,7 +513,6 @@ document.addEventListener('DOMContentLoaded', () => {
     handleHashRoute();
 
     window.addEventListener('hashchange', handleHashRoute);
-    document.addEventListener('click', handleFilterClick, true);
     document.addEventListener('click', closeMobileMenuOnOutsideClick);
 
     const backButton = document.getElementById('news-back');
