@@ -431,9 +431,7 @@ const applyFilterSelection = (type, value) => {
 };
 
 const handleFilterClick = (event) => {
-    const rawTarget = event.target;
-    const elementTarget = rawTarget instanceof Element ? rawTarget : rawTarget?.parentElement;
-    const target = elementTarget ? elementTarget.closest('[data-filter-type]') : null;
+    const target = event.target.closest('[data-filter-type]');
     if (!target) return;
 
     const type = target.dataset.filterType;
@@ -441,6 +439,7 @@ const handleFilterClick = (event) => {
 
     event.preventDefault();
     event.stopPropagation();
+    if (event.stopImmediatePropagation) event.stopImmediatePropagation();
 
     if (type === 'clear') {
         resetFilters();
