@@ -403,6 +403,11 @@ const resetFilters = () => {
 };
 
 const applyFilterSelection = (type, value) => {
+    const homePage = document.getElementById('page-home');
+    const alreadyHome = homePage && homePage.classList.contains('active');
+    const currentScrollX = window.scrollX;
+    const currentScrollY = window.scrollY;
+
     if (type === 'category') selectedCategory = value;
     if (type === 'tag') selectedTag = value;
     renderFilters();
@@ -411,11 +416,13 @@ const applyFilterSelection = (type, value) => {
     if (window.location.hash.startsWith('#news/')) {
         window.location.hash = '#news';
     } else {
-        const homePage = document.getElementById('page-home');
-        const alreadyHome = homePage && homePage.classList.contains('active');
         if (!alreadyHome) {
             showNewsList();
+            return;
         }
+        requestAnimationFrame(() => {
+            window.scrollTo(currentScrollX, currentScrollY);
+        });
     }
 };
 
