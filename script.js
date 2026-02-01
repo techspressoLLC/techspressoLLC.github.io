@@ -64,6 +64,7 @@ let newsReadyPromise = null;
 let selectedCategory = 'ALL';
 let selectedTag = 'ALL';
 let suppressNextHashRoute = false;
+let suppressHashTimeout = null;
 
 const getNewsBadgeClasses = (category) => {
     const key = String(category || '').toUpperCase();
@@ -415,16 +416,18 @@ const applyFilterSelection = (type, value) => {
     renderNewsList();
 
     if (window.location.hash.startsWith('#news/')) {
-        window.location.hash = '#news';
-    } else {
-        if (!alreadyHome) {
-            showNewsList();
-            return;
-        }
-        requestAnimationFrame(() => {
-            window.scrollTo(currentScrollX, currentScrollY);
-        });
+        showNewsList();
+        history.replaceState(null, '', '#news');
+        return;
     }
+
+    if (!alreadyHome) {
+        showNewsList();
+        return;
+    }
+    requestAnimationFrame(() => {
+        window.scrollTo(currentScrollX, currentScrollY);
+    });
 };
 
 const handleFilterClick = (event) => {
@@ -450,10 +453,12 @@ const handleFilterClick = (event) => {
     const value = target.dataset.filterValue;
     if (!value) return;
     suppressNextHashRoute = true;
+    if (suppressHashTimeout) clearTimeout(suppressHashTimeout);
     applyFilterSelection(type, value);
-    requestAnimationFrame(() => {
+    suppressHashTimeout = setTimeout(() => {
         suppressNextHashRoute = false;
-    });
+        suppressHashTimeout = null;
+    }, 400);
 };
 
 const showNewsList = () => {
