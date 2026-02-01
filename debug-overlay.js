@@ -76,9 +76,14 @@
     };
 
     window.__debugOverlayLog = appendLog;
+    window.__debugOverlayLogQueue = window.__debugOverlayLogQueue || [];
 
     document.addEventListener('DOMContentLoaded', () => {
         document.body.appendChild(createOverlay());
+        if (window.__debugOverlayLogQueue.length) {
+            window.__debugOverlayLogQueue.forEach((msg) => appendLog(msg));
+            window.__debugOverlayLogQueue = [];
+        }
         update();
 
         window.addEventListener('hashchange', () => {
