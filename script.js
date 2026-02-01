@@ -66,6 +66,27 @@ let selectedTag = 'ALL';
 let ignoreHashUntil = 0;
 let restoreScrollTimers = [];
 const isDiscordWebView = /Discord/i.test(navigator.userAgent);
+let frozenScrollY = 0;
+
+const freezeScrollForDiscord = () => {
+    if (!isDiscordWebView) return;
+    frozenScrollY = window.scrollY;
+    document.body.style.position = 'fixed';
+    document.body.style.top = `-${frozenScrollY}px`;
+    document.body.style.left = '0';
+    document.body.style.right = '0';
+    document.body.style.width = '100%';
+};
+
+const restoreScrollForDiscord = () => {
+    if (!isDiscordWebView) return;
+    document.body.style.position = '';
+    document.body.style.top = '';
+    document.body.style.left = '';
+    document.body.style.right = '';
+    document.body.style.width = '';
+    window.scrollTo(0, frozenScrollY);
+};
 
 const forceScrollRestore = (scrollX, scrollY) => {
     if (!isDiscordWebView) return;
@@ -158,8 +179,10 @@ const createFilterButton = (label, type, value, isActive) => {
         event.preventDefault();
         event.stopPropagation();
         ignoreHashUntil = Date.now() + 800;
+        freezeScrollForDiscord();
         forceScrollRestore(window.scrollX, window.scrollY);
         applyFilterSelection(type, value);
+        requestAnimationFrame(restoreScrollForDiscord);
     });
     return button;
 };
@@ -219,8 +242,10 @@ const createNewsCard = (item) => {
             event.preventDefault();
             event.stopPropagation();
             ignoreHashUntil = Date.now() + 800;
+            freezeScrollForDiscord();
             forceScrollRestore(window.scrollX, window.scrollY);
             applyFilterSelection('category', normalizeFilterValue(category));
+            requestAnimationFrame(restoreScrollForDiscord);
         });
         badgeWrap.appendChild(badge);
     });
@@ -280,8 +305,10 @@ const renderNewsList = () => {
             event.preventDefault();
             event.stopPropagation();
             ignoreHashUntil = Date.now() + 800;
+            freezeScrollForDiscord();
             forceScrollRestore(window.scrollX, window.scrollY);
             resetFilters();
+            requestAnimationFrame(restoreScrollForDiscord);
         });
         container.appendChild(reset);
         return;
@@ -377,8 +404,10 @@ const renderNewsDetail = (slug) => {
             event.preventDefault();
             event.stopPropagation();
             ignoreHashUntil = Date.now() + 800;
+            freezeScrollForDiscord();
             forceScrollRestore(window.scrollX, window.scrollY);
             applyFilterSelection('category', normalizeFilterValue(category));
+            requestAnimationFrame(restoreScrollForDiscord);
         });
         badgeWrap.appendChild(badge);
     });
@@ -407,8 +436,10 @@ const renderNewsDetail = (slug) => {
                 event.preventDefault();
                 event.stopPropagation();
                 ignoreHashUntil = Date.now() + 800;
+                freezeScrollForDiscord();
                 forceScrollRestore(window.scrollX, window.scrollY);
                 applyFilterSelection('tag', normalizeFilterValue(tag));
+                requestAnimationFrame(restoreScrollForDiscord);
             });
             tagWrap.appendChild(chip);
         });
