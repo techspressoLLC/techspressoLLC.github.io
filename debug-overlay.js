@@ -48,8 +48,12 @@
             `ua: ${navigator.userAgent}`,
             `hash: ${format(window.location.hash)}`,
             `scrollY: ${Math.round(window.scrollY)}`,
+            `scrollX: ${Math.round(window.scrollX)}`,
+            `active: ${document.querySelector('.page-content.active')?.id || '-'}`,
             `last click: ${state.lastClick}`,
-            `last pointer: ${state.lastPointer}`
+            `last pointer: ${state.lastPointer}`,
+            `last hashchange: ${state.lastHash || '-'}`,
+            `last scroll: ${Math.round(state.lastScroll || 0)}`
         ];
         const overlay = document.getElementById(OVERLAY_ID);
         if (overlay) overlay.textContent = lines.join('\n');
@@ -68,6 +72,21 @@
             state.lastScroll = window.scrollY;
             update();
         }, { passive: true });
+
+        window.addEventListener('pageshow', (event) => {
+            state.lastClick = `pageshow persisted=${event.persisted}`;
+            update();
+        });
+
+        document.addEventListener('visibilitychange', () => {
+            state.lastClick = `visibility ${document.visibilityState}`;
+            update();
+        });
+
+        window.addEventListener('focus', () => {
+            state.lastClick = 'focus';
+            update();
+        });
 
         document.addEventListener('pointerdown', (event) => {
             state.lastPointer = getClickTarget(event);
