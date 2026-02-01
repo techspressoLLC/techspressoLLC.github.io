@@ -40,20 +40,27 @@
         lastClick: '-',
         lastPointer: '-',
         lastHash: '',
-        lastScroll: 0
+        lastScroll: 0,
+        hashChanges: 0,
+        scrollEvents: 0,
+        lastError: '-'
     };
 
     const update = () => {
+        const activeId = document.querySelector('.page-content.active')?.id || '-';
         const lines = [
             `ua: ${navigator.userAgent}`,
+            `href: ${format(window.location.href)}`,
             `hash: ${format(window.location.hash)}`,
             `scrollY: ${Math.round(window.scrollY)}`,
             `scrollX: ${Math.round(window.scrollX)}`,
-            `active: ${document.querySelector('.page-content.active')?.id || '-'}`,
+            `active: ${activeId}`,
             `last click: ${state.lastClick}`,
             `last pointer: ${state.lastPointer}`,
-            `last hashchange: ${state.lastHash || '-'}`,
-            `last scroll: ${Math.round(state.lastScroll || 0)}`
+            `hashchange: ${state.hashChanges} last=${state.lastHash || '-'}`,
+            `scroll: ${state.scrollEvents} last=${Math.round(state.lastScroll || 0)}`,
+            `visibility: ${document.visibilityState}`,
+            `last error: ${state.lastError}`
         ];
         const overlay = document.getElementById(OVERLAY_ID);
         if (overlay) overlay.textContent = lines.join('\n');
@@ -65,11 +72,13 @@
 
         window.addEventListener('hashchange', () => {
             state.lastHash = window.location.hash;
+            state.hashChanges += 1;
             update();
         });
 
         window.addEventListener('scroll', () => {
             state.lastScroll = window.scrollY;
+            state.scrollEvents += 1;
             update();
         }, { passive: true });
 
@@ -85,6 +94,16 @@
 
         window.addEventListener('focus', () => {
             state.lastClick = 'focus';
+            update();
+        });
+
+        window.addEventListener('error', (event) => {
+            state.lastError = event?.message || 'error';
+            update();
+        });
+
+        window.addEventListener('unhandledrejection', (event) => {
+            state.lastError = event?.reason?.message || 'unhandledrejection';
             update();
         });
 
