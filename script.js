@@ -428,7 +428,10 @@ const applyFilterSelection = (type, value) => {
 };
 
 const handleFilterClick = (event) => {
-    const target = event.target.closest('[data-filter-type]');
+    const rawTarget = event.target;
+    const elementTarget = rawTarget instanceof Element ? rawTarget : rawTarget?.parentElement;
+    if (!elementTarget) return;
+    const target = elementTarget.closest('[data-filter-type]');
     if (!target) return;
 
     const type = target.dataset.filterType;
