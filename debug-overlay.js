@@ -66,6 +66,17 @@
         if (overlay) overlay.textContent = lines.join('\n');
     };
 
+    const logLines = [];
+    const appendLog = (message) => {
+        const stamp = new Date().toISOString().split('T')[1]?.replace('Z', '') || '';
+        logLines.push(`${stamp} ${message}`);
+        while (logLines.length > 6) logLines.shift();
+        const overlay = document.getElementById(OVERLAY_ID);
+        if (overlay) overlay.textContent = `${overlay.textContent}\n${logLines.join('\n')}`;
+    };
+
+    window.__debugOverlayLog = appendLog;
+
     document.addEventListener('DOMContentLoaded', () => {
         document.body.appendChild(createOverlay());
         update();
@@ -73,12 +84,16 @@
         window.addEventListener('hashchange', () => {
             state.lastHash = window.location.hash;
             state.hashChanges += 1;
+            appendLog(`hashchange -> ${window.location.hash || '(empty)'}`);
             update();
         });
 
         window.addEventListener('scroll', () => {
             state.lastScroll = window.scrollY;
             state.scrollEvents += 1;
+            if (state.scrollEvents % 20 === 0) {
+                appendLog(`scrollY=${Math.round(window.scrollY)}`);
+            }
             update();
         }, { passive: true });
 
