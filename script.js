@@ -411,7 +411,11 @@ const applyFilterSelection = (type, value) => {
     if (window.location.hash.startsWith('#news/')) {
         window.location.hash = '#news';
     } else {
-        showNewsList();
+        const homePage = document.getElementById('page-home');
+        const alreadyHome = homePage && homePage.classList.contains('active');
+        if (!alreadyHome) {
+            showNewsList();
+        }
     }
 };
 
