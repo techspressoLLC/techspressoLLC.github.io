@@ -441,10 +441,6 @@ const handleFilterClick = (event) => {
     event.stopPropagation();
     if (event.stopImmediatePropagation) event.stopImmediatePropagation();
 
-    if (event.type === 'pointerdown' || event.type === 'touchstart') {
-        return;
-    }
-
     if (type === 'clear') {
         resetFilters();
         return;
@@ -508,8 +504,6 @@ document.addEventListener('DOMContentLoaded', () => {
     handleHashRoute();
 
     window.addEventListener('hashchange', handleHashRoute);
-    document.addEventListener('pointerdown', handleFilterClick, { capture: true, passive: false });
-    document.addEventListener('touchstart', handleFilterClick, { capture: true, passive: false });
     document.addEventListener('click', handleFilterClick, true);
     document.addEventListener('click', closeMobileMenuOnOutsideClick);
 
