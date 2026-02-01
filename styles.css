@@ -12,7 +12,6 @@ body {
     background-color: var(--bg-light);
     color: var(--text-main);
     overflow-x: hidden;
-    overflow-anchor: none;
 }
 
 .font-en {

@@ -1,14 +1,11 @@
-function navigateTo(pageId, options = {}) {
-    debugCaller(`navigateTo(${pageId})`);
+function navigateTo(pageId) {
     document.querySelectorAll('.page-content').forEach(p => p.classList.remove('active'));
     const mobileMenu = document.getElementById('mobile-menu');
     if (mobileMenu) mobileMenu.classList.remove('active');
     const targetPage = document.getElementById('page-' + pageId);
     if (targetPage) {
         targetPage.classList.add('active');
-        if (!options.skipScroll) {
-            window.scrollTo(0, 0);
-        }
+        window.scrollTo(0, 0);
     }
 }
 
@@ -59,6 +56,7 @@ const closeMobileMenuOnOutsideClick = (event) => {
 
 const NEWS_LIMIT = 10;
 const NEWS_JSON_PATH = './news.json';
+const isDiscordWebView = /Discord/i.test(navigator.userAgent);
 
 let newsItems = [];
 let newsLoadFailed = false;
@@ -66,68 +64,6 @@ let revealObserver = null;
 let newsReadyPromise = null;
 let selectedCategory = 'ALL';
 let selectedTag = 'ALL';
-let ignoreHashUntil = 0;
-let restoreScrollTimers = [];
-const isDiscordWebView = /Discord/i.test(navigator.userAgent);
-const debugLog = (message) => {
-    const logger = window.__debugOverlayLog;
-    if (typeof logger === 'function') {
-        logger(message);
-        return;
-    }
-    if (typeof console !== 'undefined' && console.log) {
-        console.log(message);
-    }
-};
-
-const debugCaller = (label) => {
-    if (!isDiscordWebView) return;
-    const stack = new Error().stack || '';
-    const firstLine = stack.split('\n').slice(2, 3).join('').trim();
-    debugLog(`${label} ${firstLine}`);
-};
-let frozenScrollY = 0;
-
-const freezeScrollForDiscord = () => {
-    if (!isDiscordWebView) return;
-    frozenScrollY = window.scrollY;
-    document.body.style.position = 'fixed';
-    document.body.style.top = `-${frozenScrollY}px`;
-    document.body.style.left = '0';
-    document.body.style.right = '0';
-    document.body.style.width = '100%';
-};
-
-const restoreScrollForDiscord = () => {
-    if (!isDiscordWebView) return;
-    document.body.style.position = '';
-    document.body.style.top = '';
-    document.body.style.left = '';
-    document.body.style.right = '';
-    document.body.style.width = '';
-    window.scrollTo(0, frozenScrollY);
-};
-
-const forceScrollRestore = (scrollX, scrollY) => {
-    if (!isDiscordWebView) return;
-    restoreScrollTimers.forEach((timerId) => clearTimeout(timerId));
-    restoreScrollTimers = [];
-    const start = performance.now();
-    const duration = 1200;
-    const restore = () => {
-        if (window.scrollY !== scrollY || window.scrollX !== scrollX) {
-            window.scrollTo(scrollX, scrollY);
-        }
-        if (performance.now() - start < duration) {
-            restoreScrollTimers.push(requestAnimationFrame(restore));
-        }
-    };
-    restoreScrollTimers.push(requestAnimationFrame(restore));
-    restoreScrollTimers.push(setTimeout(() => window.scrollTo(scrollX, scrollY), 80));
-    restoreScrollTimers.push(setTimeout(() => window.scrollTo(scrollX, scrollY), 240));
-    restoreScrollTimers.push(setTimeout(() => window.scrollTo(scrollX, scrollY), 520));
-    restoreScrollTimers.push(setTimeout(() => window.scrollTo(scrollX, scrollY), 900));
-};
 
 const getNewsBadgeClasses = (category) => {
     const key = String(category || '').toUpperCase();
@@ -195,15 +131,6 @@ const createFilterButton = (label, type, value, isActive) => {
     button.dataset.filterValue = value;
     button.className = `text-[9px] font-bold uppercase tracking-widest px-3 py-1 rounded-full border transition ${isActive ? 'bg-slate-900 text-white border-slate-900' : 'border-slate-200 text-slate-600 hover:text-slate-900'}`;
     button.textContent = label;
-    button.addEventListener('click', (event) => {
-        event.preventDefault();
-        event.stopPropagation();
-        ignoreHashUntil = Date.now() + 800;
-        freezeScrollForDiscord();
-        forceScrollRestore(window.scrollX, window.scrollY);
-        applyFilterSelection(type, value);
-        requestAnimationFrame(restoreScrollForDiscord);
-    });
     return button;
 };
 
@@ -258,15 +185,6 @@ const createNewsCard = (item) => {
         badge.dataset.filterValue = normalizeFilterValue(category);
         badge.className = `${getNewsBadgeClasses(category)} text-[9px] font-bold px-3 py-1 rounded-full w-fit uppercase tracking-widest text-center`;
         badge.textContent = category || 'INFO';
-        badge.addEventListener('click', (event) => {
-            event.preventDefault();
-            event.stopPropagation();
-            ignoreHashUntil = Date.now() + 800;
-            freezeScrollForDiscord();
-            forceScrollRestore(window.scrollX, window.scrollY);
-            applyFilterSelection('category', normalizeFilterValue(category));
-            requestAnimationFrame(restoreScrollForDiscord);
-        });
         badgeWrap.appendChild(badge);
     });
 
@@ -321,15 +239,6 @@ const renderNewsList = () => {
         reset.dataset.filterType = 'clear';
         reset.className = 'mt-4 text-[10px] font-bold uppercase tracking-widest text-slate-500 hover:text-slate-900 transition';
         reset.textContent = 'Clear Filters';
-        reset.addEventListener('click', (event) => {
-            event.preventDefault();
-            event.stopPropagation();
-            ignoreHashUntil = Date.now() + 800;
-            freezeScrollForDiscord();
-            forceScrollRestore(window.scrollX, window.scrollY);
-            resetFilters();
-            requestAnimationFrame(restoreScrollForDiscord);
-        });
         container.appendChild(reset);
         return;
     }
@@ -420,15 +329,6 @@ const renderNewsDetail = (slug) => {
         badge.dataset.filterValue = normalizeFilterValue(category);
         badge.className = `${getNewsBadgeClasses(category)} text-[9px] font-bold px-3 py-1 rounded-full w-fit uppercase tracking-widest text-center`;
         badge.textContent = category || 'INFO';
-        badge.addEventListener('click', (event) => {
-            event.preventDefault();
-            event.stopPropagation();
-            ignoreHashUntil = Date.now() + 800;
-            freezeScrollForDiscord();
-            forceScrollRestore(window.scrollX, window.scrollY);
-            applyFilterSelection('category', normalizeFilterValue(category));
-            requestAnimationFrame(restoreScrollForDiscord);
-        });
         badgeWrap.appendChild(badge);
     });
 
@@ -452,15 +352,6 @@ const renderNewsDetail = (slug) => {
             chip.dataset.filterValue = normalizeFilterValue(tag);
             chip.className = 'text-[9px] font-bold uppercase tracking-widest text-slate-500 border border-slate-200 rounded-full px-3 py-1 hover:text-slate-900 transition';
             chip.textContent = tag;
-            chip.addEventListener('click', (event) => {
-                event.preventDefault();
-                event.stopPropagation();
-                ignoreHashUntil = Date.now() + 800;
-                freezeScrollForDiscord();
-                forceScrollRestore(window.scrollX, window.scrollY);
-                applyFilterSelection('tag', normalizeFilterValue(tag));
-                requestAnimationFrame(restoreScrollForDiscord);
-            });
             tagWrap.appendChild(chip);
         });
         container.appendChild(tagWrap);
@@ -517,61 +408,51 @@ const applyFilterSelection = (type, value) => {
     const alreadyHome = homePage && homePage.classList.contains('active');
     const currentScrollX = window.scrollX;
     const currentScrollY = window.scrollY;
-    debugLog(`applyFilterSelection type=${type} value=${value} alreadyHome=${alreadyHome}`);
 
     if (type === 'category') selectedCategory = value;
     if (type === 'tag') selectedTag = value;
     renderFilters();
     renderNewsList();
 
-    if (isDiscordWebView) {
-        if (!alreadyHome) {
-            navigateTo('home', { skipScroll: true });
-        }
-        restoreScrollTimers.forEach((timerId) => clearTimeout(timerId));
-        restoreScrollTimers = [];
-        const restoreScroll = () => {
-            if (!homePage || !homePage.classList.contains('active')) return;
-            if (window.scrollY < currentScrollY - 10) {
-                window.scrollTo(currentScrollX, currentScrollY);
-            }
-        };
-        requestAnimationFrame(restoreScroll);
-        restoreScrollTimers.push(setTimeout(restoreScroll, 60));
-        restoreScrollTimers.push(setTimeout(restoreScroll, 160));
-        restoreScrollTimers.push(setTimeout(restoreScroll, 320));
-        restoreScrollTimers.push(setTimeout(restoreScroll, 520));
-        return;
-    }
-
     if (window.location.hash.startsWith('#news/')) {
         window.location.hash = '#news';
     } else {
         if (!alreadyHome) {
-            navigateTo('home', { skipScroll: true });
+            showNewsList();
             return;
         }
-        restoreScrollTimers.forEach((timerId) => clearTimeout(timerId));
-        restoreScrollTimers = [];
-        const restoreScroll = () => {
-            if (!homePage || !homePage.classList.contains('active')) return;
-            if (window.scrollY < currentScrollY - 10) {
-                window.scrollTo(currentScrollX, currentScrollY);
-            }
-        };
-        requestAnimationFrame(restoreScroll);
-        restoreScrollTimers.push(setTimeout(restoreScroll, 60));
-        restoreScrollTimers.push(setTimeout(restoreScroll, 160));
+        requestAnimationFrame(() => {
+            window.scrollTo(currentScrollX, currentScrollY);
+        });
     }
 };
 
+const handleFilterClick = (event) => {
+    const target = event.target.closest('[data-filter-type]');
+    if (!target) return;
+
+    const type = target.dataset.filterType;
+    if (!type) return;
+
+    event.preventDefault();
+    event.stopPropagation();
+
+    if (type === 'clear') {
+        resetFilters();
+        return;
+    }
+
+    const value = target.dataset.filterValue;
+    if (!value) return;
+    applyFilterSelection(type, value);
+};
+
 const showNewsList = () => {
-    debugCaller('showNewsList()');
-    const homePage = document.getElementById('page-home');
-    const alreadyHome = homePage && homePage.classList.contains('active');
     if (isDiscordWebView) {
         return;
     }
+    const homePage = document.getElementById('page-home');
+    const alreadyHome = homePage && homePage.classList.contains('active');
     if (!alreadyHome) {
         navigateTo('home');
     }
@@ -587,15 +468,11 @@ const showNewsList = () => {
 };
 
 const showNewsDetail = (slug) => {
-    debugLog(`showNewsDetail slug=${slug}`);
     navigateTo('news-detail');
     renderNewsDetail(slug);
 };
 
 const handleHashRoute = async () => {
-    debugLog(`handleHashRoute hash=${window.location.hash || '(empty)'}`);
-    if (Date.now() < ignoreHashUntil) return;
-    if (isDiscordWebView) return;
     if (newsReadyPromise) await newsReadyPromise;
     const hash = window.location.hash || '';
 
@@ -611,9 +488,6 @@ const handleHashRoute = async () => {
 };
 
 document.addEventListener('DOMContentLoaded', () => {
-    if (isDiscordWebView && 'scrollRestoration' in history) {
-        history.scrollRestoration = 'manual';
-    }
     revealObserver = setupRevealObserver();
     newsReadyPromise = loadNews().then(() => {
         renderFilters();
@@ -621,9 +495,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     handleHashRoute();
 
-    if (!isDiscordWebView) {
-        window.addEventListener('hashchange', handleHashRoute);
-    }
+    window.addEventListener('hashchange', handleHashRoute);
+    document.addEventListener('click', handleFilterClick);
     document.addEventListener('click', closeMobileMenuOnOutsideClick);
 
     const backButton = document.getElementById('news-back');
