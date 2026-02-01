@@ -436,9 +436,20 @@ const handleFilterClick = (event) => {
 };
 
 const showNewsList = () => {
-    navigateTo('home');
+    const homePage = document.getElementById('page-home');
+    const alreadyHome = homePage && homePage.classList.contains('active');
+    if (!alreadyHome) {
+        navigateTo('home');
+    }
     const section = document.getElementById('news');
-    if (section) section.scrollIntoView({ behavior: 'smooth' });
+    if (!section) return;
+    if (alreadyHome) {
+        section.scrollIntoView({ behavior: 'smooth' });
+        return;
+    }
+    requestAnimationFrame(() => {
+        section.scrollIntoView({ behavior: 'smooth' });
+    });
 };
 
 const showNewsDetail = (slug) => {
