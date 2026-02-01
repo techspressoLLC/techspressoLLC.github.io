@@ -438,16 +438,8 @@ const handleFilterClick = (event) => {
     if (event.type === 'touchend') {
         lastTouchTime = Date.now();
         if (touchMoved) return;
-        const touch = event.changedTouches && event.changedTouches[0];
-        if (!touch) return;
-        const endElement = document.elementFromPoint(touch.clientX, touch.clientY);
-        const endTarget = endElement ? endElement.closest('[data-filter-type]') : null;
-        if (!endTarget || !touchStartTarget) return;
-        if (endTarget.dataset.filterType !== touchStartTarget.dataset.filterType
-            || endTarget.dataset.filterValue !== touchStartTarget.dataset.filterValue) {
-            return;
-        }
-        target = endTarget;
+        if (!touchStartTarget) return;
+        target = touchStartTarget;
     } else {
         const rawTarget = event.target;
         const elementTarget = rawTarget instanceof Element ? rawTarget : rawTarget?.parentElement;
