@@ -1,11 +1,13 @@
-function navigateTo(pageId) {
+function navigateTo(pageId, options = {}) {
     document.querySelectorAll('.page-content').forEach(p => p.classList.remove('active'));
     const mobileMenu = document.getElementById('mobile-menu');
     if (mobileMenu) mobileMenu.classList.remove('active');
     const targetPage = document.getElementById('page-' + pageId);
     if (targetPage) {
         targetPage.classList.add('active');
-        window.scrollTo(0, 0);
+        if (!options.skipScroll) {
+            window.scrollTo(0, 0);
+        }
     }
 }
 
@@ -503,6 +505,26 @@ const applyFilterSelection = (type, value) => {
     renderFilters();
     renderNewsList();
 
+    if (isDiscordWebView) {
+        if (!alreadyHome) {
+            navigateTo('home', { skipScroll: true });
+        }
+        restoreScrollTimers.forEach((timerId) => clearTimeout(timerId));
+        restoreScrollTimers = [];
+        const restoreScroll = () => {
+            if (!homePage || !homePage.classList.contains('active')) return;
+            if (window.scrollY < currentScrollY - 10) {
+                window.scrollTo(currentScrollX, currentScrollY);
+            }
+        };
+        requestAnimationFrame(restoreScroll);
+        restoreScrollTimers.push(setTimeout(restoreScroll, 60));
+        restoreScrollTimers.push(setTimeout(restoreScroll, 160));
+        restoreScrollTimers.push(setTimeout(restoreScroll, 320));
+        restoreScrollTimers.push(setTimeout(restoreScroll, 520));
+        return;
+    }
+
     if (window.location.hash.startsWith('#news/')) {
         window.location.hash = '#news';
     } else {
@@ -521,16 +543,18 @@ const applyFilterSelection = (type, value) => {
         requestAnimationFrame(restoreScroll);
         restoreScrollTimers.push(setTimeout(restoreScroll, 60));
         restoreScrollTimers.push(setTimeout(restoreScroll, 160));
-        if (isDiscordWebView) {
-            restoreScrollTimers.push(setTimeout(restoreScroll, 320));
-            restoreScrollTimers.push(setTimeout(restoreScroll, 520));
-        }
     }
 };
 
 const showNewsList = () => {
     const homePage = document.getElementById('page-home');
     const alreadyHome = homePage && homePage.classList.contains('active');
+    if (isDiscordWebView) {
+        if (!alreadyHome) {
+            navigateTo('home', { skipScroll: true });
+        }
+        return;
+    }
     if (!alreadyHome) {
         navigateTo('home');
     }
