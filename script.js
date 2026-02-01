@@ -65,6 +65,10 @@ let newsReadyPromise = null;
 let selectedCategory = 'ALL';
 let selectedTag = 'ALL';
 let lastTouchTime = 0;
+let touchStartX = 0;
+let touchStartY = 0;
+let touchMoved = false;
+let touchStartTarget = null;
 
 const getNewsBadgeClasses = (category) => {
     const key = String(category || '').toUpperCase();
@@ -430,13 +434,26 @@ const applyFilterSelection = (type, value) => {
 
 const handleFilterClick = (event) => {
     if (event.type === 'click' && Date.now() - lastTouchTime < 500) return;
+    let target = null;
     if (event.type === 'touchend') {
         lastTouchTime = Date.now();
+        if (touchMoved) return;
+        const touch = event.changedTouches && event.changedTouches[0];
+        if (!touch) return;
+        const endElement = document.elementFromPoint(touch.clientX, touch.clientY);
+        const endTarget = endElement ? endElement.closest('[data-filter-type]') : null;
+        if (!endTarget || !touchStartTarget) return;
+        if (endTarget.dataset.filterType !== touchStartTarget.dataset.filterType
+            || endTarget.dataset.filterValue !== touchStartTarget.dataset.filterValue) {
+            return;
+        }
+        target = endTarget;
+    } else {
+        const rawTarget = event.target;
+        const elementTarget = rawTarget instanceof Element ? rawTarget : rawTarget?.parentElement;
+        if (!elementTarget) return;
+        target = elementTarget.closest('[data-filter-type]');
     }
-    const rawTarget = event.target;
-    const elementTarget = rawTarget instanceof Element ? rawTarget : rawTarget?.parentElement;
-    if (!elementTarget) return;
-    const target = elementTarget.closest('[data-filter-type]');
     if (!target) return;
 
     const type = target.dataset.filterType;
@@ -507,6 +524,24 @@ document.addEventListener('DOMContentLoaded', () => {
     document.addEventListener('click', handleFilterClick);
     document.addEventListener('touchend', handleFilterClick, { passive: false });
     document.addEventListener('pointerup', handleFilterClick);
+    document.addEventListener('touchstart', (event) => {
+        const touch = event.touches && event.touches[0];
+        if (!touch) return;
+        touchStartX = touch.clientX;
+        touchStartY = touch.clientY;
+        touchMoved = false;
+        const startElement = document.elementFromPoint(touch.clientX, touch.clientY);
+        touchStartTarget = startElement ? startElement.closest('[data-filter-type]') : null;
+    }, { passive: true });
+    document.addEventListener('touchmove', (event) => {
+        const touch = event.touches && event.touches[0];
+        if (!touch) return;
+        const dx = Math.abs(touch.clientX - touchStartX);
+        const dy = Math.abs(touch.clientY - touchStartY);
+        if (dx > 8 || dy > 8) {
+            touchMoved = true;
+        }
+    }, { passive: true });
     document.addEventListener('click', closeMobileMenuOnOutsideClick);
 
     const backButton = document.getElementById('news-back');
