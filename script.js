@@ -64,6 +64,7 @@ let revealObserver = null;
 let newsReadyPromise = null;
 let selectedCategory = 'ALL';
 let selectedTag = 'ALL';
+let lastTouchTime = 0;
 
 const getNewsBadgeClasses = (category) => {
     const key = String(category || '').toUpperCase();
@@ -428,6 +429,10 @@ const applyFilterSelection = (type, value) => {
 };
 
 const handleFilterClick = (event) => {
+    if (event.type === 'click' && Date.now() - lastTouchTime < 500) return;
+    if (event.type === 'touchend') {
+        lastTouchTime = Date.now();
+    }
     const rawTarget = event.target;
     const elementTarget = rawTarget instanceof Element ? rawTarget : rawTarget?.parentElement;
     if (!elementTarget) return;
@@ -437,7 +442,7 @@ const handleFilterClick = (event) => {
     const type = target.dataset.filterType;
     if (!type) return;
 
-    event.preventDefault();
+    if (event.cancelable) event.preventDefault();
     event.stopPropagation();
 
     if (type === 'clear') {
@@ -500,6 +505,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     window.addEventListener('hashchange', handleHashRoute);
     document.addEventListener('click', handleFilterClick);
+    document.addEventListener('touchend', handleFilterClick, { passive: false });
+    document.addEventListener('pointerup', handleFilterClick);
     document.addEventListener('click', closeMobileMenuOnOutsideClick);
 
     const backButton = document.getElementById('news-back');
