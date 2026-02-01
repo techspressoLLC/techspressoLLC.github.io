@@ -15,9 +15,36 @@
             'padding:10px 12px',
             'border-radius:10px',
             'font:11px/1.4 monospace',
-            'box-shadow:0 8px 20px rgba(0,0,0,0.2)'
+            'box-shadow:0 8px 20px rgba(0,0,0,0.2)',
+            'white-space:pre-wrap'
         ].join(';');
-        wrap.textContent = 'debug overlay';
+
+        const status = document.createElement('div');
+        status.id = 'debug-overlay-status';
+        status.textContent = 'debug overlay';
+        wrap.appendChild(status);
+
+        const log = document.createElement('div');
+        log.id = 'debug-overlay-log';
+        log.style.cssText = [
+            'position:fixed',
+            'left:8px',
+            'bottom:8px',
+            'z-index:99999',
+            'max-width:90vw',
+            'max-height:45vh',
+            'overflow:auto',
+            'background:rgba(15,23,42,0.92)',
+            'color:#e2e8f0',
+            'padding:10px 12px',
+            'border-radius:10px',
+            'font:11px/1.4 monospace',
+            'box-shadow:0 8px 20px rgba(0,0,0,0.2)',
+            'white-space:pre-wrap'
+        ].join(';');
+        log.textContent = 'debug log';
+        document.body.appendChild(log);
+
         return wrap;
     };
 
@@ -63,7 +90,8 @@
             `last error: ${state.lastError}`
         ];
         const overlay = document.getElementById(OVERLAY_ID);
-        if (overlay) overlay.textContent = lines.join('\n');
+        const status = document.getElementById('debug-overlay-status');
+        if (overlay && status) status.textContent = lines.join('\n');
     };
 
     const logLines = [];
@@ -71,8 +99,11 @@
         const stamp = new Date().toISOString().split('T')[1]?.replace('Z', '') || '';
         logLines.push(`${stamp} ${message}`);
         while (logLines.length > 6) logLines.shift();
-        const overlay = document.getElementById(OVERLAY_ID);
-        if (overlay) overlay.textContent = `${overlay.textContent}\n${logLines.join('\n')}`;
+        try {
+            localStorage.setItem('debugOverlayLog', JSON.stringify(logLines));
+        } catch (_) {}
+        const log = document.getElementById('debug-overlay-log');
+        if (log) log.textContent = logLines.join('\n');
     };
 
     window.__debugOverlayLog = appendLog;
@@ -80,6 +111,12 @@
 
     document.addEventListener('DOMContentLoaded', () => {
         document.body.appendChild(createOverlay());
+        try {
+            const saved = JSON.parse(localStorage.getItem('debugOverlayLog') || '[]');
+            if (Array.isArray(saved) && saved.length) {
+                saved.forEach((msg) => logLines.push(msg));
+            }
+        } catch (_) {}
         if (window.__debugOverlayLogQueue.length) {
             window.__debugOverlayLogQueue.forEach((msg) => appendLog(msg));
             window.__debugOverlayLogQueue = [];
