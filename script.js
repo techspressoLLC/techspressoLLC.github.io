@@ -429,8 +429,9 @@ const applyFilterSelection = (type, value) => {
 
 const handleFilterClick = (event) => {
     const rawTarget = event.target;
-    if (!(rawTarget instanceof Element)) return;
-    const target = rawTarget.closest('[data-filter-type]');
+    const elementTarget = rawTarget instanceof Element ? rawTarget : rawTarget?.parentElement;
+    if (!elementTarget) return;
+    const target = elementTarget.closest('[data-filter-type]');
     if (!target) return;
 
     const type = target.dataset.filterType;
@@ -438,6 +439,7 @@ const handleFilterClick = (event) => {
 
     event.preventDefault();
     event.stopPropagation();
+    if (event.stopImmediatePropagation) event.stopImmediatePropagation();
 
     ignoreHashUntil = Date.now() + 800;
 
@@ -498,7 +500,7 @@ document.addEventListener('DOMContentLoaded', () => {
     handleHashRoute();
 
     window.addEventListener('hashchange', handleHashRoute);
-    document.addEventListener('click', handleFilterClick);
+    document.addEventListener('click', handleFilterClick, true);
     document.addEventListener('click', closeMobileMenuOnOutsideClick);
 
     const backButton = document.getElementById('news-back');
