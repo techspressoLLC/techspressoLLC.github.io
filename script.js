@@ -548,7 +548,7 @@ const applyFilterSelection = (type, value) => {
         window.location.hash = '#news';
     } else {
         if (!alreadyHome) {
-            showNewsList();
+            navigateTo('home', { skipScroll: true });
             return;
         }
         restoreScrollTimers.forEach((timerId) => clearTimeout(timerId));
