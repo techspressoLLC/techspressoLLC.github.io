@@ -69,9 +69,9 @@
                         <a href="javascript:void(0)" onclick="navigateTo('about-story')"
                             class="block px-4 py-3 rounded-xl hover:bg-slate-50 transition text-slate-800 font-bold text-[10px]">Our
                             Story</a>
-                        <a href="javascript:void(0)" onclick="navigateTo('about-support')"
+                        <a href="javascript:void(0)" onclick="navigateTo('about-club')"
                             class="block px-4 py-3 rounded-xl hover:bg-slate-50 transition text-slate-800 font-bold text-[10px]">School
-                            Support</a>
+                            Club</a>
                     </div>
                 </div>
                 <!-- Company -->
@@ -130,8 +130,8 @@
                         <div class="space-y-3 pl-4 border-l border-slate-100">
                             <a href="javascript:void(0)" onclick="navigateTo('about-story')"
                                 class="block text-sm font-bold text-slate-700">Our Story</a>
-                            <a href="javascript:void(0)" onclick="navigateTo('about-support')"
-                                class="block text-sm font-bold text-slate-700">School Support</a>
+                            <a href="javascript:void(0)" onclick="navigateTo('about-club')"
+                                class="block text-sm font-bold text-slate-700">School Club</a>
                         </div>
                     </div>
                     <div class="space-y-4">
@@ -384,10 +384,14 @@
                 </div>
                 <h2 class="heading-style text-4xl md:text-6xl my-16">Event</h2>
                 <div
-                    class="max-w-4xl mx-auto aspect-video bg-slate-50 rounded-3xl flex items-center justify-center border border-slate-100">
+                    class="max-w-4xl mx-auto aspect-video bg-slate-50 rounded-3xl flex items-center justify-center border border-slate-100 relative overflow-hidden">
                     <!-- 【画像挿入箇所：イベントビジュアル】 -->
                     <img src="./pic/coming.png" class="w-full h-full object-cover"> 
-                    <span class="text-slate-300 font-bold uppercase tracking-widest"></span>
+                    <div class="absolute inset-0 flex items-center justify-center bg-slate-900/40">
+                        <span class="text-white font-black uppercase tracking-[0.4em] text-lg sm:text-2xl md:text-3xl">
+                            Coming Soon
+                        </span>
+                    </div>
                 </div>
             </section>
         </div>
@@ -529,6 +533,104 @@
         </div>
 
 
+        <div id="page-about-club" class="page-content pt-32 text-left">
+            <section class="py-32 px-6 bg-white">
+                <div class="container mx-auto max-w-6xl">
+                    <div class="mb-8">
+                        <button onclick="navigateTo('home')"
+                            class="inline-flex items-center text-xs font-bold uppercase tracking-widest text-slate-500 hover:text-slate-900 transition">
+                            <svg class="w-3 h-3 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M15 19l-7-7 7-7"></path>
+                            </svg>
+                            Back to Home
+                        </button>
+                    </div>
+                    <h2 class="heading-style text-4xl md:text-6xl mb-12 text-center uppercase leading-tight">School Club
+                    </h2>
+                    <div class="grid lg:grid-cols-[1.05fr_0.95fr] gap-14 items-start">
+                        <div class="space-y-10">
+                            <div class="space-y-4">
+                                <p class="text-[11px] font-black uppercase tracking-[0.3em] text-cyan-700">Circle</p>
+                                <h3 class="text-2xl md:text-4xl font-black tracking-tight text-slate-900">
+                                    学生サークルと会社、二つの拠点で広がる活動
+                                </h3>
+                                <p class="text-slate-600 leading-loose">
+                                    TECHSPRESSOのサークルは、学生中心の学内活動から始まりました。コーヒーの探究や試作、
+                                    コミュニティづくり、工大祭での出店などを通じて、学びと実践の場を広げています。
+                                </p>
+                                <p class="text-slate-600 leading-loose">
+                                    会社側は社員4人でオンラインショップの運営、商品企画、発送・カスタマー対応などを担当。
+                                    サークルと会社が連携し、学内外にコーヒー文化を届けています。
+                                </p>
+                            </div>
+                            <div class="grid sm:grid-cols-2 gap-6 text-sm text-slate-700">
+                                <div class="rounded-[2.5rem] border border-slate-100 p-6 bg-white shadow-sm space-y-3">
+                                    <p class="text-[10px] font-black uppercase tracking-[0.3em] text-slate-400">
+                                        School Club
+                                    </p>
+                                    <ul class="leading-loose list-disc list-inside space-y-2">
+                                        <li>学生主体の学内活動・コミュニティ運営</li>
+                                        <li>コーヒー探究・レシピ開発・試作</li>
+                                        <li>工大祭など学内イベントへの出店</li>
+                                    </ul>
+                                </div>
+                                <div class="rounded-[2.5rem] border border-slate-100 p-6 bg-white shadow-sm space-y-3">
+                                    <p class="text-[10px] font-black uppercase tracking-[0.3em] text-slate-400">
+                                        Company
+                                    </p>
+                                    <ul class="leading-loose list-disc list-inside space-y-2">
+                                        <li>社員4人でのオンラインショップ運営</li>
+                                        <li>商品企画・在庫管理・発送対応</li>
+                                        <li>カスタマー対応・情報発信</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="rounded-[2.5rem] border border-cyan-100 bg-gradient-to-br from-white to-cyan-50/30 p-8">
+                                <p class="text-[10px] font-black uppercase tracking-[0.35em] text-cyan-800 mb-4">
+                                    Circle Site
+                                </p>
+                                <p class="text-slate-600 leading-loose mb-6">
+                                    サークルの活動詳細やイベント情報は、サークルサイトで随時発信しています。
+                                </p>
+                                <a href="https://techspresso.jp/" target="_blank"
+                                    class="inline-flex items-center px-6 py-3 bg-slate-900 text-white rounded-full font-bold text-[10px] uppercase tracking-widest hover:bg-cyan-600 transition shadow-lg">
+                                    Visit Circle Site
+                                    <svg class="w-3 h-3 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="space-y-6">
+                            <div class="rounded-[2.5rem] overflow-hidden border border-slate-100 shadow-sm aspect-[4/3]">
+                                <img src="./pic/club4.jpg" alt="School club activity" class="w-full h-full object-cover">
+                            </div>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div class="rounded-[2.5rem] overflow-hidden border border-slate-100 shadow-sm">
+                                    <img src="./pic/club2.jpg" alt="Coffee exploration" class="w-full h-full object-cover">
+                                </div>
+                                <div class="rounded-[2.5rem] overflow-hidden border border-slate-100 shadow-sm">
+                                    <img src="./pic/club1.jpg" alt="Festival booth" class="w-full h-full object-cover">
+                                </div>
+                            </div>
+                            <div class="rounded-[2.5rem] border border-slate-100 p-6 bg-white">
+                                <p class="text-[10px] font-black uppercase tracking-[0.3em] text-slate-400 mb-3">
+                                    Collaboration
+                                </p>
+                                <p class="text-slate-700 text-sm leading-loose">
+                                    サークルの現場感と、会社の運営力を組み合わせて、
+                                    “学内から街へ” 活動を広げています。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+
 
         <div id="page-company-profile" class="page-content pt-32">
             <section class="py-32 px-6 text-center">
@@ -643,8 +745,8 @@
                     <ul class="space-y-4 text-slate-500 font-black text-left">
                         <li><a href="javascript:void(0)" onclick="navigateTo('about-story')"
                                 class="hover:text-cyan-600 transition text-[10px]">Our Story</a></li>
-                        <li><a href="javascript:void(0)" onclick="navigateTo('about-support')"
-                                class="hover:text-cyan-600 transition text-[10px]">School Support</a></li>
+                        <li><a href="javascript:void(0)" onclick="navigateTo('about-club')"
+                                class="hover:text-cyan-600 transition text-[10px]">School Club</a></li>
                     </ul>
                 </div>
                 <!-- Col 4: COMPANY -->
