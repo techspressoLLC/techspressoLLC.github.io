@@ -56,24 +56,12 @@ function updateCrowdfundingOffsets() {
     const headerHeight = header.getBoundingClientRect().height;
     const barVisible = !bar.classList.contains('hidden');
     const barHeight = barVisible ? bar.getBoundingClientRect().height : 0;
-    const topOffset = headerHeight + 8;
+    const topOffset = headerHeight - 8;
 
     bar.style.top = `${topOffset}px`;
     showButton.style.top = `${topOffset}px`;
     main.style.paddingTop = `${headerHeight + barHeight + 16}px`;
 }
-
-window.addEventListener('scroll', () => {
-    const header = document.getElementById('header');
-    if (window.scrollY > 80) {
-        header.classList.add('py-2');
-        header.classList.remove('py-4');
-    } else {
-        header.classList.add('py-4');
-        header.classList.remove('py-2');
-    }
-    updateCrowdfundingOffsets();
-});
 
 const menuToggle = document.getElementById('menu-toggle');
 const mobileMenu = document.getElementById('mobile-menu');
