@@ -9,6 +9,37 @@ function navigateTo(pageId) {
     }
 }
 
+function getFixedOffset() {
+    const header = document.getElementById('header');
+    const bar = document.getElementById('crowdfunding-bar');
+    const headerHeight = header ? header.getBoundingClientRect().height : 0;
+    const barHeight = bar && !bar.classList.contains('hidden') ? bar.getBoundingClientRect().height : 0;
+    return headerHeight + barHeight + 16;
+}
+
+function scrollToSection(section) {
+    if (!section) return;
+    const targetTop = section.getBoundingClientRect().top + window.scrollY - getFixedOffset();
+    window.scrollTo({ top: Math.max(targetTop, 0), behavior: 'smooth' });
+}
+
+function goToHomeSection(sectionId) {
+    const homePage = document.getElementById('page-home');
+    const alreadyHome = homePage && homePage.classList.contains('active');
+    if (!alreadyHome) {
+        navigateTo('home');
+    }
+    const section = document.getElementById(sectionId);
+    if (!section) return;
+    if (alreadyHome) {
+        scrollToSection(section);
+        return;
+    }
+    requestAnimationFrame(() => {
+        scrollToSection(section);
+    });
+}
+
 function updateCrowdfundingOffsets() {
     const header = document.getElementById('header');
     const bar = document.getElementById('crowdfunding-bar');
