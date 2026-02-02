@@ -21,6 +21,12 @@ function scrollToSection(section) {
     if (!section) return;
     const targetTop = section.getBoundingClientRect().top + window.scrollY - getFixedOffset();
     window.scrollTo({ top: Math.max(targetTop, 0), behavior: 'smooth' });
+    setTimeout(() => {
+        const adjustedTop = section.getBoundingClientRect().top + window.scrollY - getFixedOffset();
+        if (Math.abs(window.scrollY - adjustedTop) > 2) {
+            window.scrollTo({ top: Math.max(adjustedTop, 0), behavior: 'auto' });
+        }
+    }, 350);
 }
 
 function goToHomeSection(sectionId) {
