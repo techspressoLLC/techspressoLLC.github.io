@@ -101,6 +101,7 @@ if (carousel) {
 
     const tick = () => {
         if (!isHovering && !isPointerDown) {
+            carousel.classList.add('auto-scrolling');
             disableSnap();
             if (loopPoint) {
                 carousel.scrollLeft = wrapScroll(carousel.scrollLeft + speed);
@@ -111,6 +112,7 @@ if (carousel) {
     };
 
     const startAuto = () => {
+        carousel.classList.add('auto-scrolling');
         if (!rafId) rafId = requestAnimationFrame(tick);
     };
 
@@ -126,6 +128,7 @@ if (carousel) {
 
     carousel.addEventListener('pointerdown', (event) => {
         isPointerDown = true;
+        carousel.classList.remove('auto-scrolling');
         disableSnap();
         startX = event.clientX;
         startScroll = wrapScroll(carousel.scrollLeft);
@@ -144,6 +147,7 @@ if (carousel) {
         isPointerDown = false;
         normalizeScroll();
         enableSnap();
+        carousel.classList.add('auto-scrolling');
         updateDebug();
     };
 
