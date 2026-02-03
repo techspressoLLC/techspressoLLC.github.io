@@ -112,6 +112,7 @@ if (carousel) {
 
     carousel.addEventListener('pointerup', stopPointer);
     carousel.addEventListener('pointerleave', stopPointer);
+    carousel.addEventListener('pointercancel', stopPointer);
 
     carousel.addEventListener('scroll', () => {
         if (isHovering || isPointerDown) {
@@ -119,16 +120,27 @@ if (carousel) {
         }
     });
 
-    window.addEventListener('resize', () => {
+    const refreshLoop = () => {
         updateLoopPoint();
         normalizeScroll();
-    });
+    };
+
+    window.addEventListener('resize', refreshLoop);
+    window.addEventListener('orientationchange', refreshLoop);
 
     window.addEventListener('load', () => {
-        updateLoopPoint();
+        refreshLoop();
         startAuto();
     }, { once: true });
 
     updateLoopPoint();
     startAuto();
+    requestAnimationFrame(refreshLoop);
+    setTimeout(refreshLoop, 400);
+
+    if ('ResizeObserver' in window) {
+        const ro = new ResizeObserver(() => refreshLoop());
+        ro.observe(carousel);
+        items.forEach((item) => ro.observe(item));
+    }
 }
