@@ -13,7 +13,12 @@ if (carousel) {
     let debugPanel = null;
 
     const ensureDebugPanel = () => {
-        if (!debugEnabled || debugPanel) return;
+        if (!debugEnabled) {
+            const existing = document.getElementById('shop-carousel-debug');
+            if (existing) existing.remove();
+            return;
+        }
+        if (debugPanel) return;
         const panel = document.createElement('div');
         panel.id = 'shop-carousel-debug';
         panel.setAttribute('aria-live', 'polite');
