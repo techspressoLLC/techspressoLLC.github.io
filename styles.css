@@ -169,3 +169,8 @@ html {
     border: 1px solid rgba(226, 232, 240, 0.25);
     white-space: pre;
 }
+
+#shop-carousel.auto-scrolling {
+    scroll-snap-type: none !important;
+    scroll-behavior: auto;
+}
