@@ -29,17 +29,22 @@ if (carousel) {
         const scrollWidth = carousel.scrollWidth;
         const clientWidth = carousel.clientWidth;
         const maxScroll = Math.max(0, scrollWidth - clientWidth);
+        const applied = carousel.scrollLeft;
+        const delta = applied - lastTarget;
         debugPanel.textContent =
             `shop-carousel\n` +
             `running: ${running}\n` +
             `scrollLeft: ${carousel.scrollLeft.toFixed(1)}\n` +
+            `target: ${lastTarget.toFixed(1)}\n` +
+            `delta: ${delta.toFixed(1)}\n` +
             `scrollWidth: ${scrollWidth.toFixed(1)}\n` +
             `maxScroll: ${maxScroll.toFixed(1)}\n` +
             `loopPoint: ${loopPoint.toFixed(1)}\n` +
             `items: ${items.length}\n` +
             `client: ${clientWidth} x ${carousel.clientHeight}\n` +
             `dpr: ${window.devicePixelRatio || 1}\n` +
-            `reduced: ${prefersReduced}`;
+            `reduced: ${prefersReduced}\n` +
+            `hover: ${isHovering} down: ${isPointerDown} auto: ${carousel.classList.contains('auto-scrolling')}`;
     };
 
     const items = Array.from(carousel.children);
@@ -101,13 +106,16 @@ if (carousel) {
         });
     };
 
+    let lastTarget = 0;
+
     const tick = () => {
         if (!isHovering && !isPointerDown) {
             carousel.classList.add('auto-scrolling');
             disableSnap();
             if (loopPoint) {
                 autoScrollPos = wrapScroll(autoScrollPos + speed);
-                carousel.scrollLeft = autoScrollPos;
+                lastTarget = autoScrollPos;
+                carousel.scrollLeft = lastTarget;
             }
         }
         updateDebug();
