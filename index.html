@@ -746,16 +746,16 @@
                         <li><a href="javascript:void(0)" onclick="navigateTo('home')"
                                 class="hover:text-cyan-600 transition text-[9px]">HOME</a></li>
                         <li><a href="javascript:void(0)"
-                                onclick="navigateTo('home'); document.getElementById('introduction').scrollIntoView();"
-                                class="hover:text-cyan-600 transition text-[9px]">Introduction</a></li>
-                        <li><a href="javascript:void(0)"
-                                onclick="navigateTo('home'); document.getElementById('news').scrollIntoView();"
-                                class="hover:text-cyan-600 transition text-[9px]">NEWS/UPDATES</a></li>
-                        <li><a href="javascript:void(0)"
                                 onclick="goToHomeSection('online-shop');"
                                 class="hover:text-cyan-600 transition text-[9px]">ONLINE SHOP</a></li>
                         <li><a href="javascript:void(0)" onclick="goToHomeSection('crowdfunding');"
                                 class="hover:text-cyan-600 transition text-[9px]">CROWDFUNDING</a></li>
+                        <li><a href="javascript:void(0)"
+                                onclick="navigateTo('home'); document.getElementById('introduction').scrollIntoView();"
+                                class="hover:text-cyan-600 transition text-[9px]">INTRODUCTION</a></li>
+                        <li><a href="javascript:void(0)"
+                                onclick="navigateTo('home'); document.getElementById('news').scrollIntoView();"
+                                class="hover:text-cyan-600 transition text-[9px]">NEWS/UPDATES</a></li>
                     </ul>
                 </div>
                 <!-- Col 2: EVENT -->
@@ -787,9 +787,11 @@
                     </ul>
                 </div>
             </div>
-            <div class="mt-10 flex justify-center md:justify-end">
+            <div class="mt-10 flex flex-wrap justify-center md:justify-end gap-3">
                 <a href="javascript:void(0)" onclick="navigateTo('contact')"
                     class="bg-slate-900 text-white text-[10px] font-black px-8 py-3 rounded-full hover:bg-cyan-600 transition uppercase">Contact</a>
+                <a href="javascript:void(0)" onclick="navigateTo('about-club')"
+                    class="bg-white text-slate-900 text-[10px] font-black px-8 py-3 rounded-full border border-slate-200 hover:border-cyan-600 hover:text-cyan-600 transition uppercase">School Club Site</a>
             </div>
 
             <!-- フッター最下部 -->
