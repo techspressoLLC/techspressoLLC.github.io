@@ -8,7 +8,7 @@ if (carousel) {
     let startScroll = 0;
     let loopPoint = 0;
     let normalizeScheduled = false;
-    const debugEnabled = new URLSearchParams(window.location.search).has('debug');
+    const debugEnabled = true;
     let debugPanel = null;
 
     const ensureDebugPanel = () => {
