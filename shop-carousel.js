@@ -8,6 +8,7 @@ if (carousel) {
     let startScroll = 0;
     let loopPoint = 0;
     let normalizeScheduled = false;
+    let autoScrollPos = 0;
     const debugEnabled = true;
     let debugPanel = null;
 
@@ -87,7 +88,8 @@ if (carousel) {
 
     const normalizeScroll = () => {
         if (!loopPoint) return;
-        carousel.scrollLeft = wrapScroll(carousel.scrollLeft);
+        autoScrollPos = wrapScroll(carousel.scrollLeft);
+        carousel.scrollLeft = autoScrollPos;
     };
 
     const scheduleNormalize = () => {
@@ -104,7 +106,8 @@ if (carousel) {
             carousel.classList.add('auto-scrolling');
             disableSnap();
             if (loopPoint) {
-                carousel.scrollLeft = wrapScroll(carousel.scrollLeft + speed);
+                autoScrollPos = wrapScroll(autoScrollPos + speed);
+                carousel.scrollLeft = autoScrollPos;
             }
         }
         updateDebug();
@@ -113,6 +116,7 @@ if (carousel) {
 
     const startAuto = () => {
         carousel.classList.add('auto-scrolling');
+        autoScrollPos = wrapScroll(carousel.scrollLeft);
         if (!rafId) rafId = requestAnimationFrame(tick);
     };
 
@@ -132,6 +136,7 @@ if (carousel) {
         disableSnap();
         startX = event.clientX;
         startScroll = wrapScroll(carousel.scrollLeft);
+        autoScrollPos = startScroll;
         carousel.setPointerCapture(event.pointerId);
         updateDebug();
     });
@@ -139,7 +144,8 @@ if (carousel) {
     carousel.addEventListener('pointermove', (event) => {
         if (!isPointerDown) return;
         const walk = event.clientX - startX;
-        carousel.scrollLeft = wrapScroll(startScroll - walk);
+        autoScrollPos = wrapScroll(startScroll - walk);
+        carousel.scrollLeft = autoScrollPos;
     });
 
     const stopPointer = () => {
