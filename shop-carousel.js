@@ -9,7 +9,7 @@ if (carousel) {
     let loopPoint = 0;
     let normalizeScheduled = false;
     let autoScrollPos = 0;
-    const debugEnabled = true;
+    const debugEnabled = false;
     let debugPanel = null;
 
     const ensureDebugPanel = () => {
