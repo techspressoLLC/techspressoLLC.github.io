@@ -25,13 +25,18 @@ if (carousel) {
         if (!debugPanel) return;
         const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
         const running = Boolean(rafId) && !isHovering && !isPointerDown;
+        const scrollWidth = carousel.scrollWidth;
+        const clientWidth = carousel.clientWidth;
+        const maxScroll = Math.max(0, scrollWidth - clientWidth);
         debugPanel.textContent =
             `shop-carousel\n` +
             `running: ${running}\n` +
             `scrollLeft: ${carousel.scrollLeft.toFixed(1)}\n` +
+            `scrollWidth: ${scrollWidth.toFixed(1)}\n` +
+            `maxScroll: ${maxScroll.toFixed(1)}\n` +
             `loopPoint: ${loopPoint.toFixed(1)}\n` +
             `items: ${items.length}\n` +
-            `client: ${carousel.clientWidth} x ${carousel.clientHeight}\n` +
+            `client: ${clientWidth} x ${carousel.clientHeight}\n` +
             `dpr: ${window.devicePixelRatio || 1}\n` +
             `reduced: ${prefersReduced}`;
     };
