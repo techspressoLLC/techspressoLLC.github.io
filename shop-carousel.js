@@ -1,7 +1,7 @@
 const carousel = document.getElementById('shop-carousel');
 if (carousel) {
     let rafId = 0;
-    const speed = 0.45; // px per frame
+    const speed = 0.9; // px per frame
     let isHovering = false;
     let isPointerDown = false;
     let startX = 0;
@@ -17,8 +17,17 @@ if (carousel) {
 
     const getLoopPoint = () => carousel.scrollWidth / 2;
 
+    const enableSnap = () => {
+        carousel.style.scrollSnapType = 'x mandatory';
+    };
+
+    const disableSnap = () => {
+        carousel.style.scrollSnapType = 'none';
+    };
+
     const tick = () => {
         if (!isHovering && !isPointerDown) {
+            disableSnap();
             const loopPoint = getLoopPoint();
             if (loopPoint) {
                 carousel.scrollLeft += speed;
@@ -36,6 +45,7 @@ if (carousel) {
 
     carousel.addEventListener('mouseenter', () => {
         isHovering = true;
+        enableSnap();
     });
     carousel.addEventListener('mouseleave', () => {
         isHovering = false;
@@ -43,6 +53,7 @@ if (carousel) {
 
     carousel.addEventListener('pointerdown', (event) => {
         isPointerDown = true;
+        enableSnap();
         startX = event.clientX;
         startScroll = carousel.scrollLeft;
         carousel.setPointerCapture(event.pointerId);
