@@ -6,6 +6,8 @@ if (carousel) {
     let isPointerDown = false;
     let startX = 0;
     let startScroll = 0;
+    let loopPoint = 0;
+    let normalizeScheduled = false;
 
     const items = Array.from(carousel.children);
     const cloneCount = items.length;
@@ -15,25 +17,61 @@ if (carousel) {
         carousel.appendChild(clone);
     }
 
-    const getLoopPoint = () => carousel.scrollWidth / 2;
+    const getGap = () => {
+        const style = getComputedStyle(carousel);
+        const gap = parseFloat(style.columnGap || style.gap || '0');
+        return Number.isFinite(gap) ? gap : 0;
+    };
 
-    const enableSnap = () => {
-        carousel.style.scrollSnapType = 'x mandatory';
+    const measureLoopPoint = () => {
+        const originalItems = Array.from(carousel.children).filter((el) => !el.hasAttribute('aria-hidden'));
+        if (originalItems.length === 0) return 0;
+        const gap = getGap();
+        let total = 0;
+        originalItems.forEach((item, index) => {
+            total += item.getBoundingClientRect().width;
+            if (index < originalItems.length - 1) total += gap;
+        });
+        return total;
+    };
+
+    const updateLoopPoint = () => {
+        loopPoint = measureLoopPoint();
     };
 
     const disableSnap = () => {
         carousel.style.scrollSnapType = 'none';
     };
 
+    const enableSnap = () => {
+        carousel.style.scrollSnapType = 'x mandatory';
+    };
+
+    const wrapScroll = (value) => {
+        if (!loopPoint) return value;
+        const mod = value % loopPoint;
+        return mod < 0 ? mod + loopPoint : mod;
+    };
+
+    const normalizeScroll = () => {
+        if (!loopPoint) return;
+        carousel.scrollLeft = wrapScroll(carousel.scrollLeft);
+    };
+
+    const scheduleNormalize = () => {
+        if (normalizeScheduled) return;
+        normalizeScheduled = true;
+        requestAnimationFrame(() => {
+            normalizeScheduled = false;
+            normalizeScroll();
+        });
+    };
+
     const tick = () => {
         if (!isHovering && !isPointerDown) {
             disableSnap();
-            const loopPoint = getLoopPoint();
             if (loopPoint) {
-                carousel.scrollLeft += speed;
-                if (carousel.scrollLeft >= loopPoint) {
-                    carousel.scrollLeft -= loopPoint;
-                }
+                carousel.scrollLeft = wrapScroll(carousel.scrollLeft + speed);
             }
         }
         rafId = requestAnimationFrame(tick);
@@ -45,7 +83,7 @@ if (carousel) {
 
     carousel.addEventListener('mouseenter', () => {
         isHovering = true;
-        enableSnap();
+        disableSnap();
     });
     carousel.addEventListener('mouseleave', () => {
         isHovering = false;
@@ -53,33 +91,44 @@ if (carousel) {
 
     carousel.addEventListener('pointerdown', (event) => {
         isPointerDown = true;
-        enableSnap();
+        disableSnap();
         startX = event.clientX;
-        startScroll = carousel.scrollLeft;
+        startScroll = wrapScroll(carousel.scrollLeft);
         carousel.setPointerCapture(event.pointerId);
     });
 
     carousel.addEventListener('pointermove', (event) => {
         if (!isPointerDown) return;
         const walk = event.clientX - startX;
-        carousel.scrollLeft = startScroll - walk;
-        const loopPoint = getLoopPoint();
-        if (loopPoint) {
-            if (carousel.scrollLeft < 0) {
-                carousel.scrollLeft += loopPoint;
-            } else if (carousel.scrollLeft >= loopPoint) {
-                carousel.scrollLeft -= loopPoint;
-            }
-        }
+        carousel.scrollLeft = wrapScroll(startScroll - walk);
     });
 
     const stopPointer = () => {
+        if (!isPointerDown) return;
         isPointerDown = false;
+        normalizeScroll();
+        enableSnap();
     };
 
     carousel.addEventListener('pointerup', stopPointer);
     carousel.addEventListener('pointerleave', stopPointer);
 
-    window.addEventListener('load', startAuto, { once: true });
+    carousel.addEventListener('scroll', () => {
+        if (isHovering || isPointerDown) {
+            scheduleNormalize();
+        }
+    });
+
+    window.addEventListener('resize', () => {
+        updateLoopPoint();
+        normalizeScroll();
+    });
+
+    window.addEventListener('load', () => {
+        updateLoopPoint();
+        startAuto();
+    }, { once: true });
+
+    updateLoopPoint();
     startAuto();
 }
