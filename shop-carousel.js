@@ -9,6 +9,7 @@ if (carousel) {
     let loopPoint = 0;
     let normalizeScheduled = false;
     let autoScrollPos = 0;
+    const isIOS = /iP(ad|hone|od)/.test(navigator.userAgent);
     const debugEnabled = false;
     let debugPanel = null;
 
@@ -143,23 +144,22 @@ if (carousel) {
         updateDebug();
     });
 
-    carousel.addEventListener('pointerdown', (event) => {
+    const startDrag = (clientX) => {
         isPointerDown = true;
         carousel.classList.remove('auto-scrolling');
         disableSnap();
-        startX = event.clientX;
+        startX = clientX;
         startScroll = wrapScroll(carousel.scrollLeft);
         autoScrollPos = startScroll;
-        carousel.setPointerCapture(event.pointerId);
         updateDebug();
-    });
+    };
 
-    carousel.addEventListener('pointermove', (event) => {
+    const moveDrag = (clientX) => {
         if (!isPointerDown) return;
-        const walk = event.clientX - startX;
+        const walk = clientX - startX;
         autoScrollPos = wrapScroll(startScroll - walk);
         carousel.scrollLeft = autoScrollPos;
-    });
+    };
 
     const stopPointer = () => {
         if (!isPointerDown) return;
@@ -170,9 +170,34 @@ if (carousel) {
         updateDebug();
     };
 
+    carousel.addEventListener('pointerdown', (event) => {
+        startDrag(event.clientX);
+        if (!isIOS) {
+            carousel.setPointerCapture(event.pointerId);
+        }
+    });
+
+    carousel.addEventListener('pointermove', (event) => {
+        moveDrag(event.clientX);
+    });
+
     carousel.addEventListener('pointerup', stopPointer);
     carousel.addEventListener('pointerleave', stopPointer);
     carousel.addEventListener('pointercancel', stopPointer);
+
+    carousel.addEventListener('touchstart', (event) => {
+        if (!event.touches || event.touches.length === 0) return;
+        startDrag(event.touches[0].clientX);
+    }, { passive: true });
+
+    carousel.addEventListener('touchmove', (event) => {
+        if (!event.touches || event.touches.length === 0) return;
+        moveDrag(event.touches[0].clientX);
+        event.preventDefault();
+    }, { passive: false });
+
+    carousel.addEventListener('touchend', stopPointer);
+    carousel.addEventListener('touchcancel', stopPointer);
 
     carousel.addEventListener('scroll', () => {
         if (isHovering || isPointerDown) {
