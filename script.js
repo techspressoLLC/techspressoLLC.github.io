@@ -589,3 +589,32 @@ document.addEventListener('DOMContentLoaded', () => {
     updateCrowdfundingOffsets();
     window.addEventListener('resize', updateCrowdfundingOffsets);
 });
+
+
+const shopCarousel = document.getElementById('shop-carousel');
+if (shopCarousel) {
+    let isDown = false;
+    let startX = 0;
+    let scrollLeft = 0;
+
+    const stopDrag = () => {
+        isDown = false;
+    };
+
+    shopCarousel.addEventListener('pointerdown', (event) => {
+        isDown = true;
+        startX = event.clientX;
+        scrollLeft = shopCarousel.scrollLeft;
+        shopCarousel.setPointerCapture(event.pointerId);
+    });
+
+    shopCarousel.addEventListener('pointermove', (event) => {
+        if (!isDown) return;
+        const walk = event.clientX - startX;
+        shopCarousel.scrollLeft = scrollLeft - walk;
+    });
+
+    shopCarousel.addEventListener('pointerup', stopDrag);
+    shopCarousel.addEventListener('pointerleave', stopDrag);
+}
+
