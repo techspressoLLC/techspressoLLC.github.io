@@ -8,6 +8,33 @@ if (carousel) {
     let startScroll = 0;
     let loopPoint = 0;
     let normalizeScheduled = false;
+    const debugEnabled = new URLSearchParams(window.location.search).has('debug');
+    let debugPanel = null;
+
+    const ensureDebugPanel = () => {
+        if (!debugEnabled || debugPanel) return;
+        const panel = document.createElement('div');
+        panel.id = 'shop-carousel-debug';
+        panel.setAttribute('aria-live', 'polite');
+        panel.textContent = 'shop carousel debug';
+        document.body.appendChild(panel);
+        debugPanel = panel;
+    };
+
+    const updateDebug = () => {
+        if (!debugPanel) return;
+        const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        const running = Boolean(rafId) && !isHovering && !isPointerDown;
+        debugPanel.textContent =
+            `shop-carousel\n` +
+            `running: ${running}\n` +
+            `scrollLeft: ${carousel.scrollLeft.toFixed(1)}\n` +
+            `loopPoint: ${loopPoint.toFixed(1)}\n` +
+            `items: ${items.length}\n` +
+            `client: ${carousel.clientWidth} x ${carousel.clientHeight}\n` +
+            `dpr: ${window.devicePixelRatio || 1}\n` +
+            `reduced: ${prefersReduced}`;
+    };
 
     const items = Array.from(carousel.children);
     const cloneCount = items.length;
@@ -74,6 +101,7 @@ if (carousel) {
                 carousel.scrollLeft = wrapScroll(carousel.scrollLeft + speed);
             }
         }
+        updateDebug();
         rafId = requestAnimationFrame(tick);
     };
 
@@ -84,9 +112,11 @@ if (carousel) {
     carousel.addEventListener('mouseenter', () => {
         isHovering = true;
         disableSnap();
+        updateDebug();
     });
     carousel.addEventListener('mouseleave', () => {
         isHovering = false;
+        updateDebug();
     });
 
     carousel.addEventListener('pointerdown', (event) => {
@@ -95,6 +125,7 @@ if (carousel) {
         startX = event.clientX;
         startScroll = wrapScroll(carousel.scrollLeft);
         carousel.setPointerCapture(event.pointerId);
+        updateDebug();
     });
 
     carousel.addEventListener('pointermove', (event) => {
@@ -108,6 +139,7 @@ if (carousel) {
         isPointerDown = false;
         normalizeScroll();
         enableSnap();
+        updateDebug();
     };
 
     carousel.addEventListener('pointerup', stopPointer);
@@ -123,6 +155,7 @@ if (carousel) {
     const refreshLoop = () => {
         updateLoopPoint();
         normalizeScroll();
+        updateDebug();
     };
 
     window.addEventListener('resize', refreshLoop);
@@ -133,6 +166,7 @@ if (carousel) {
         startAuto();
     }, { once: true });
 
+    ensureDebugPanel();
     updateLoopPoint();
     startAuto();
     requestAnimationFrame(refreshLoop);
