@@ -530,6 +530,9 @@ const handleHashRoute = async () => {
 };
 
 document.addEventListener('DOMContentLoaded', () => {
+    if (typeof window.initCoffeeLineup === 'function') {
+        window.initCoffeeLineup();
+    }
     revealObserver = setupRevealObserver();
     newsReadyPromise = loadNews().then(() => {
         renderFilters();
@@ -617,4 +620,3 @@ if (shopCarousel) {
     shopCarousel.addEventListener('pointerup', stopDrag);
     shopCarousel.addEventListener('pointerleave', stopDrag);
 }
-
