@@ -21,6 +21,27 @@
       "externalUrl": "",
       "pinned": true
     },
+     {
+      "slug": "new bean1",
+      "date": "2026.2.28",
+      "category": [
+        "NEWS",
+        "IMPORTANT"
+    ],  
+      "title": "コロンビアの豆を入荷しました",
+      "excerpt": "新鮮なコロンビアの豆が入荷されました。ぜひお試しください。",
+      "cover": "./pic/news/new-bean1.jpg",
+      "body": [
+        "このたび法人登記が完了し、正式にTECHSPRESSO合同会社としてスタートいたしました。",
+        "これからもコーヒーを通じて、皆さまの日常に寄り添う体験を届けてまいります。"
+      ],
+      "tags": [
+        "INFO",
+        "CORPORATE"
+      ],
+      "externalUrl": "",
+      "pinned": true
+    },
     {
       "slug": "crowdfunding-launch",
       "date": "2026.03.10",
