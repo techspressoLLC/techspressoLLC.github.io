@@ -408,7 +408,7 @@ const renderNewsDetail = (slug) => {
         link.target = '_blank';
         link.rel = 'noopener noreferrer';
         link.className = 'inline-flex items-center px-6 py-3 bg-slate-900 text-white rounded-full font-bold text-[10px] uppercase tracking-widest hover:bg-cyan-600 transition shadow-lg';
-        link.textContent = 'Related Link';
+        link.textContent = item.externalLabel || 'Related Link';
         container.appendChild(link);
     }
 };

@@ -27,16 +27,18 @@
       "category": [
         "NEWS"
       ],
-      "title": "クラウドファンディングを開始しました",
-      "excerpt": "TECHSPRESSOは次なる目標達成のためのクラウドファンディングを開始しました。",
+      "title": "焙煎機取得のためのクラウドファンディングを開始しました",
+      "excerpt": "TECHSPRESSOは焙煎機取得のためのクラウドファンディングを開始しました。詳細はボタンからご覧ください。",
       "cover": "",
       "body": [
-        "この度TECHSPRESSOは次なる目標達成のためのクラウドファンディングを開始しました。"
+        "この度TECHSPRESSOは、焙煎機取得のためのクラウドファンディングを開始しました。",
+        "詳細はこちらのボタンからご確認ください。"
       ],
       "tags": [
         "INFO"
       ],
-      "externalUrl": "",
+      "externalUrl": "https://camp-fire.jp/projects/883887/view?utm_campaign=cp_po_share_c_msg_mypage_projects_show",
+      "externalLabel": "詳細はこちら",
       "pinned": false
     }
   ],
