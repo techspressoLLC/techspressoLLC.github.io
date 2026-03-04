@@ -9,6 +9,8 @@ function navigateTo(pageId) {
     }
 }
 
+const CROWDFUNDING_ENABLED = false;
+
 function getFixedOffset() {
     const header = document.getElementById('header');
     const bar = document.getElementById('crowdfunding-bar');
@@ -30,6 +32,7 @@ function scrollToSection(section) {
 }
 
 function goToHomeSection(sectionId) {
+    if (sectionId === 'crowdfunding' && !CROWDFUNDING_ENABLED) return;
     const homePage = document.getElementById('page-home');
     const alreadyHome = homePage && homePage.classList.contains('active');
     if (!alreadyHome) {
@@ -43,6 +46,25 @@ function goToHomeSection(sectionId) {
     }
     requestAnimationFrame(() => {
         scrollToSection(section);
+    });
+}
+
+function applyCrowdfundingVisibility() {
+    const crowdfundingElements = document.querySelectorAll('[data-crowdfunding-ui]');
+    crowdfundingElements.forEach((element) => {
+        if (CROWDFUNDING_ENABLED) {
+            if (element.id === 'crowdfunding-show') {
+                element.classList.add('hidden');
+                element.classList.remove('flex');
+                return;
+            }
+            element.classList.remove('hidden');
+            return;
+        }
+        element.classList.add('hidden');
+        if (element.id === 'crowdfunding-show') {
+            element.classList.remove('flex');
+        }
     });
 }
 
@@ -574,7 +596,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const crowdfundingBar = document.getElementById('crowdfunding-bar');
     const hideCrowdfunding = document.getElementById('crowdfunding-hide');
     const showCrowdfunding = document.getElementById('crowdfunding-show');
-    if (crowdfundingBar && hideCrowdfunding && showCrowdfunding) {
+    applyCrowdfundingVisibility();
+
+    if (CROWDFUNDING_ENABLED && crowdfundingBar && hideCrowdfunding && showCrowdfunding) {
         hideCrowdfunding.addEventListener('click', () => {
             crowdfundingBar.classList.add('hidden');
             showCrowdfunding.classList.remove('hidden');
