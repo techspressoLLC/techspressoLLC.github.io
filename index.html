@@ -170,7 +170,7 @@
     </header>
 
     <!-- Secondary navigation: Crowdfunding -->
-    <div id="crowdfunding-bar" class="fixed left-0 right-0 z-40">
+    <div id="crowdfunding-bar" data-crowdfunding-ui class="fixed left-0 right-0 z-40">
         <div class="container mx-auto px-4 md:px-6">
                 <div
                     class="flex flex-row items-center justify-between gap-3 sm:gap-4 rounded-[2rem] sm:rounded-full border border-slate-200 bg-gradient-to-r from-slate-900 to-blue-800 px-4 sm:px-6 py-2.5 sm:py-4 shadow-lg shadow-blue-200/60">
@@ -194,7 +194,7 @@
             </div>
         </div>
     </div>
-    <button id="crowdfunding-show" type="button"
+    <button id="crowdfunding-show" data-crowdfunding-ui type="button"
         class="fixed right-4 z-40 hidden items-center gap-2 rounded-full bg-slate-900 text-white px-4 py-2 text-[9px] font-black uppercase tracking-[0.25em] shadow-lg shadow-blue-200/60 hover:bg-blue-700 transition"
         aria-label="Show crowdfunding bar">
         <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -284,7 +284,7 @@
             </section>
 
             <!-- Crowdfunding -->
-<section id="crowdfunding" class="py-16 px-6 bg-white relative overflow-hidden">
+<section id="crowdfunding" data-crowdfunding-ui class="py-16 px-6 bg-white relative overflow-hidden">
                 <div class="container mx-auto max-w-5xl">
                     <div class="reveal text-left">
                         <div
@@ -834,7 +834,7 @@
                         <li><a href="javascript:void(0)"
                                 onclick="goToHomeSection('online-shop');"
                                 class="hover:text-cyan-600 transition text-[9px]">ONLINE SHOP</a></li>
-                        <li><a href="javascript:void(0)" onclick="goToHomeSection('crowdfunding');"
+                        <li data-crowdfunding-ui><a href="javascript:void(0)" onclick="goToHomeSection('crowdfunding');"
                                 class="hover:text-cyan-600 transition text-[9px]">CROWDFUNDING</a></li>
                         <li><a href="javascript:void(0)"
                                 onclick="navigateTo('home'); document.getElementById('introduction').scrollIntoView();"
