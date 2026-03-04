@@ -153,8 +153,11 @@ const renderCoffeeLineupDetail = (beanId) => {
     headerWrap.appendChild(subtitle);
     detailContainer.appendChild(headerWrap);
 
-    const metaGrid = document.createElement("div");
-    metaGrid.className = "grid sm:grid-cols-2 gap-4 text-sm text-slate-700";
+    const metaMobile = document.createElement("dl");
+    metaMobile.className = "md:hidden rounded-2xl border border-slate-100 bg-white p-4 grid grid-cols-[auto_1fr] gap-x-4 gap-y-3 text-sm text-slate-700";
+
+    const metaDesktop = document.createElement("div");
+    metaDesktop.className = "hidden md:grid sm:grid-cols-2 gap-4 text-sm text-slate-700";
 
     const metaItems = [
         ["国", bean.country],
@@ -169,15 +172,27 @@ const renderCoffeeLineupDetail = (beanId) => {
     ];
 
     metaItems.forEach(([label, value]) => {
+        const term = document.createElement("dt");
+        term.className = "text-[10px] md:text-[11px] font-black uppercase tracking-[0.2em] text-slate-400 self-center";
+        term.textContent = label;
+
+        const desc = document.createElement("dd");
+        desc.className = "font-bold text-slate-800 break-words";
+        desc.textContent = value || "-";
+
+        metaMobile.appendChild(term);
+        metaMobile.appendChild(desc);
+
         const item = document.createElement("div");
         item.className = "rounded-2xl border border-slate-100 bg-white p-4";
         item.innerHTML = `
             <p class="text-[10px] font-black uppercase tracking-[0.25em] text-slate-400 mb-1">${label}</p>
             <p class="font-bold text-slate-800">${value || "-"}</p>
         `;
-        metaGrid.appendChild(item);
+        metaDesktop.appendChild(item);
     });
-    detailContainer.appendChild(metaGrid);
+    detailContainer.appendChild(metaMobile);
+    detailContainer.appendChild(metaDesktop);
 
     const notesWrap = document.createElement("div");
     notesWrap.className = "space-y-3";
