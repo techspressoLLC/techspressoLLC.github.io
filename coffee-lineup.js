@@ -1,81 +1,47 @@
-const coffeeBeans = [
-    {
-        id: "colombia-asmucafe-floreada-supremo",
-        name: "Colombia ASMUCAFE Floreada Supremo",
-        subtitle: "コクと甘みがバランス良く、ミルクチョコレートのようななめらかなコーヒー",
-        country: "Colombia",
-        farm: "ASMUCAFE",
-        area: "Cauca, El Tambo",
-        origin: "コロンビア / カウカ県 エル・タンボ",
-        variety: "Castillo, Colombia",
-        elevation: "1800-2000m",
-        process: "Washed",
-        roastLevel: "中深煎り",
-        tastingNotes: ["ミルクチョコレート", "キャラメル", "なめらかな口当たり"],
-        recommendedBrew: "ペーパードリップ / エスプレッソ",
-        description: "ASMUCAFE（アスムカフェ）は、コロンビア・カウカ県エル・タンボ地域の女性コーヒー生産者によって2009年に設立された団体です。女性の経済的自立と社会的地位向上を目的に、環境に配慮した持続可能な栽培で高品質なコーヒーを生産しています。相互扶助の精神を大切にしながら地域社会にも貢献する姿勢が評価され、「フロリアーダ（花で彩られたようなコーヒー）」の名が付けられています。",
-        roastProfile: [
-            "投入温度: 200C",
-            "ドライエンド: 4:30",
-            "1ハゼ: 8:20",
-            "煎り止め: 10:00"
-        ],
-        images: [
-            "./pic/beans/col202602/col1.jpg",
-            "./pic/beans/col202602/IMG_0944.jpg",
-            "./pic/beans/col202602/IMG_0946.jpg"
-        ]
-    },
-    {
-        id: "ethiopia-gesha",
-        name: "Ethiopia Gesha",
-        subtitle: "華やかで紅茶のような質感のシングルオリジン",
-        country: "Ethiopia",
-        farm: "-",
-        area: "Guji",
-        origin: "Ethiopia, Guji",
-        variety: "Gesha 1931",
-        elevation: "1900-2200m",
-        process: "Washed",
-        roastLevel: "浅煎り",
-        tastingNotes: ["ジャスミン", "シトラス", "ピーチティー"],
-        recommendedBrew: "ペーパードリップ",
-        description: "フローラルな香りと透明感のある酸を活かした、繊細で上品な味わい。余韻までクリーンな飲み口に仕上げています。",
-        roastProfile: [
-            "投入温度: 195C",
-            "ドライエンド: 4:50",
-            "1ハゼ: 8:45",
-            "煎り止め: 9:40"
-        ],
-        images: []
-    },
-    {
-        id: "kenya-aa",
-        name: "Kenya AA",
-        subtitle: "明るい果実感とジューシーな後味",
-        country: "Kenya",
-        farm: "-",
-        area: "Nyeri",
-        origin: "Kenya, Nyeri",
-        variety: "SL28, SL34",
-        elevation: "1700-2000m",
-        process: "Washed",
-        roastLevel: "中浅煎り",
-        tastingNotes: ["カシス", "グレープフルーツ", "ブラウンシュガー"],
-        recommendedBrew: "ペーパードリップ / AeroPress",
-        description: "はっきりした果実感と立体的な酸が特徴。クリアな抽出で甘さの層を感じやすいプロファイルです。",
-        roastProfile: [
-            "投入温度: 198C",
-            "ドライエンド: 4:40",
-            "1ハゼ: 8:35",
-            "煎り止め: 9:55"
-        ],
-        images: []
-    }
-];
+const COFFEE_LINEUP_JSON_PATH = "./coffee-lineup.json";
 
-let selectedCoffeeBeanId = coffeeBeans[0]?.id || "";
+let coffeeLineupEnabled = true;
+let coffeeBeans = [];
+let defaultCoffeeBeanId = "";
+let selectedCoffeeBeanId = "";
 let galleryModal = null;
+
+const clearCoffeeLineupRender = () => {
+    const listContainer = document.getElementById("coffee-lineup-list");
+    if (listContainer) listContainer.textContent = "";
+    const detailContainer = document.getElementById("coffee-lineup-detail");
+    if (detailContainer) detailContainer.textContent = "";
+};
+
+const applyCoffeeLineupVisibility = () => {
+    document.querySelectorAll("[data-coffee-lineup-ui]").forEach((element) => {
+        element.classList.toggle("hidden", !coffeeLineupEnabled);
+    });
+};
+
+const loadCoffeeLineup = async () => {
+    const response = await fetch(COFFEE_LINEUP_JSON_PATH, { cache: "no-store" });
+    if (!response.ok) throw new Error("Failed to load coffee-lineup.json");
+
+    const data = await response.json();
+    coffeeLineupEnabled = data?.enabled !== false;
+    defaultCoffeeBeanId = typeof data?.defaultBeanId === "string" ? data.defaultBeanId : "";
+
+    const items = Array.isArray(data?.items) ? data.items : [];
+    coffeeBeans = items.filter((item) => item && item.id && item.active !== false);
+    coffeeLineupEnabled = coffeeLineupEnabled && coffeeBeans.length > 0;
+
+    if (!coffeeLineupEnabled || !coffeeBeans.length) {
+        selectedCoffeeBeanId = "";
+        return;
+    }
+
+    const hasSelected = coffeeBeans.some((bean) => bean.id === selectedCoffeeBeanId);
+    if (!hasSelected) {
+        const hasDefault = coffeeBeans.some((bean) => bean.id === defaultCoffeeBeanId);
+        selectedCoffeeBeanId = hasDefault ? defaultCoffeeBeanId : coffeeBeans[0].id;
+    }
+};
 
 const ensureGalleryModal = () => {
     if (galleryModal) return galleryModal;
@@ -281,16 +247,30 @@ const renderCoffeeLineupList = () => {
 };
 
 window.selectCoffeeBeanById = (beanId) => {
-    if (!coffeeBeans.length) return;
+    if (!coffeeLineupEnabled || !coffeeBeans.length) return;
     const found = coffeeBeans.find((bean) => bean.id === beanId);
     selectedCoffeeBeanId = found ? found.id : coffeeBeans[0].id;
     renderCoffeeLineupList();
     renderCoffeeLineupDetail(selectedCoffeeBeanId);
 };
 
-window.initCoffeeLineup = () => {
-    if (!coffeeBeans.length) return;
-    if (!selectedCoffeeBeanId) selectedCoffeeBeanId = coffeeBeans[0].id;
+window.isCoffeeLineupEnabled = () => coffeeLineupEnabled;
+
+window.initCoffeeLineup = async () => {
+    try {
+        await loadCoffeeLineup();
+    } catch (error) {
+        coffeeLineupEnabled = false;
+        coffeeBeans = [];
+        selectedCoffeeBeanId = "";
+    }
+
+    applyCoffeeLineupVisibility();
+    if (!coffeeLineupEnabled || !coffeeBeans.length) {
+        clearCoffeeLineupRender();
+        return;
+    }
+
     ensureGalleryModal();
-    window.selectCoffeeBeanById(selectedCoffeeBeanId);
+    window.selectCoffeeBeanById(selectedCoffeeBeanId || defaultCoffeeBeanId);
 };

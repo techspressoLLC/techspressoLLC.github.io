@@ -1,4 +1,9 @@
 function navigateTo(pageId) {
+    if (pageId === 'coffee-lineup'
+        && typeof window.isCoffeeLineupEnabled === 'function'
+        && !window.isCoffeeLineupEnabled()) {
+        pageId = 'home';
+    }
     document.querySelectorAll('.page-content').forEach(p => p.classList.remove('active'));
     const mobileMenu = document.getElementById('mobile-menu');
     if (mobileMenu) mobileMenu.classList.remove('active');
@@ -426,6 +431,12 @@ const renderNewsDetail = (slug) => {
     }
 
     if (item.externalUrl) {
+        const isCoffeeLineupLink = String(item.externalUrl).includes('#coffee-lineup');
+        if (isCoffeeLineupLink
+            && typeof window.isCoffeeLineupEnabled === 'function'
+            && !window.isCoffeeLineupEnabled()) {
+            return;
+        }
         const link = document.createElement('a');
         link.href = item.externalUrl;
         link.target = '_blank';
@@ -542,6 +553,11 @@ const handleHashRoute = async () => {
     const hash = window.location.hash || '';
 
     if (hash.startsWith('#coffee-lineup/')) {
+        if (window.coffeeLineupReadyPromise) await window.coffeeLineupReadyPromise;
+        if (typeof window.isCoffeeLineupEnabled === 'function' && !window.isCoffeeLineupEnabled()) {
+            navigateTo('home');
+            return;
+        }
         const beanId = decodeURIComponent(hash.slice(15));
         navigateTo('coffee-lineup');
         if (typeof window.selectCoffeeBeanById === 'function') {
@@ -551,6 +567,11 @@ const handleHashRoute = async () => {
     }
 
     if (hash === '#coffee-lineup') {
+        if (window.coffeeLineupReadyPromise) await window.coffeeLineupReadyPromise;
+        if (typeof window.isCoffeeLineupEnabled === 'function' && !window.isCoffeeLineupEnabled()) {
+            navigateTo('home');
+            return;
+        }
         navigateTo('coffee-lineup');
         return;
     }
@@ -568,7 +589,9 @@ const handleHashRoute = async () => {
 
 document.addEventListener('DOMContentLoaded', () => {
     if (typeof window.initCoffeeLineup === 'function') {
-        window.initCoffeeLineup();
+        window.coffeeLineupReadyPromise = Promise.resolve(window.initCoffeeLineup());
+    } else {
+        window.coffeeLineupReadyPromise = Promise.resolve();
     }
     revealObserver = setupRevealObserver();
     newsReadyPromise = loadNews().then(() => {
