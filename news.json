@@ -10,7 +10,7 @@
                                    ],
                       "title":  "法人登記が完了しました",
                       "excerpt":  "TECHSPRESSO合同会社の法人登記が完了しました。",
-                      "cover":  "./pic/news/registration.jpg",
+                      "cover":  "./pic/news/corporate-registration.jpg",
                       "body":  [
                                    "このたび法人登記が完了し、正式にTECHSPRESSO合同会社としてスタートいたしました。",
                                    "これからもコーヒーを通じて、皆さまの日常に寄り添う体験を届けてまいります。"
@@ -65,7 +65,7 @@
                       "externalUrl":  "https://camp-fire.jp/projects/883887/view?utm_campaign=cp_po_share_c_msg_mypage_projects_show",
                       "externalLabel":  "詳細はこちら",
                       "pinned":  false,
-                      "active":  true
+                      "active":  false
                   },
                   {
                       "slug":  "spring-blend-preorder",
