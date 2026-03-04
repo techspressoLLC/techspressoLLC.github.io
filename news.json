@@ -43,6 +43,9 @@
                                ],
                       "externalUrl":  "./#coffee-lineup/colombia-asmucafe-floreada-supremo",
                       "externalLabel":  "詳細はこちらからご覧ください",
+                      "purchaseUrl":  "https://techspresso.base.shop/p/00001",
+                      "purchaseLabel":  "購入はこちらから",
+                      "purchaseNote":  "豆は100 gのものとドリップパックをご用意しております",
                       "pinned":  false,
                       "active":  true
                   },

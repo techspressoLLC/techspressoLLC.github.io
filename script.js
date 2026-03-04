@@ -442,20 +442,43 @@ const renderNewsDetail = (slug) => {
         renderBodyBlocks(item.body, container);
     }
 
+    const actionWrap = document.createElement('div');
+    actionWrap.className = 'flex flex-wrap gap-3';
+
     if (item.externalUrl) {
         const isCoffeeLineupLink = String(item.externalUrl).includes('#coffee-lineup');
-        if (isCoffeeLineupLink
+        if (!(isCoffeeLineupLink
             && typeof window.isCoffeeLineupEnabled === 'function'
-            && !window.isCoffeeLineupEnabled()) {
-            return;
+            && !window.isCoffeeLineupEnabled())) {
+            const link = document.createElement('a');
+            link.href = item.externalUrl;
+            link.target = '_blank';
+            link.rel = 'noopener noreferrer';
+            link.className = 'inline-flex items-center px-6 py-3 bg-slate-900 text-white rounded-full font-bold text-[10px] uppercase tracking-widest hover:bg-cyan-600 transition shadow-lg';
+            link.textContent = item.externalLabel || 'Related Link';
+            actionWrap.appendChild(link);
         }
-        const link = document.createElement('a');
-        link.href = item.externalUrl;
-        link.target = '_blank';
-        link.rel = 'noopener noreferrer';
-        link.className = 'inline-flex items-center px-6 py-3 bg-slate-900 text-white rounded-full font-bold text-[10px] uppercase tracking-widest hover:bg-cyan-600 transition shadow-lg';
-        link.textContent = item.externalLabel || 'Related Link';
-        container.appendChild(link);
+    }
+
+    if (item.purchaseUrl) {
+        const purchaseLink = document.createElement('a');
+        purchaseLink.href = item.purchaseUrl;
+        purchaseLink.target = '_blank';
+        purchaseLink.rel = 'noopener noreferrer';
+        purchaseLink.className = 'inline-flex items-center px-6 py-3 bg-amber-600 text-white rounded-full font-bold text-[10px] uppercase tracking-widest hover:bg-amber-700 transition shadow-lg';
+        purchaseLink.textContent = item.purchaseLabel || 'Purchase';
+        actionWrap.appendChild(purchaseLink);
+    }
+
+    if (actionWrap.childNodes.length) {
+        container.appendChild(actionWrap);
+    }
+
+    if (item.purchaseNote) {
+        const purchaseNote = document.createElement('p');
+        purchaseNote.className = 'text-sm text-slate-600';
+        purchaseNote.textContent = item.purchaseNote;
+        container.appendChild(purchaseNote);
     }
 };
 
