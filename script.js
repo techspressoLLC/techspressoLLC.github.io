@@ -1,4 +1,9 @@
 function navigateTo(pageId) {
+    if (pageId === 'news-detail'
+        && typeof window.isNewsEnabled === 'function'
+        && !window.isNewsEnabled()) {
+        pageId = 'home';
+    }
     if (pageId === 'coffee-lineup'
         && typeof window.isCoffeeLineupEnabled === 'function'
         && !window.isCoffeeLineupEnabled()) {
@@ -111,6 +116,7 @@ const NEWS_JSON_PATH = './news.json';
 const isDiscordWebView = /Discord/i.test(navigator.userAgent);
 
 let newsItems = [];
+let newsEnabled = true;
 let newsLoadFailed = false;
 let revealObserver = null;
 let newsReadyPromise = null;
@@ -121,6 +127,12 @@ let touchStartX = 0;
 let touchStartY = 0;
 let touchMoved = false;
 let touchStartTarget = null;
+
+const applyNewsVisibility = () => {
+    document.querySelectorAll('[data-news-ui]').forEach((element) => {
+        element.classList.toggle('hidden', !newsEnabled);
+    });
+};
 
 const getNewsBadgeClasses = (category) => {
     const key = String(category || '').toUpperCase();
@@ -452,12 +464,17 @@ const loadNews = async () => {
         const response = await fetch(NEWS_JSON_PATH, { cache: 'no-store' });
         if (!response.ok) throw new Error('Failed to load news.json');
         const data = await response.json();
-        newsItems = Array.isArray(data.items) ? data.items : [];
+        newsEnabled = data?.enabled !== false;
+        const rawItems = Array.isArray(data.items) ? data.items : [];
+        newsItems = rawItems.filter((item) => item && item.slug && item.active !== false);
+        newsEnabled = newsEnabled && newsItems.length > 0;
         newsLoadFailed = false;
     } catch (error) {
+        newsEnabled = false;
         newsLoadFailed = true;
         newsItems = [];
     }
+    applyNewsVisibility();
 };
 
 const resetFilters = () => {
@@ -524,6 +541,10 @@ const handleFilterClick = (event) => {
 };
 
 const showNewsList = () => {
+    if (typeof window.isNewsEnabled === 'function' && !window.isNewsEnabled()) {
+        navigateTo('home');
+        return;
+    }
     if (isDiscordWebView) {
         return;
     }
@@ -544,9 +565,15 @@ const showNewsList = () => {
 };
 
 const showNewsDetail = (slug) => {
+    if (typeof window.isNewsEnabled === 'function' && !window.isNewsEnabled()) {
+        navigateTo('home');
+        return;
+    }
     navigateTo('news-detail');
     renderNewsDetail(slug);
 };
+
+window.isNewsEnabled = () => newsEnabled;
 
 const handleHashRoute = async () => {
     if (newsReadyPromise) await newsReadyPromise;
@@ -577,12 +604,20 @@ const handleHashRoute = async () => {
     }
 
     if (hash.startsWith('#news/')) {
+        if (typeof window.isNewsEnabled === 'function' && !window.isNewsEnabled()) {
+            navigateTo('home');
+            return;
+        }
         const slug = decodeURIComponent(hash.slice(6));
         showNewsDetail(slug);
         return;
     }
 
     if (hash === '#news') {
+        if (typeof window.isNewsEnabled === 'function' && !window.isNewsEnabled()) {
+            navigateTo('home');
+            return;
+        }
         showNewsList();
     }
 };

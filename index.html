@@ -363,7 +363,7 @@
             </section>
 
             <!-- News -->
-<section id="news" class="pt-12 pb-16 sm:py-20 px-6 bg-slate-50 relative z-10">
+<section id="news" data-news-ui class="pt-12 pb-16 sm:py-20 px-6 bg-slate-50 relative z-10">
                 <div class="container mx-auto max-w-4xl text-left">
                     <div class="flex items-center justify-between mb-12 reveal text-slate-900">
                         <h2 class="text-2xl font-black font-en tracking-tighter uppercase leading-none italic">News /
@@ -403,7 +403,7 @@
             
         </div>
 
-        <div id="page-news-detail" class="page-content pt-32">
+        <div id="page-news-detail" data-news-ui class="page-content pt-32">
             <section class="py-24 px-6 bg-white">
                 <div class="container mx-auto max-w-4xl text-left">
                     <button id="news-back"
@@ -837,7 +837,7 @@
                         <li><a href="javascript:void(0)"
                                 onclick="navigateTo('home'); document.getElementById('introduction').scrollIntoView();"
                                 class="hover:text-cyan-600 transition text-[9px]">INTRODUCTION</a></li>
-                        <li><a href="javascript:void(0)"
+                        <li data-news-ui><a href="javascript:void(0)"
                                 onclick="navigateTo('home'); document.getElementById('news').scrollIntoView();"
                                 class="hover:text-cyan-600 transition text-[9px]">NEWS/UPDATES</a></li>
                     </ul>
