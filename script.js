@@ -541,6 +541,20 @@ const handleHashRoute = async () => {
     if (newsReadyPromise) await newsReadyPromise;
     const hash = window.location.hash || '';
 
+    if (hash.startsWith('#coffee-lineup/')) {
+        const beanId = decodeURIComponent(hash.slice(15));
+        navigateTo('coffee-lineup');
+        if (typeof window.selectCoffeeBeanById === 'function') {
+            window.selectCoffeeBeanById(beanId);
+        }
+        return;
+    }
+
+    if (hash === '#coffee-lineup') {
+        navigateTo('coffee-lineup');
+        return;
+    }
+
     if (hash.startsWith('#news/')) {
         const slug = decodeURIComponent(hash.slice(6));
         showNewsDetail(slug);
