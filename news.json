@@ -167,6 +167,31 @@
                       "externalUrl":  "",
                       "pinned":  false,
                       "active":  false
+                  },
+                  {
+                      "slug":  "saiensai-colombia-sale",
+                      "active":  true,
+                      "date":  "2026.03.06",
+                      "category":  [
+                                       "NEWS",
+                                       "EVENT"
+                                   ],
+                      "title":  "彩燕祭でTECHSPRESSOの豆を販売します",
+                      "excerpt":  "2026年3月8日の彩燕祭で、TECHSPRESSO FOR STUDENTの出店にて弊社のコロンビア豆を使用した商品を販売します。",
+                      "cover":  "./pic/news/sciensai.png",
+                      "coverPosition":  "50% 50%",
+                      "body":  [
+                                   "2026年3月8日に東京科学大学 大岡山キャンパスで開催される彩燕祭にて、TECHSPRESSO FOR STUDENTの出店で弊社のコロンビア豆を使用します。",
+                                   "ホットコーヒー、100gの豆、ドリップパックを販売しますので、ぜひこの機会にお求めください。"
+                               ],
+                      "tags":  [
+                                   "EVENT",
+                                   "PRODUCT",
+                                   "COLOMBIA"
+                               ],
+                      "externalUrl":  "https://fes.isct-se-students.jp/",
+                      "externalLabel":  "彩燕祭の詳細はこちら",
+                      "pinned":  false
                   }
               ]
 }
