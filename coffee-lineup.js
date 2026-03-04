@@ -98,7 +98,7 @@ const renderBeanGallery = (bean, detailContainer) => {
 
     const galleryLabel = document.createElement("p");
     galleryLabel.className = "text-[10px] font-black uppercase tracking-[0.3em] text-amber-700";
-    galleryLabel.textContent = "豆の画像";
+    
     galleryWrap.appendChild(galleryLabel);
 
     const grid = document.createElement("div");
