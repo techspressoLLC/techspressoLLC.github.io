@@ -112,7 +112,7 @@ const renderBeanGallery = (bean, detailContainer) => {
         const img = document.createElement("img");
         img.src = src;
         img.alt = `${bean.name} image ${index + 1}`;
-        img.className = "w-full h-32 md:h-36 object-cover group-hover:scale-105 transition";
+        img.className = "w-full h-auto max-h-52 object-contain group-hover:scale-105 transition";
 
         button.addEventListener("click", () => {
             openGalleryModal(src, img.alt);
@@ -204,22 +204,6 @@ const renderCoffeeLineupDetail = (beanId) => {
 
     renderBeanGallery(bean, detailContainer);
 
-    const roastWrap = document.createElement("div");
-    roastWrap.className = "space-y-3";
-    const roastLabel = document.createElement("p");
-    roastLabel.className = "text-[10px] font-black uppercase tracking-[0.3em] text-amber-700";
-    roastLabel.textContent = "焙煎プロファイル";
-    roastWrap.appendChild(roastLabel);
-
-    const roastList = document.createElement("ul");
-    roastList.className = "rounded-2xl border border-slate-100 bg-white p-4 text-sm text-slate-700 leading-loose list-disc list-inside";
-    (bean.roastProfile || []).forEach((step) => {
-        const li = document.createElement("li");
-        li.textContent = step;
-        roastList.appendChild(li);
-    });
-    roastWrap.appendChild(roastList);
-    detailContainer.appendChild(roastWrap);
 };
 
 const renderCoffeeLineupList = () => {
