@@ -202,6 +202,16 @@ const renderCoffeeLineupDetail = (beanId) => {
     description.textContent = bean.description || "";
     detailContainer.appendChild(description);
 
+    if (bean.purchaseUrl) {
+        const purchaseLink = document.createElement("a");
+        purchaseLink.href = bean.purchaseUrl;
+        purchaseLink.target = "_blank";
+        purchaseLink.rel = "noopener noreferrer";
+        purchaseLink.className = "inline-flex items-center px-6 py-3 bg-amber-600 text-white rounded-full font-bold text-[10px] uppercase tracking-widest hover:bg-amber-700 transition shadow-lg";
+        purchaseLink.textContent = bean.purchaseLabel || "購入はこちらから";
+        detailContainer.appendChild(purchaseLink);
+    }
+
     renderBeanGallery(bean, detailContainer);
 
 };
