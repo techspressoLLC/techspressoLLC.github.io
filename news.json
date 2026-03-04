@@ -25,23 +25,26 @@
       "slug": "new bean1",
       "date": "2026.2.28",
       "category": [
-        "NEWS",
-        "IMPORTANT"
+        "NEWS"
     ],  
       "title": "コロンビアの豆を入荷しました",
-      "excerpt": "新鮮なコロンビアの豆が入荷されました。ぜひお試しください。",
-      "cover": "./pic/news/new-bean1.jpg",
+      "excerpt": "コロンビア入荷",
+      "cover": "./pic/news/new-beans1.jpg",
+      "coverPosition": "50% 50%",
       "body": [
-        "このたび法人登記が完了し、正式にTECHSPRESSO合同会社としてスタートいたしました。",
-        "これからもコーヒーを通じて、皆さまの日常に寄り添う体験を届けてまいります。"
+        "Colombia ASMUCAFE Floreada Supremoを入荷しました。",
+        "コクと甘さのバランスを重視した、皆さまに愛して頂けるような焙煎を目指しました。"
       ],
       "tags": [
         "INFO",
         "CORPORATE"
       ],
-      "externalUrl": "",
-      "pinned": true
-    },
+      "externalUrl": "./#coffee-lineup/colombia-asmucafe-floreada-supremo",
+      "externalLabel": "詳細はこちらからご覧ください",
+      "pinned": false
+    }
+  ],
+  "archivedItems": [
     {
       "slug": "crowdfunding-launch",
       "date": "2026.03.10",
@@ -61,9 +64,7 @@
       "externalUrl": "https://camp-fire.jp/projects/883887/view?utm_campaign=cp_po_share_c_msg_mypage_projects_show",
       "externalLabel": "詳細はこちら",
       "pinned": false
-    }
-  ],
-  "archivedItems": [
+    },
     {
       "slug": "spring-blend-preorder",
       "date": "2026.03.12",

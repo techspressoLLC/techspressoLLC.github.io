@@ -280,10 +280,17 @@ const renderCoffeeLineupList = () => {
     });
 };
 
+window.selectCoffeeBeanById = (beanId) => {
+    if (!coffeeBeans.length) return;
+    const found = coffeeBeans.find((bean) => bean.id === beanId);
+    selectedCoffeeBeanId = found ? found.id : coffeeBeans[0].id;
+    renderCoffeeLineupList();
+    renderCoffeeLineupDetail(selectedCoffeeBeanId);
+};
+
 window.initCoffeeLineup = () => {
     if (!coffeeBeans.length) return;
     if (!selectedCoffeeBeanId) selectedCoffeeBeanId = coffeeBeans[0].id;
     ensureGalleryModal();
-    renderCoffeeLineupList();
-    renderCoffeeLineupDetail(selectedCoffeeBeanId);
+    window.selectCoffeeBeanById(selectedCoffeeBeanId);
 };

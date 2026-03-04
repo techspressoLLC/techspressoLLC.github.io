@@ -415,7 +415,8 @@ const renderNewsDetail = (slug) => {
         const img = document.createElement('img');
         img.src = item.cover;
         img.alt = item.title || 'News cover';
-        img.className = 'w-full h-auto object-cover';
+        img.className = 'w-full h-[260px] sm:h-[320px] md:h-[420px] object-cover';
+        img.style.objectPosition = typeof item.coverPosition === 'string' ? item.coverPosition : '50% 50%';
         coverWrap.appendChild(img);
         container.appendChild(coverWrap);
     }
