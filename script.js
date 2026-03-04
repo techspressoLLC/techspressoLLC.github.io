@@ -320,6 +320,37 @@ const renderNewsList = () => {
 };
 
 const renderBodyBlocks = (body, container) => {
+    const appendTextWithLinks = (element, text) => {
+        const source = String(text || '');
+        const regex = /\[([^\]]+)\]\(([^)]+)\)/g;
+        let lastIndex = 0;
+        let match;
+
+        while ((match = regex.exec(source)) !== null) {
+            const [full, label, href] = match;
+            const start = match.index;
+
+            if (start > lastIndex) {
+                element.appendChild(document.createTextNode(source.slice(lastIndex, start)));
+            }
+
+            const link = document.createElement('a');
+            link.href = href;
+            link.textContent = label;
+            link.className = 'underline underline-offset-2 decoration-slate-400 hover:decoration-slate-900 hover:text-slate-900 transition';
+            if (/^https?:\/\//i.test(href)) {
+                link.target = '_blank';
+                link.rel = 'noopener noreferrer';
+            }
+            element.appendChild(link);
+            lastIndex = start + full.length;
+        }
+
+        if (lastIndex < source.length) {
+            element.appendChild(document.createTextNode(source.slice(lastIndex)));
+        }
+    };
+
     let list = null;
     body.forEach((line) => {
         const text = String(line || '');
@@ -338,7 +369,7 @@ const renderBodyBlocks = (body, container) => {
         list = null;
         const paragraph = document.createElement('p');
         paragraph.className = 'text-slate-600 text-sm md:text-base leading-loose';
-        paragraph.textContent = text;
+        appendTextWithLinks(paragraph, text);
         container.appendChild(paragraph);
     });
 };
