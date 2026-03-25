@@ -21,8 +21,9 @@
         "なめらかな口当たり"
       ],
       "recommendedBrew": "ペーパードリップ / エスプレッソ",
-      "purchaseUrl": "https://techspresso.base.shop/p/00001",
-      "purchaseLabel": "購入はこちらから",
+      "purchaseNote": "現在注文をお受けしていません",
+      "secondaryUrl": "https://techspresso.base.shop/",
+      "secondaryLabel": "他の豆はこちらから",
       "description": "ASMUCAFE（アスムカフェ）は、コロンビア・カウカ県エル・タンボ地域の女性コーヒー生産者によって2009年に設立された団体です。女性の経済的自立と社会的地位向上を目的に、環境に配慮した持続可能な栽培で高品質なコーヒーを生産しています。相互扶助の精神を大切にしながら地域社会にも貢献する姿勢が評価され、「フロリアーダ（花で彩られたようなコーヒー）」の名が付けられています。",
       "roastProfile": [
         "投入温度: 200C",
@@ -56,6 +57,8 @@
       ],
       "recommendedBrew": "ペーパードリップ / AeroPress",
       "description": "若くして継いだスペシャルティコーヒーの栽培は品質にこだわり、挑戦する気持ちを大切に取り組まれています。",
+      "purchaseUrl": "https://techspresso.base.shop/p/00001",
+      "purchaseLabel": "購入はこちらから",
       "images": [
         "./pic/beans/Hon202604/Hon01.jpg",
         "./pic/beans/Hon202604/Hon02.jpg",
