@@ -16,8 +16,8 @@
                                    "これからもコーヒーを通じて、皆さまの日常に寄り添う体験を届けてまいります。"
                                ],
                       "tags":  [
-                                   "INFO",
-                                   "CORPORATE"
+                                   "INFO"
+                                   
                                ],
                       "externalUrl":  "",
                       "pinned":  false,
@@ -39,7 +39,7 @@
                                ],
                       "tags":  [
                                    "INFO",
-                                   "CORPORATE"
+                                   "PRODUCT"
                                ],
                       "externalUrl":  "./#coffee-lineup/colombia-asmucafe-floreada-supremo",
                       "externalLabel":  "詳細はこちらからご覧ください",
@@ -85,8 +85,7 @@
                                ],
                       "tags":  [
                                    "INFO",
-                                   "CORPORATE",
-                                   "HONDURAS"
+                                   "PRODUCT"
                                ],
                       "externalUrl":  "./#coffee-lineup/honduras-la-cascada-catuai",
                       "externalLabel":  "詳細はこちらからご覧ください",
@@ -213,9 +212,9 @@
                                    "ホットコーヒー、100gの豆、ドリップパックを販売しますので、ぜひこの機会にお求めください。"
                                ],
                       "tags":  [
-                                   "EVENT",
-                                   "PRODUCT",
-                                   "COLOMBIA"
+                                   "EVENT"
+                                   
+        
                                ],
                       "externalUrl":  "https://fes.isct-se-students.jp/",
                       "externalLabel":  "彩燕祭の詳細はこちら",
