@@ -217,6 +217,9 @@ const renderCoffeeLineupDetail = (beanId) => {
     description.textContent = bean.description || "";
     detailContainer.appendChild(description);
 
+    const actionWrap = document.createElement("div");
+    actionWrap.className = "flex flex-wrap gap-3";
+
     if (bean.purchaseUrl) {
         const purchaseLink = document.createElement("a");
         purchaseLink.href = bean.purchaseUrl;
@@ -224,7 +227,28 @@ const renderCoffeeLineupDetail = (beanId) => {
         purchaseLink.rel = "noopener noreferrer";
         purchaseLink.className = "inline-flex items-center px-6 py-3 bg-amber-600 text-white rounded-full font-bold text-[10px] uppercase tracking-widest hover:bg-amber-700 transition shadow-lg";
         purchaseLink.textContent = bean.purchaseLabel || "購入はこちらから";
-        detailContainer.appendChild(purchaseLink);
+        actionWrap.appendChild(purchaseLink);
+    }
+
+    if (bean.secondaryUrl) {
+        const secondaryLink = document.createElement("a");
+        secondaryLink.href = bean.secondaryUrl;
+        secondaryLink.target = "_blank";
+        secondaryLink.rel = "noopener noreferrer";
+        secondaryLink.className = "inline-flex items-center px-6 py-3 bg-slate-900 text-white rounded-full font-bold text-[10px] uppercase tracking-widest hover:bg-slate-700 transition shadow-lg";
+        secondaryLink.textContent = bean.secondaryLabel || "詳細はこちら";
+        actionWrap.appendChild(secondaryLink);
+    }
+
+    if (actionWrap.childNodes.length) {
+        detailContainer.appendChild(actionWrap);
+    }
+
+    if (bean.purchaseNote) {
+        const purchaseNote = document.createElement("p");
+        purchaseNote.className = "text-sm font-bold text-slate-600";
+        purchaseNote.textContent = bean.purchaseNote;
+        detailContainer.appendChild(purchaseNote);
     }
 
     renderBeanGallery(bean, detailContainer);
