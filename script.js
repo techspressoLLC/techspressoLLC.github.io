@@ -505,6 +505,16 @@ const renderNewsDetail = (slug) => {
         actionWrap.appendChild(purchaseLink);
     }
 
+    if (item.secondaryUrl) {
+        const secondaryLink = document.createElement('a');
+        secondaryLink.href = item.secondaryUrl;
+        secondaryLink.target = '_blank';
+        secondaryLink.rel = 'noopener noreferrer';
+        secondaryLink.className = 'inline-flex items-center px-6 py-3 bg-slate-900 text-white rounded-full font-bold text-[10px] uppercase tracking-widest hover:bg-slate-700 transition shadow-lg';
+        secondaryLink.textContent = item.secondaryLabel || 'Related Link';
+        actionWrap.appendChild(secondaryLink);
+    }
+
     if (actionWrap.childNodes.length) {
         container.appendChild(actionWrap);
     }
