@@ -205,6 +205,8 @@
                       "title":  "彩燕祭でTECHSPRESSOの豆を販売します",
                       "excerpt":  "2026年3月8日の彩燕祭で、TECHSPRESSO FOR STUDENTの出店にて弊社のコロンビア豆を使用した商品を販売します。",
                       "cover":  "./pic/news/sciensai.png",
+                      "coverFitMobile":  "contain",
+                      "coverBackground":  "#ffffff",
                       "coverPosition":  "50% 50%",
                       "body":  [
                                    "2026年3月8日に東京科学大学 大岡山キャンパスで開催される彩燕祭にて、TECHSPRESSO FOR STUDENTの出店で弊社の[コロンビアの豆](./#coffee-lineup/colombia-asmucafe-floreada-supremo)を使用します。",

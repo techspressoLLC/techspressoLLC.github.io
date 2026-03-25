@@ -460,10 +460,14 @@ const renderNewsDetail = (slug) => {
     if (item.cover) {
         const coverWrap = document.createElement('div');
         coverWrap.className = 'rounded-[2.5rem] overflow-hidden border border-slate-100 shadow-sm';
+        if (typeof item.coverBackground === 'string' && item.coverBackground) {
+            coverWrap.style.background = item.coverBackground;
+        }
         const img = document.createElement('img');
         img.src = item.cover;
         img.alt = item.title || 'News cover';
-        img.className = 'w-full h-[260px] sm:h-[320px] md:h-[420px] object-cover';
+        const coverFitMobile = item.coverFitMobile === 'contain' ? 'object-contain sm:object-cover' : 'object-cover';
+        img.className = `w-full h-[260px] sm:h-[320px] md:h-[420px] ${coverFitMobile}`;
         img.style.objectPosition = typeof item.coverPosition === 'string' ? item.coverPosition : '50% 50%';
         coverWrap.appendChild(img);
         container.appendChild(coverWrap);
