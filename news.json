@@ -71,6 +71,32 @@
                       "active":  false
                   },
                   {
+                      "slug":  "new-bean-honduras",
+                      "date":  "2026.03.25",
+                      "category":  [
+                                       "NEWS"
+                                   ],
+                      "title":  "ホンジュラスの豆を入荷しました",
+                      "excerpt":  "ホンジュラス入荷",
+                      "cover":  "",
+                      "body":  [
+                                   "Honduras La Cascada Catuaiを入荷しました。",
+                                   "はちみつのような甘さと、また飲みたくなる爽やかで軽快な味わいをお楽しみいただけます。"
+                               ],
+                      "tags":  [
+                                   "INFO",
+                                   "CORPORATE",
+                                   "HONDURAS"
+                               ],
+                      "externalUrl":  "./#coffee-lineup/honduras-la-cascada-catuai",
+                      "externalLabel":  "詳細はこちらからご覧ください",
+                      "purchaseUrl":  "https://techspresso.base.shop/p/00001",
+                      "purchaseLabel":  "購入はこちらから",
+                      "purchaseNote":  "豆は100 gのものとドリップパックをご用意しております",
+                      "pinned":  false,
+                      "active":  true
+                  },
+                  {
                       "slug":  "spring-blend-preorder",
                       "date":  "2026.03.12",
                       "category":  "NEWS",
