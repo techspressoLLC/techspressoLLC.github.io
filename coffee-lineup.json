@@ -31,9 +31,36 @@
         "煎り止め: 10:00"
       ],
       "images": [
-        "./pic/beans/col202602/col1.jpg",
-        "./pic/beans/col202602/IMG_0944.jpg",
-        "./pic/beans/col202602/IMG_0946.jpg"
+        "./pic/beans/col202602/col01.jpg",
+        "./pic/beans/col202602/col02.jpg",
+        "./pic/beans/col202602/col03.jpg"
+      ]
+    },
+    {
+      "id": "honduras-la-cascada-catuai",
+      "active": true,
+      "name": "Honduras La Cascada Catuai",
+      "subtitle": "はちみつのような甘さが感じられ、また飲みたくなる爽やかで軽快な味わい",
+      "country": "Honduras",
+      "farm": "La Cascada農園",
+      "area": "Intibucá, San Juan, Canguara",
+      "origin": "ホンジュラス / インティブカ県 サンフアン カングアラ",
+      "variety": "Catuai",
+      "elevation": "1800m",
+      "process": "Washed",
+      "roastLevel": "中煎り",
+      "tastingNotes": [
+        "はちみつのような甘さ",
+        "爽やか",
+        "軽快な味わい"
+      ],
+      "recommendedBrew": "ペーパードリップ / AeroPress",
+      "description": "若くして継いだスペシャルティコーヒーの栽培は品質にこだわり、挑戦する気持ちを大切に取り組まれています。",
+      "images": [
+        "./pic/beans/Hon202604/Hon01.jpg",
+        "./pic/beans/Hon202604/Hon02.jpg",
+        "./pic/beans/Hon202604/Hon03.jpg",
+        "./pic/beans/Hon202604/Hon04.jpg"
       ]
     },
     {
