@@ -459,7 +459,7 @@ const renderNewsDetail = (slug) => {
 
     if (item.cover) {
         const coverWrap = document.createElement('div');
-        coverWrap.className = 'rounded-[2.5rem] overflow-hidden border border-slate-100 shadow-sm';
+        coverWrap.className = 'rounded-[2.5rem] overflow-hidden border border-slate-100 shadow-sm aspect-[4/3] sm:aspect-[16/10] md:aspect-[16/9]';
         if (typeof item.coverBackground === 'string' && item.coverBackground) {
             coverWrap.style.background = item.coverBackground;
         }
@@ -467,7 +467,7 @@ const renderNewsDetail = (slug) => {
         img.src = item.cover;
         img.alt = item.title || 'News cover';
         const coverFitMobile = item.coverFitMobile === 'contain' ? 'object-contain sm:object-cover' : 'object-cover';
-        img.className = `w-full h-[260px] sm:h-[320px] md:h-[420px] ${coverFitMobile}`;
+        img.className = `block w-full h-full ${coverFitMobile}`;
         img.style.objectPosition = typeof item.coverPosition === 'string' ? item.coverPosition : '50% 50%';
         coverWrap.appendChild(img);
         container.appendChild(coverWrap);
