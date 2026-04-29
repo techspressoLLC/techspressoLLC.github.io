@@ -67,6 +67,28 @@
       ]
     },
     {
+      "id": "burundi-yandaro-cws-washed",
+      "active": true,
+      "name": "Burundi Yandaro CWS Washed",
+      "subtitle": "アプリコットやプラムを思わせるフレッシュな風味で、浅煎りでも好みを選ばない華やかな味わいです。",
+      "country": "Burundi",
+      "farm": "Yandaro Washing Station",
+      "area": "Kayanza, Kabarore",
+      "origin": "ブルンジ / カヤンザ県 カバロレ",
+      "variety": "Brubon",
+      "elevation": "1774m",
+      "process": "Washed",
+      "roastLevel": "中浅煎り",
+      "tastingNotes": [
+        "アプリコット",
+        "プラム",
+        "華やか"
+      ],
+      "recommendedBrew": "ペーパードリップ / AeroPress",
+      "description": "熱帯雨林や湖が近くコーヒー生産に適したヤンダロ農園では、持続可能なスペシャルティコーヒー栽培が取り組まれています。アプリコットやプラムを思わせるフレッシュな果実感があり、浅煎りでも飲みやすく、軽やかさと華やかさを両立した味わいです。",
+      "images": []
+    },
+    {
       "id": "ethiopia-gesha",
       "active": false,
       "name": "Ethiopia Gesha",

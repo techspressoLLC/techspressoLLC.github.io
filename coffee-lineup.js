@@ -6,6 +6,37 @@ let defaultCoffeeBeanId = "";
 let selectedCoffeeBeanId = "";
 let galleryModal = null;
 
+const DEFAULT_BEAN_THEME = {
+    accent: "#f3e8b0",
+    accentStrong: "#d9b24c",
+    accentSoft: "#fff8e6",
+    accentText: "#8c6a12",
+    accentTextStrong: "#4d3b08"
+};
+
+const BEAN_THEMES = {
+    "honduras-la-cascada-catuai": {
+        accent: "#b8e2f6",
+        accentStrong: "#8fcceb",
+        accentSoft: "#eef9ff",
+        accentText: "#5c7182",
+        accentTextStrong: "#435563"
+    },
+    "burundi-yandaro-cws-washed": {
+        accent: "#f3c1d0",
+        accentStrong: "#e59ab0",
+        accentSoft: "#fff2f6",
+        accentText: "#8b5d6a",
+        accentTextStrong: "#6d4852"
+    }
+};
+
+const getBeanTheme = (bean) => ({
+    ...DEFAULT_BEAN_THEME,
+    ...(bean?.id ? BEAN_THEMES[bean.id] : null),
+    ...(bean?.theme || {})
+});
+
 const clearCoffeeLineupRender = () => {
     const listContainer = document.getElementById("coffee-lineup-list");
     if (listContainer) listContainer.textContent = "";
@@ -92,13 +123,16 @@ const openGalleryModal = (src, alt) => {
 const renderBeanGallery = (bean, detailContainer) => {
     const images = Array.isArray(bean.images) ? bean.images.filter(Boolean) : [];
     if (!images.length) return;
+    const theme = getBeanTheme(bean);
 
     const galleryWrap = document.createElement("div");
     galleryWrap.className = "space-y-3";
 
     const galleryLabel = document.createElement("p");
-    galleryLabel.className = "text-[10px] font-black uppercase tracking-[0.3em] text-amber-700";
-    
+    galleryLabel.className = "text-[10px] font-black uppercase tracking-[0.3em]";
+    galleryLabel.textContent = "Gallery";
+    galleryLabel.style.color = theme.accentText;
+
     galleryWrap.appendChild(galleryLabel);
 
     const grid = document.createElement("div");
@@ -108,6 +142,7 @@ const renderBeanGallery = (bean, detailContainer) => {
         const button = document.createElement("button");
         button.type = "button";
         button.className = "group overflow-hidden rounded-2xl border border-slate-100 bg-white shadow-sm hover:shadow-md transition";
+        button.style.borderColor = theme.accent;
 
         const img = document.createElement("img");
         img.src = src;
@@ -137,6 +172,9 @@ const renderCoffeeLineupDetail = (beanId) => {
     }
 
     detailContainer.textContent = "";
+    const theme = getBeanTheme(bean);
+    detailContainer.style.borderColor = theme.accent;
+    detailContainer.style.backgroundImage = `linear-gradient(to bottom right, #ffffff, ${theme.accentSoft})`;
 
     const headerWrap = document.createElement("div");
     headerWrap.className = "space-y-3";
@@ -155,6 +193,7 @@ const renderCoffeeLineupDetail = (beanId) => {
 
     const metaMobile = document.createElement("dl");
     metaMobile.className = "md:hidden rounded-2xl border border-slate-100 bg-white p-4 grid grid-cols-[auto_1fr] gap-x-4 gap-y-3 text-sm text-slate-700";
+    metaMobile.style.borderColor = theme.accent;
 
     const metaDesktop = document.createElement("div");
     metaDesktop.className = "hidden md:grid sm:grid-cols-2 gap-4 text-sm text-slate-700";
@@ -174,6 +213,7 @@ const renderCoffeeLineupDetail = (beanId) => {
     metaItems.forEach(([label, value]) => {
         const term = document.createElement("dt");
         term.className = "text-[10px] md:text-[11px] font-black uppercase tracking-[0.2em] text-slate-400 self-center";
+        term.style.color = theme.accentText;
         term.textContent = label;
 
         const desc = document.createElement("dd");
@@ -185,10 +225,15 @@ const renderCoffeeLineupDetail = (beanId) => {
 
         const item = document.createElement("div");
         item.className = "rounded-2xl border border-slate-100 bg-white p-4";
+        item.style.borderColor = theme.accent;
         item.innerHTML = `
             <p class="text-[10px] font-black uppercase tracking-[0.25em] text-slate-400 mb-1">${label}</p>
             <p class="font-bold text-slate-800">${value || "-"}</p>
         `;
+        const itemLabel = item.querySelector("p");
+        if (itemLabel instanceof HTMLElement) {
+            itemLabel.style.color = theme.accentText;
+        }
         metaDesktop.appendChild(item);
     });
     detailContainer.appendChild(metaMobile);
@@ -198,6 +243,7 @@ const renderCoffeeLineupDetail = (beanId) => {
     notesWrap.className = "space-y-3";
     const notesLabel = document.createElement("p");
     notesLabel.className = "text-[10px] font-black uppercase tracking-[0.3em] text-amber-700";
+    notesLabel.style.color = theme.accentText;
     notesLabel.textContent = "テイスティングノート";
     notesWrap.appendChild(notesLabel);
 
@@ -205,7 +251,10 @@ const renderCoffeeLineupDetail = (beanId) => {
     notesList.className = "flex flex-wrap gap-2";
     (bean.tastingNotes || []).forEach((note) => {
         const chip = document.createElement("span");
-        chip.className = "text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full bg-amber-100 text-amber-800";
+        chip.className = "text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full border";
+        chip.style.backgroundColor = theme.accentSoft;
+        chip.style.borderColor = theme.accent;
+        chip.style.color = theme.accentTextStrong;
         chip.textContent = note;
         notesList.appendChild(chip);
     });
@@ -225,7 +274,8 @@ const renderCoffeeLineupDetail = (beanId) => {
         purchaseLink.href = bean.purchaseUrl;
         purchaseLink.target = "_blank";
         purchaseLink.rel = "noopener noreferrer";
-        purchaseLink.className = "inline-flex items-center px-6 py-3 bg-amber-600 text-white rounded-full font-bold text-[10px] uppercase tracking-widest hover:bg-amber-700 transition shadow-lg";
+        purchaseLink.className = "inline-flex items-center px-6 py-3 text-white rounded-full font-bold text-[10px] uppercase tracking-widest transition shadow-lg";
+        purchaseLink.style.backgroundColor = theme.accentStrong;
         purchaseLink.textContent = bean.purchaseLabel || "購入はこちらから";
         actionWrap.appendChild(purchaseLink);
     }
@@ -263,13 +313,22 @@ const renderCoffeeLineupList = () => {
     coffeeBeans.forEach((bean) => {
         const button = document.createElement("button");
         const isActive = bean.id === selectedCoffeeBeanId;
+        const theme = getBeanTheme(bean);
         button.type = "button";
         button.className = `w-full text-left rounded-2xl border px-4 py-3 transition ${isActive ? "border-amber-300 bg-amber-50 text-slate-900 shadow-sm" : "border-slate-200 bg-white text-slate-600 hover:border-slate-300 hover:text-slate-900"}`;
+        if (isActive) {
+            button.style.borderColor = theme.accentStrong;
+            button.style.backgroundColor = theme.accentSoft;
+        }
         button.innerHTML = `
             <p class="text-[10px] font-black uppercase tracking-[0.3em] ${isActive ? "text-amber-700" : "text-slate-400"}">豆</p>
             <p class="mt-1 font-bold">${bean.name}</p>
             <p class="text-xs mt-1 opacity-80">${bean.roastLevel || ""}</p>
         `;
+        const buttonLabel = button.querySelector("p");
+        if (buttonLabel instanceof HTMLElement && isActive) {
+            buttonLabel.style.color = theme.accentText;
+        }
         button.addEventListener("click", () => {
             selectedCoffeeBeanId = bean.id;
             renderCoffeeLineupList();
