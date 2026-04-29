@@ -59,7 +59,7 @@ const loadCoffeeLineup = async () => {
     defaultCoffeeBeanId = typeof data?.defaultBeanId === "string" ? data.defaultBeanId : "";
 
     const items = Array.isArray(data?.items) ? data.items : [];
-    coffeeBeans = items.filter((item) => item && item.id && item.active !== false);
+    coffeeBeans = items.filter((item) => item && item.id);
     coffeeLineupEnabled = coffeeLineupEnabled && coffeeBeans.length > 0;
 
     if (!coffeeLineupEnabled || !coffeeBeans.length) {
@@ -69,8 +69,10 @@ const loadCoffeeLineup = async () => {
 
     const hasSelected = coffeeBeans.some((bean) => bean.id === selectedCoffeeBeanId);
     if (!hasSelected) {
+        const activeBeans = coffeeBeans.filter((bean) => bean.active !== false);
+        const fallbackBean = activeBeans[0] || coffeeBeans[0];
         const hasDefault = coffeeBeans.some((bean) => bean.id === defaultCoffeeBeanId);
-        selectedCoffeeBeanId = hasDefault ? defaultCoffeeBeanId : coffeeBeans[0].id;
+        selectedCoffeeBeanId = hasDefault ? defaultCoffeeBeanId : fallbackBean.id;
     }
 };
 
@@ -179,6 +181,19 @@ const renderCoffeeLineupDetail = (beanId) => {
 
     const headerWrap = document.createElement("div");
     headerWrap.className = "space-y-3";
+
+    const statusBadge = document.createElement("span");
+    statusBadge.className = "inline-flex items-center rounded-full px-3 py-1 text-[10px] font-black uppercase tracking-[0.25em]";
+    if (bean.active === false) {
+        statusBadge.textContent = "過去の豆はこちら";
+        statusBadge.style.backgroundColor = "#e2e8f0";
+        statusBadge.style.color = "#475569";
+    } else {
+        statusBadge.textContent = "お取り扱い中";
+        statusBadge.style.backgroundColor = theme.accentSoft;
+        statusBadge.style.color = theme.accentTextStrong;
+    }
+    headerWrap.appendChild(statusBadge);
 
     const name = document.createElement("h3");
     name.className = "text-2xl md:text-4xl font-black text-slate-900 tracking-tight";
@@ -311,32 +326,69 @@ const renderCoffeeLineupList = () => {
     if (!listContainer) return;
 
     listContainer.textContent = "";
-    coffeeBeans.forEach((bean) => {
+    const activeBeans = coffeeBeans.filter((bean) => bean.active !== false);
+    const archivedBeans = coffeeBeans.filter((bean) => bean.active === false);
+
+    const renderSection = (label, beans, isArchive = false) => {
+        if (!beans.length) return;
+
+        const section = document.createElement("div");
+        section.className = "space-y-3";
+        if (listContainer.childNodes.length) {
+            section.classList.add("pt-4");
+        }
+
+        const heading = document.createElement("p");
+        heading.className = "text-[10px] font-black uppercase tracking-[0.3em]";
+        heading.textContent = label;
+        heading.style.color = isArchive ? "#94a3b8" : "#8c6a12";
+        section.appendChild(heading);
+
+        beans.forEach((bean) => {
         const button = document.createElement("button");
         const isActive = bean.id === selectedCoffeeBeanId;
         const theme = getBeanTheme(bean);
         button.type = "button";
         button.className = `w-full text-left rounded-2xl border px-4 py-3 transition ${isActive ? "border-amber-300 bg-amber-50 text-slate-900 shadow-sm" : "border-slate-200 bg-white text-slate-600 hover:border-slate-300 hover:text-slate-900"}`;
         if (isActive) {
-            button.style.borderColor = theme.accentStrong;
-            button.style.backgroundColor = theme.accentSoft;
+            button.style.borderColor = bean.active === false ? "#94a3b8" : theme.accentStrong;
+            button.style.backgroundColor = bean.active === false ? "#f8fafc" : theme.accentSoft;
+        } else if (bean.active === false) {
+            button.style.borderColor = "#cbd5e1";
+            button.style.backgroundColor = "#f8fafc";
+            button.style.color = "#64748b";
+            button.style.opacity = "0.9";
         }
         button.innerHTML = `
             <p class="text-[10px] font-black uppercase tracking-[0.3em] ${isActive ? "text-amber-700" : "text-slate-400"}">豆</p>
             <p class="mt-1 font-bold">${bean.name}</p>
-            <p class="text-xs mt-1 opacity-80">${bean.roastLevel || ""}</p>
+            <div class="mt-1 flex items-center gap-2 flex-wrap">
+                <p class="text-xs opacity-80">${bean.roastLevel || ""}</p>
+                <span class="rounded-full px-2 py-0.5 text-[9px] font-black uppercase tracking-[0.2em] ${bean.active === false ? "bg-slate-200 text-slate-600" : ""}">${bean.active === false ? "Past" : "Now"}</span>
+            </div>
         `;
         const buttonLabel = button.querySelector("p");
         if (buttonLabel instanceof HTMLElement && isActive) {
-            buttonLabel.style.color = theme.accentText;
+            buttonLabel.style.color = bean.active === false ? "#64748b" : theme.accentText;
+        }
+        const statusChip = button.querySelector("span");
+        if (statusChip instanceof HTMLElement && bean.active !== false) {
+            statusChip.style.backgroundColor = theme.accentSoft;
+            statusChip.style.color = theme.accentTextStrong;
         }
         button.addEventListener("click", () => {
             selectedCoffeeBeanId = bean.id;
             renderCoffeeLineupList();
             renderCoffeeLineupDetail(selectedCoffeeBeanId);
         });
-        listContainer.appendChild(button);
-    });
+        section.appendChild(button);
+        });
+
+        listContainer.appendChild(section);
+    };
+
+    renderSection("お取り扱い中", activeBeans);
+    renderSection("過去の豆はこちら", archivedBeans, true);
 };
 
 window.selectCoffeeBeanById = (beanId) => {

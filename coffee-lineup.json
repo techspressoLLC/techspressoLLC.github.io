@@ -1,10 +1,10 @@
 {
   "enabled": true,
-  "defaultBeanId": "colombia-asmucafe-floreada-supremo",
+  "defaultBeanId": "burundi-yandaro-cws-washed",
   "items": [
     {
       "id": "colombia-asmucafe-floreada-supremo",
-      "active": true,
+      "active": false,
       "name": "Colombia ASMUCAFE Floreada Supremo",
       "subtitle": "コクと甘みがバランス良く、ミルクチョコレートのようななめらかなコーヒー",
       "country": "Colombia",
@@ -20,8 +20,8 @@
         "キャラメル",
         "なめらかな口当たり"
       ],
-      "recommendedBrew": "ペーパードリップ ",
-      "purchaseNote": "現在この豆は注文をお受けしていません",
+      "recommendedBrew": "ペーパードリップ",
+      "purchaseNote": "現在こちらの豆は注文をお受けしていません",
       "secondaryUrl": "https://techspresso.base.shop/",
       "secondaryLabel": "他の豆はこちらから",
       "description": "ASMUCAFE（アスムカフェ）は、コロンビア・カウカ県エル・タンボ地域の女性コーヒー生産者によって2009年に設立された団体です。女性の経済的自立と社会的地位向上を目的に、環境に配慮した持続可能な栽培で高品質なコーヒーを生産しています。相互扶助の精神を大切にしながら地域社会にも貢献する姿勢が評価され、「フロリアーダ（花で彩られたようなコーヒー）」の名が付けられています。",
@@ -39,7 +39,7 @@
     },
     {
       "id": "honduras-la-cascada-catuai",
-      "active": true,
+      "active": false,
       "name": "Honduras La Cascada Catuai",
       "subtitle": "はちみつのような甘さが感じられ、また飲みたくなる爽やかで軽快な味わい",
       "country": "Honduras",
@@ -55,7 +55,7 @@
         "爽やか",
         "軽快な味わい"
       ],
-      "recommendedBrew": "ペーパードリップ ",
+      "recommendedBrew": "ペーパードリップ",
       "purchaseNote": "現在こちらの豆は注文をお受けしていません",
       "secondaryUrl": "https://techspresso.base.shop/",
       "secondaryLabel": "他の豆はこちらから",
@@ -98,62 +98,6 @@
         "./pic/beans/Bur202605/Bur06.jpg",
         "./pic/beans/Bur202605/Bur07.jpg"
       ]
-    },
-    {
-      "id": "ethiopia-gesha",
-      "active": false,
-      "name": "Ethiopia Gesha",
-      "subtitle": "華やかで紅茶のような質感のシングルオリジン",
-      "country": "Ethiopia",
-      "farm": "-",
-      "area": "Guji",
-      "origin": "Ethiopia, Guji",
-      "variety": "Gesha 1931",
-      "elevation": "1900-2200m",
-      "process": "Washed",
-      "roastLevel": "浅煎り",
-      "tastingNotes": [
-        "ジャスミン",
-        "シトラス",
-        "ピーチティー"
-      ],
-      "recommendedBrew": "ペーパードリップ",
-      "description": "フローラルな香りと透明感のある酸を活かした、繊細で上品な味わい。余韻までクリーンな飲み口に仕上げています。",
-      "roastProfile": [
-        "投入温度: 195C",
-        "ドライエンド: 4:50",
-        "1ハゼ: 8:45",
-        "煎り止め: 9:40"
-      ],
-      "images": []
-    },
-    {
-      "id": "kenya-aa",
-      "active": false,
-      "name": "Kenya AA",
-      "subtitle": "明るい果実感とジューシーな後味",
-      "country": "Kenya",
-      "farm": "-",
-      "area": "Nyeri",
-      "origin": "Kenya, Nyeri",
-      "variety": "SL28, SL34",
-      "elevation": "1700-2000m",
-      "process": "Washed",
-      "roastLevel": "中浅煎り",
-      "tastingNotes": [
-        "カシス",
-        "グレープフルーツ",
-        "ブラウンシュガー"
-      ],
-      "recommendedBrew": "ペーパードリップ / AeroPress",
-      "description": "はっきりした果実感と立体的な酸が特徴。クリアな抽出で甘さの層を感じやすいプロファイルです。",
-      "roastProfile": [
-        "投入温度: 198C",
-        "ドライエンド: 4:40",
-        "1ハゼ: 8:35",
-        "煎り止め: 9:55"
-      ],
-      "images": []
     }
   ]
 }
