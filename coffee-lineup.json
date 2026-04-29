@@ -56,9 +56,10 @@
         "軽快な味わい"
       ],
       "recommendedBrew": "ペーパードリップ ",
+      "purchaseNote": "現在こちらの豆は注文をお受けしていません",
+      "secondaryUrl": "https://techspresso.base.shop/",
+      "secondaryLabel": "他の豆はこちらから",
       "description": "インティブカ県西部サン・フアン地区カングアルは、オパラカ山脈の山々に囲まれた自然保護公園内にある、豊かな生態系と肥沃な土壌、冷涼な気候に恵まれた注目産地です。ラ・カスケーダ農園は標高1800mの高地で、丁寧な収穫・発酵・乾燥を重ねながら高品質なスペシャルティコーヒーづくりに取り組んでいます。父の志を受け継いだケビン・フランシスコ・ベニテス氏が、品質へのこだわりと挑戦心を大切に育てる一杯です。",
-      "purchaseUrl": "https://techspresso.base.shop/p/00001",
-      "purchaseLabel": "購入はこちらから",
       "images": [
         "./pic/beans/Hon202604/Hon01.jpg",
         "./pic/beans/Hon202604/Hon02.jpg",
@@ -85,8 +86,18 @@
         "華やか"
       ],
       "recommendedBrew": "ペーパードリップ / AeroPress",
-      "description": "熱帯雨林や湖が近くコーヒー生産に適したヤンダロ農園では、持続可能なスペシャルティコーヒー栽培が取り組まれています。アプリコットやプラムを思わせるフレッシュな果実感があり、浅煎りでも飲みやすく、軽やかさと華やかさを両立した味わいです。",
-      "images": []
+      "purchaseUrl": "https://techspresso.base.shop/p/00001",
+      "purchaseLabel": "購入はこちらから",
+      "description": "ヤンダロ・ウォッシングステーションは1986年にブルンジ北部カヤンザ県カバロレに設立され、近隣22コミュニティ・約3000農家から集まるチェリーを処理する地域の中核拠点です。標高1800mの冷涼な環境と豊かな水資源を活かし、フローター除去、手選別、発酵、水洗、比重選別、丁寧な乾燥まで一貫して高品質なウォッシュドづくりを行っています。運営母体のGREENCOは苗木供給や有機肥料の還元、農家支援や雇用創出にも取り組み、品質向上と持続可能な生産体制の両立を支えています。",
+      "images": [
+        "./pic/beans/Bur202605/Bur01.jpg",
+        "./pic/beans/Bur202605/Bur02.jpg",
+        "./pic/beans/Bur202605/Bur03.jpg",
+        "./pic/beans/Bur202605/Bur04.jpg",
+        "./pic/beans/Bur202605/Bur05.jpg",
+        "./pic/beans/Bur202605/Bur06.jpg",
+        "./pic/beans/Bur202605/Bur07.jpg"
+      ]
     },
     {
       "id": "ethiopia-gesha",

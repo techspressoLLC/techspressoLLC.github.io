@@ -136,18 +136,19 @@ const renderBeanGallery = (bean, detailContainer) => {
     galleryWrap.appendChild(galleryLabel);
 
     const grid = document.createElement("div");
-    grid.className = "grid grid-cols-2 md:grid-cols-3 gap-3";
+    grid.className = "columns-1 sm:columns-2 lg:columns-3";
+    grid.style.columnGap = "0.75rem";
 
     images.forEach((src, index) => {
         const button = document.createElement("button");
         button.type = "button";
-        button.className = "group overflow-hidden rounded-2xl border border-slate-100 bg-white shadow-sm hover:shadow-md transition";
+        button.className = "group mb-3 block w-full break-inside-avoid overflow-hidden rounded-2xl border border-slate-100 bg-white shadow-sm hover:shadow-md transition";
         button.style.borderColor = theme.accent;
 
         const img = document.createElement("img");
         img.src = src;
         img.alt = `${bean.name} image ${index + 1}`;
-        img.className = "w-full h-auto max-h-52 object-contain group-hover:scale-105 transition";
+        img.className = "block w-full h-auto object-cover group-hover:scale-[1.02] transition";
 
         button.addEventListener("click", () => {
             openGalleryModal(src, img.alt);

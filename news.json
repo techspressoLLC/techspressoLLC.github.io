@@ -24,6 +24,31 @@
                       "active":  true
                   },
                   {
+                      "slug":  "new-bean-burundi",
+                      "date":  "2026.04.29",
+                      "category":  [
+                                       "NEWS"
+                                   ],
+                      "title":  "ブルンジの豆を入荷しました",
+                      "excerpt":  "ブルンジ入荷",
+                      "cover":  "",
+                      "body":  [
+                                   "Burundi Yandaro CWS Washedを入荷しました。",
+                                   "アプリコットやプラムを思わせるフレッシュな風味と、浅煎りでも楽しみやすい華やかな味わいです。"
+                               ],
+                      "tags":  [
+                                   "INFO",
+                                   "PRODUCT"
+                               ],
+                      "externalUrl":  "./#coffee-lineup/burundi-yandaro-cws-washed",
+                      "externalLabel":  "詳細はこちらからご覧ください",
+                      "purchaseUrl":  "https://techspresso.base.shop/p/00001",
+                      "purchaseLabel":  "購入はこちらから",
+                      "purchaseNote":  "豆は100 gのものとドリップパックをご用意しております",
+                      "pinned":  false,
+                      "active":  true
+                  },
+                  {
                       "slug":  "new bean1",
                       "date":  "2026.02.28",
                       "category":  [
@@ -89,9 +114,9 @@
                                ],
                       "externalUrl":  "./#coffee-lineup/honduras-la-cascada-catuai",
                       "externalLabel":  "詳細はこちらからご覧ください",
-                      "purchaseUrl":  "https://techspresso.base.shop/p/00001",
-                      "purchaseLabel":  "購入はこちらから",
-                      "purchaseNote":  "豆は100 gのものとドリップパックをご用意しております",
+                      "purchaseNote":  "現在こちらの豆は注文をお受けしていません",
+                      "secondaryUrl":  "https://techspresso.base.shop/",
+                      "secondaryLabel":  "他の豆はこちらから",
                       "pinned":  false,
                       "active":  true
                   },
