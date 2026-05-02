@@ -19,7 +19,7 @@ function navigateTo(pageId) {
     }
 }
 
-const CROWDFUNDING_ENABLED = false;
+const CROWDFUNDING_ENABLED = true;
 
 function getFixedOffset() {
     const header = document.getElementById('header');
