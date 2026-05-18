@@ -207,6 +207,50 @@ const renderCoffeeLineupDetail = (beanId) => {
     headerWrap.appendChild(subtitle);
     detailContainer.appendChild(headerWrap);
 
+    const availabilityNote = document.createElement("p");
+    availabilityNote.className = "text-sm leading-relaxed";
+    if (bean.active === false) {
+        availabilityNote.textContent = "この豆は過去のラインナップです。現在はお取り扱いしていません。";
+        availabilityNote.style.color = "#64748b";
+    } else {
+        availabilityNote.textContent = "現在お取り扱い中です。購入ボタンからオンラインショップをご覧いただけます。";
+        availabilityNote.style.color = theme.accentTextStrong;
+    }
+    detailContainer.appendChild(availabilityNote);
+
+    const createActionWrap = () => {
+        const wrap = document.createElement("div");
+        wrap.className = "flex flex-wrap gap-3";
+
+        if (bean.purchaseUrl) {
+            const purchaseLink = document.createElement("a");
+            purchaseLink.href = bean.purchaseUrl;
+            purchaseLink.target = "_blank";
+            purchaseLink.rel = "noopener noreferrer";
+            purchaseLink.className = "inline-flex items-center px-6 py-3 text-white rounded-full font-bold text-[10px] uppercase tracking-widest transition shadow-lg";
+            purchaseLink.style.backgroundColor = theme.accentStrong;
+            purchaseLink.textContent = bean.purchaseLabel || "購入はこちらから";
+            wrap.appendChild(purchaseLink);
+        }
+
+        if (bean.secondaryUrl) {
+            const secondaryLink = document.createElement("a");
+            secondaryLink.href = bean.secondaryUrl;
+            secondaryLink.target = "_blank";
+            secondaryLink.rel = "noopener noreferrer";
+            secondaryLink.className = "inline-flex items-center px-6 py-3 bg-slate-900 text-white rounded-full font-bold text-[10px] uppercase tracking-widest hover:bg-slate-700 transition shadow-lg";
+            secondaryLink.textContent = bean.secondaryLabel || "詳細はこちら";
+            wrap.appendChild(secondaryLink);
+        }
+
+        return wrap;
+    };
+
+    const topActionWrap = createActionWrap();
+    if (topActionWrap.childNodes.length) {
+        detailContainer.appendChild(topActionWrap);
+    }
+
     const metaMobile = document.createElement("dl");
     metaMobile.className = "md:hidden rounded-2xl border border-slate-100 bg-white p-4 grid grid-cols-[auto_1fr] gap-x-4 gap-y-3 text-sm text-slate-700";
     metaMobile.style.borderColor = theme.accent;
