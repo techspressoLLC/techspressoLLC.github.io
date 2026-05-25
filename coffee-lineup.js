@@ -164,6 +164,65 @@ const renderBeanGallery = (bean, detailContainer) => {
     detailContainer.appendChild(galleryWrap);
 };
 
+const renderBeanRecipe = (bean, detailContainer, theme) => {
+    if (!bean.recipe) return;
+
+    const recipeWrap = document.createElement("section");
+    recipeWrap.className = "rounded-[2rem] border bg-white/90 p-6 md:p-8 space-y-5";
+    recipeWrap.style.borderColor = theme.accent;
+
+    const recipeLabel = document.createElement("p");
+    recipeLabel.className = "text-[10px] font-black uppercase tracking-[0.3em]";
+    recipeLabel.style.color = theme.accentText;
+    recipeLabel.textContent = bean.recipe.title || "Recipe";
+    recipeWrap.appendChild(recipeLabel);
+
+    const recipeGrid = document.createElement("div");
+    recipeGrid.className = "grid gap-4 md:grid-cols-2";
+
+    const createRecipeCard = (recipe, withDivider = false) => {
+        const card = document.createElement("div");
+        card.className = "space-y-3";
+        if (withDivider) {
+            card.classList.add("md:border-l", "md:pl-6");
+            card.style.borderColor = theme.accent;
+        }
+
+        const title = document.createElement("p");
+        title.className = "text-2xl md:text-3xl font-black tracking-tight text-slate-900";
+        title.textContent = recipe.title || "";
+        card.appendChild(title);
+
+        const beans = document.createElement("p");
+        beans.className = "text-lg md:text-xl font-bold text-slate-800";
+        beans.textContent = recipe.beans || "";
+        card.appendChild(beans);
+
+        const steps = document.createElement("div");
+        steps.className = "space-y-2";
+        (recipe.steps || []).forEach((step) => {
+            const line = document.createElement("p");
+            line.className = "text-lg md:text-xl text-slate-800 tracking-tight";
+            line.textContent = step;
+            steps.appendChild(line);
+        });
+        card.appendChild(steps);
+
+        return card;
+    };
+
+    if (bean.recipe.hot) {
+        recipeGrid.appendChild(createRecipeCard(bean.recipe.hot));
+    }
+
+    if (bean.recipe.iced) {
+        recipeGrid.appendChild(createRecipeCard(bean.recipe.iced, true));
+    }
+
+    recipeWrap.appendChild(recipeGrid);
+    detailContainer.appendChild(recipeWrap);
+};
+
 const renderCoffeeLineupDetail = (beanId) => {
     const detailContainer = document.getElementById("coffee-lineup-detail");
     if (!detailContainer) return;
@@ -362,6 +421,7 @@ const renderCoffeeLineupDetail = (beanId) => {
     }
 
     renderBeanGallery(bean, detailContainer);
+    renderBeanRecipe(bean, detailContainer, theme);
 
 };
 
