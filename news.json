@@ -2,6 +2,67 @@
     "enabled":  true,
     "items":  [
                   {
+                      "slug":  "new-bean-peru",
+                      "date":  "2026.06.02",
+                      "category":  [
+                                       "NEWS"
+                                   ],
+                      "title":  "ペルーの豆を入荷しました",
+                      "excerpt":  "PERU Classic Puno Washed を入荷しました。",
+                      "cover":  "./pic/beans/0205112706_6983fffadba69.jpg",
+                      "coverPosition":  "50% 50%",
+                      "body":  [
+                                   "PERU Classic Puno Washed を入荷しました。",
+                                   "ペルー南部、ボリビア国境に近いプーノ県サンディアのアルト・イナンバリで生産されたコーヒーです。",
+                                   "グリーンアップルやオレンジを思わせるフレッシュで爽やかなフレーバーと、軽やかなアシディティを楽しめます。",
+                                   "このロットは、地域の伝統や文化をつなぐコーヒーとして受け継がれてきた背景を持ち、華やかさとエキゾチックさをあわせ持つ味わいが魅力です。"
+                               ],
+                      "tags":  [
+                                   "INFO",
+                                   "PRODUCT"
+                               ],
+                      "externalUrl":  "./#coffee-lineup/peru-classic-puno-washed",
+                      "externalLabel":  "詳細はこちらからご覧ください",
+                      "purchaseNote":  "現在こちらの豆は注文をお受けしていません",
+                      "secondaryUrl":  "https://techspresso.base.shop/",
+                      "secondaryLabel":  "他の豆はこちらから",
+                      "pinned":  false,
+                      "active":  true
+                  },
+                  {
+                      "slug":  "popup-cove-hatanodai-20260612",
+                      "date":  "2026.06.02",
+                      "category":  [
+                                       "NEWS",
+                                       "EVENT"
+                                   ],
+                      "title":  "cove coffee stand 旗の台でPOP UP出店します",
+                      "excerpt":  "2026年6月12日(金)に、cove coffee stand 旗の台でPOP UP出店を行います。",
+                      "cover":  "./pic/event/POPUP2.png",
+                      "coverFitMobile":  "contain",
+                      "coverBackground":  "#ffffff",
+                      "coverPosition":  "50% 50%",
+                      "body":  [
+                                   "2026年6月12日(金)に、cove coffee stand 旗の台にてPOP UP出店を行います。",
+                                   "コーヒーとフードを気軽に楽しめる1日です。お近くの方はぜひお立ち寄りください。"
+                               ],
+                      "place":  "cove coffee stand 旗の台",
+                      "address":  "東京都品川区旗の台4丁目6-2",
+                      "access":  "旗の台駅 東口から徒歩約5分 / 東急大井町線・東急池上線",
+                      "schedule":  "2026年6月12日(金) 9:00 ~ 20:00",
+                      "mapTitle":  "Google Map for cove coffee stand 旗の台",
+                      "mapEmbedUrl":  "https://www.google.com/maps?q=%E6%9D%B1%E4%BA%AC%E9%83%BD%E5%93%81%E5%B7%9D%E5%8C%BA%E6%97%97%E3%81%AE%E5%8F%B04%E4%B8%81%E7%9B%AE6-2&z=16&output=embed",
+                      "mapOpenUrl":  "https://www.google.com/maps/search/?api=1&query=%E6%9D%B1%E4%BA%AC%E9%83%BD%E5%93%81%E5%B7%9D%E5%8C%BA%E6%97%97%E3%81%AE%E5%8F%B04%E4%B8%81%E7%9B%AE6-2",
+                      "tags":  [
+                                   "EVENT",
+                                   "POP UP"
+                               ],
+                      "externalUrl":  "./#event",
+                      "externalLabel":  "詳細はこちら",
+                      "pinned":  false,
+                      "active":  true
+                  },
+                  {
                       "slug":  "crowdfunding-open",
                       "date":  "2026.05.02",
                       "category":  [
@@ -67,9 +128,9 @@
                                ],
                       "externalUrl":  "./#coffee-lineup/burundi-yandaro-cws-washed",
                       "externalLabel":  "詳細はこちらからご覧ください",
-                      "purchaseUrl":  "https://techspresso.base.shop/p/00001",
-                      "purchaseLabel":  "購入はこちらから",
-                      "purchaseNote":  "豆は100 gのものとドリップパックをご用意しております",
+                      "purchaseNote":  "現在こちらの豆は注文をお受けしていません",
+                      "secondaryUrl":  "https://techspresso.base.shop/",
+                      "secondaryLabel":  "他の豆はこちらから",
                       "pinned":  false,
                       "active":  true
                   },

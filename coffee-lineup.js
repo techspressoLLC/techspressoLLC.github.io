@@ -15,6 +15,13 @@ const DEFAULT_BEAN_THEME = {
 };
 
 const BEAN_THEMES = {
+    "peru-classic-puno-washed": {
+        accent: "#f4c27c",
+        accentStrong: "#e2a24d",
+        accentSoft: "#fff4e4",
+        accentText: "#b0721f",
+        accentTextStrong: "#6d4712"
+    },
     "honduras-la-cascada-catuai": {
         accent: "#b8e2f6",
         accentStrong: "#8fcceb",
