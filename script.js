@@ -113,6 +113,7 @@ const closeMobileMenuOnOutsideClick = (event) => {
 
 const NEWS_LIMIT = 10;
 const NEWS_JSON_PATH = './news.json';
+const EVENT_CONTENT_PATH = './event-content.html';
 const isDiscordWebView = /Discord/i.test(navigator.userAgent);
 
 let newsItems = [];
@@ -374,6 +375,115 @@ const renderBodyBlocks = (body, container) => {
     });
 };
 
+const renderEventMetaBlocks = (item, container) => {
+    const hasEventMeta = item.place || item.address || item.access || item.schedule;
+    if (!hasEventMeta) return;
+
+    const section = document.createElement('div');
+    section.className = 'grid gap-4 md:grid-cols-2';
+
+    if (item.place || item.address || item.access) {
+        const venueCard = document.createElement('div');
+        venueCard.className = 'rounded-[2rem] border border-slate-100 bg-white shadow-sm p-6 space-y-3';
+
+        const label = document.createElement('p');
+        label.className = 'text-[10px] font-black uppercase tracking-[0.3em] text-slate-400';
+        label.textContent = 'Place';
+        venueCard.appendChild(label);
+
+        if (item.place) {
+            const place = document.createElement('p');
+            place.className = 'text-xl font-black text-slate-900';
+            place.textContent = item.place;
+            venueCard.appendChild(place);
+        }
+
+        if (item.address) {
+            const address = document.createElement('p');
+            address.className = 'text-sm md:text-base text-slate-600 leading-loose';
+            address.textContent = item.address;
+            venueCard.appendChild(address);
+        }
+
+        if (item.access) {
+            const access = document.createElement('p');
+            access.className = 'text-sm md:text-base text-slate-600 leading-loose';
+            access.textContent = item.access;
+            venueCard.appendChild(access);
+        }
+
+        section.appendChild(venueCard);
+    }
+
+    if (item.schedule) {
+        const scheduleCard = document.createElement('div');
+        scheduleCard.className = 'rounded-[2rem] border border-slate-100 bg-white shadow-sm p-6 space-y-3';
+
+        const label = document.createElement('p');
+        label.className = 'text-[10px] font-black uppercase tracking-[0.3em] text-slate-400';
+        label.textContent = 'Schedule';
+        scheduleCard.appendChild(label);
+
+        const schedule = document.createElement('p');
+        schedule.className = 'text-sm md:text-base text-slate-600 leading-loose';
+        schedule.textContent = item.schedule;
+        scheduleCard.appendChild(schedule);
+
+        section.appendChild(scheduleCard);
+    }
+
+    container.appendChild(section);
+};
+
+const renderMapEmbed = (item, container) => {
+    if (!item.mapEmbedUrl) return;
+
+    const mapCard = document.createElement('div');
+    mapCard.className = 'rounded-[2rem] border border-slate-100 bg-white shadow-sm p-4 md:p-5';
+
+    const header = document.createElement('div');
+    header.className = 'flex items-center justify-between gap-4 mb-4 px-2';
+
+    const titleWrap = document.createElement('div');
+    const label = document.createElement('p');
+    label.className = 'text-[10px] font-black uppercase tracking-[0.3em] text-slate-400';
+    label.textContent = 'Map';
+    const title = document.createElement('p');
+    title.className = 'text-sm md:text-base font-bold text-slate-900 mt-1';
+    title.textContent = 'Google Maps';
+    titleWrap.appendChild(label);
+    titleWrap.appendChild(title);
+    header.appendChild(titleWrap);
+
+    if (item.mapOpenUrl) {
+        const link = document.createElement('a');
+        link.href = item.mapOpenUrl;
+        link.target = '_blank';
+        link.rel = 'noopener noreferrer';
+        link.className = 'inline-flex items-center px-4 py-2 bg-slate-900 text-white rounded-full font-bold text-[10px] uppercase tracking-[0.2em] hover:bg-cyan-600 transition';
+        link.textContent = 'Open';
+        header.appendChild(link);
+    }
+
+    mapCard.appendChild(header);
+
+    const frameWrap = document.createElement('div');
+    frameWrap.className = 'overflow-hidden rounded-[2rem] border border-slate-100 bg-slate-50 aspect-[4/3]';
+
+    const frame = document.createElement('iframe');
+    frame.title = item.mapTitle || 'Google Map';
+    frame.src = item.mapEmbedUrl;
+    frame.className = 'w-full h-full';
+    frame.style.border = '0';
+    frame.loading = 'lazy';
+    frame.referrerPolicy = 'no-referrer-when-downgrade';
+    frame.allowFullscreen = true;
+
+    frameWrap.appendChild(frame);
+    mapCard.appendChild(frameWrap);
+    container.appendChild(mapCard);
+};
+
 const renderNewsDetail = (slug) => {
     const container = document.getElementById('news-detail-content');
     if (!container) return;
@@ -477,6 +587,9 @@ const renderNewsDetail = (slug) => {
         renderBodyBlocks(item.body, container);
     }
 
+    renderEventMetaBlocks(item, container);
+    renderMapEmbed(item, container);
+
     const actionWrap = document.createElement('div');
     actionWrap.className = 'flex flex-wrap gap-3';
 
@@ -487,8 +600,10 @@ const renderNewsDetail = (slug) => {
             && !window.isCoffeeLineupEnabled())) {
             const link = document.createElement('a');
             link.href = item.externalUrl;
-            link.target = '_blank';
-            link.rel = 'noopener noreferrer';
+            if (/^https?:\/\//i.test(String(item.externalUrl))) {
+                link.target = '_blank';
+                link.rel = 'noopener noreferrer';
+            }
             link.className = 'inline-flex items-center px-6 py-3 bg-slate-900 text-white rounded-full font-bold text-[10px] uppercase tracking-widest hover:bg-cyan-600 transition shadow-lg';
             link.textContent = item.externalLabel || 'Related Link';
             actionWrap.appendChild(link);
@@ -543,6 +658,25 @@ const loadNews = async () => {
         newsItems = [];
     }
     applyNewsVisibility();
+};
+
+const loadEventContent = async () => {
+    const root = document.querySelector('[data-event-content-root]');
+    if (!root) return;
+
+    try {
+        const response = await fetch(EVENT_CONTENT_PATH, { cache: 'no-store' });
+        if (!response.ok) throw new Error('Failed to load event-content.html');
+        root.innerHTML = await response.text();
+    } catch (error) {
+        root.innerHTML = `
+            <section class="py-24 px-6 bg-white">
+                <div class="container mx-auto max-w-4xl text-center">
+                    <p class="text-sm text-slate-500">Failed to load event content.</p>
+                </div>
+            </section>
+        `;
+    }
 };
 
 const resetFilters = () => {
@@ -671,6 +805,11 @@ const handleHashRoute = async () => {
         return;
     }
 
+    if (hash === '#event') {
+        navigateTo('event');
+        return;
+    }
+
     if (hash.startsWith('#news/')) {
         if (typeof window.isNewsEnabled === 'function' && !window.isNewsEnabled()) {
             navigateTo('home');
@@ -691,6 +830,7 @@ const handleHashRoute = async () => {
 };
 
 document.addEventListener('DOMContentLoaded', () => {
+    loadEventContent();
     if (typeof window.initCoffeeLineup === 'function') {
         window.coffeeLineupReadyPromise = Promise.resolve(window.initCoffeeLineup());
     } else {

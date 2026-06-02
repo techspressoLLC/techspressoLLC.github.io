@@ -4,7 +4,7 @@
   "items": [
     {
       "id": "peru-classic-puno-washed",
-      "active": false,
+      "active": true,
       "name": "PERU Classic Puno Washed",
       "subtitle": "グリーンアップルやオレンジを思わせる、フレッシュで爽やかなプーノの一杯。",
       "country": "Peru",
@@ -21,19 +21,18 @@
         "Fresh Acidity"
       ],
       "recommendedBrew": "Pour Over / AeroPress",
-      "purchaseNote": "現在こちらの豆は注文をお受けしていません",
-      "secondaryUrl": "https://techspresso.base.shop/",
-      "secondaryLabel": "他の豆はこちらから",
+      "purchaseUrl": "https://techspresso.base.shop/items/145927607",
+      "purchaseLabel": "購入はこちらから",
       "description": "ペルー南部、ボリビア国境に近いプーノ県サンディアのアルト・イナンバリで育まれたコーヒーです。グリーンアップルやオレンジを思わせるフレッシュで爽やかなフレーバーと、軽やかなアシディティが特徴です。地域の伝統や文化をつなぐコーヒーとして受け継がれてきたロットで、華やかさとエキゾチックさをあわせ持つ味わいを目指しました。",
       "images": [
-        "./pic/beans/0205112706_6983fffadba69.jpg",
-        "./pic/beans/0205112709_6983fffd57a4f.jpg",
-        "./pic/beans/0205112711_6983ffff59ea8.jpg",
-        "./pic/beans/0205112711_6983ffff60abb.jpg",
-        "./pic/beans/0205112713_698400016ff04.jpg",
-        "./pic/beans/0205112713_698400017503a.jpg",
-        "./pic/beans/0205112715_69840003ab7cc.jpg",
-        "./pic/beans/0205112715_69840003baec4.jpg"
+        "./pic/beans/Per202606/Per01.jpg",
+        "./pic/beans/Per202606/Per02.jpg",
+        "./pic/beans/Per202606/Per03.jpg",
+        "./pic/beans/Per202606/Per04.jpg",
+        "./pic/beans/Per202606/Per05.jpg",
+        "./pic/beans/Per202606/Per06.jpg",
+        "./pic/beans/Per202606/Per07.jpg",
+        "./pic/beans/Per202606/Per08.jpg"
       ]
     },
     {

@@ -9,7 +9,7 @@
                                    ],
                       "title":  "ペルーの豆を入荷しました",
                       "excerpt":  "PERU Classic Puno Washed を入荷しました。",
-                      "cover":  "./pic/beans/0205112706_6983fffadba69.jpg",
+                      "cover":  "./pic/beans/Per202606/Per01.jpg",
                       "coverPosition":  "50% 50%",
                       "body":  [
                                    "PERU Classic Puno Washed を入荷しました。",
@@ -23,9 +23,9 @@
                                ],
                       "externalUrl":  "./#coffee-lineup/peru-classic-puno-washed",
                       "externalLabel":  "詳細はこちらからご覧ください",
-                      "purchaseNote":  "現在こちらの豆は注文をお受けしていません",
-                      "secondaryUrl":  "https://techspresso.base.shop/",
-                      "secondaryLabel":  "他の豆はこちらから",
+                      "purchaseUrl":  "https://techspresso.base.shop/items/145927607",
+                      "purchaseLabel":  "購入はこちらから",
+                      "purchaseNote":  "オンラインショップでお求めいただけます",
                       "pinned":  false,
                       "active":  true
                   },
