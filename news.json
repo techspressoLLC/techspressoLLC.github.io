@@ -2,6 +2,56 @@
     "enabled":  true,
     "items":  [
                   {
+                      "slug":  "popup-cove-hatanodai-report-20260612",
+                      "date":  "2026.06.15",
+                      "category":  [
+                                       "NEWS",
+                                       "EVENT"
+                                   ],
+                      "title":  "cove coffee stand 旗の台でPOP UPを行いました",
+                      "excerpt":  "2026年6月12日(金)に、cove coffee stand 旗の台でPOP UPを行いました。",
+                      "cover":  "./pic/news/popup-cove-hatanodai-20260612/group-photo.jpg",
+                      "coverPosition":  "50% 45%",
+                      "body":  [
+                                   "2026年6月12日(金)に、cove coffee stand 旗の台でPOP UPを行いました。",
+                                   "当日はドリップコーヒーやフード、TECHSPRESSOのアイテムを通して、多くの方にお立ち寄りいただきました。",
+                                   "ご来場くださった皆さま、ありがとうございました。"
+                               ],
+                      "gallery":  [
+                                      {
+                                          "src":  "./pic/news/popup-cove-hatanodai-20260612/drip-scene.jpg",
+                                          "alt":  "POP UP当日のドリップ風景",
+                                          "fit":  "contain",
+                                          "rounded":  true
+                                      },
+                                      {
+                                          "src":  "./pic/news/popup-cove-hatanodai-20260612/guest-food.jpg",
+                                          "alt":  "フード提供の様子",
+                                          "fit":  "contain",
+                                          "rounded":  true
+                                      },
+                                      {
+                                          "src":  "./pic/news/popup-cove-hatanodai-20260612/popup-items.jpg",
+                                          "alt":  "当日展示したTECHSPRESSOアイテム",
+                                          "fit":  "contain",
+                                          "rounded":  true
+                                      }
+                                  ],
+                      "place":  "cove coffee stand 旗の台",
+                      "address":  "東京都品川区旗の台4丁目6-2",
+                      "access":  "旗の台駅 東口から徒歩約5分 / 東急大井町線・東急池上線",
+                      "schedule":  "2026年6月12日(金) 9:00 ~ 20:00",
+                      "tags":  [
+                                   "EVENT",
+                                   "POP UP",
+                                   "REPORT"
+                               ],
+                      "externalUrl":  "./#event",
+                      "externalLabel":  "イベントページはこちら",
+                      "pinned":  false,
+                      "active":  true
+                  },
+                  {
                       "slug":  "new-bean-peru",
                       "date":  "2026.06.02",
                       "category":  [

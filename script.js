@@ -375,6 +375,50 @@ const renderBodyBlocks = (body, container) => {
     });
 };
 
+const renderImageGallery = (gallery, title, container) => {
+    if (!Array.isArray(gallery) || !gallery.length) return;
+
+    const section = document.createElement('section');
+    section.className = 'space-y-4';
+
+    const heading = document.createElement('p');
+    heading.className = 'text-[10px] font-black uppercase tracking-[0.3em] text-slate-400';
+    heading.textContent = 'Gallery';
+    section.appendChild(heading);
+
+    const grid = document.createElement('div');
+    grid.className = 'grid gap-4 sm:grid-cols-2';
+
+    gallery.forEach((entry, index) => {
+        const item = typeof entry === 'string' ? { src: entry } : entry;
+        if (!item?.src) return;
+        const isContained = item.fit === 'contain';
+
+        const frame = document.createElement('div');
+        frame.className = isContained
+            ? 'flex items-start justify-center'
+            : 'rounded-[2rem] overflow-hidden border border-slate-100 shadow-sm aspect-[4/3]';
+        if (typeof item.background === 'string' && item.background) {
+            frame.style.background = item.background;
+        }
+
+        const img = document.createElement('img');
+        img.src = item.src;
+        img.alt = item.alt || `${title || 'News'} image ${index + 1}`;
+        img.className = isContained
+            ? 'block w-full h-auto max-h-[42rem] object-contain mx-auto rounded-[2rem]'
+            : 'block w-full h-full object-cover';
+        img.style.objectPosition = typeof item.position === 'string' ? item.position : '50% 50%';
+
+        frame.appendChild(img);
+        grid.appendChild(frame);
+    });
+
+    if (!grid.childNodes.length) return;
+    section.appendChild(grid);
+    container.appendChild(section);
+};
+
 const renderEventMetaBlocks = (item, container) => {
     const hasEventMeta = item.place || item.address || item.access || item.schedule;
     if (!hasEventMeta) return;
@@ -587,6 +631,7 @@ const renderNewsDetail = (slug) => {
         renderBodyBlocks(item.body, container);
     }
 
+    renderImageGallery(item.gallery, item.title, container);
     renderEventMetaBlocks(item, container);
     renderMapEmbed(item, container);
 
