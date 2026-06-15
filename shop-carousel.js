@@ -1,5 +1,14 @@
 const carousel = document.getElementById('shop-carousel');
 if (carousel) {
+    const randomizeCarouselItems = () => {
+        const originals = Array.from(carousel.children);
+        for (let i = originals.length - 1; i > 0; i -= 1) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [originals[i], originals[j]] = [originals[j], originals[i]];
+        }
+        originals.forEach((item) => carousel.appendChild(item));
+    };
+
     let rafId = 0;
     const speed = 0.9; // px per frame
     let isHovering = false;
@@ -12,6 +21,8 @@ if (carousel) {
     const isIOS = /iP(ad|hone|od)/.test(navigator.userAgent);
     const debugEnabled = false;
     let debugPanel = null;
+
+    randomizeCarouselItems();
 
     const ensureDebugPanel = () => {
         if (!debugEnabled) {
