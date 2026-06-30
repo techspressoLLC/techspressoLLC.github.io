@@ -15,6 +15,13 @@ const DEFAULT_BEAN_THEME = {
 };
 
 const BEAN_THEMES = {
+    "costa-rica-hermanos-valso-white-honey": {
+        accent: "#d7e8b8",
+        accentStrong: "#b8c96e",
+        accentSoft: "#f6fbeb",
+        accentText: "#6e7d2f",
+        accentTextStrong: "#465017"
+    },
     "peru-classic-puno-washed": {
         accent: "#f4c27c",
         accentStrong: "#e2a24d",

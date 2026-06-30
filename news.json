@@ -52,6 +52,33 @@
                       "active":  true
                   },
                   {
+                      "slug":  "new-bean-costa-rica",
+                      "date":  "2026.06.30",
+                      "category":  [
+                                       "NEWS"
+                                   ],
+                      "title":  "コスタリカの豆を入荷しました",
+                      "excerpt":  "Costa Rica Hermanos Valso White Honey を入荷しました。",
+                      "cover":  "./pic/beans/Cos202607/Cos06.jpg",
+                      "coverPosition":  "50% 42%",
+                      "body":  [
+                                   "Costa Rica Hermanos Valso White Honey を入荷しました。",
+                                   "タラス地域の家族経営マイクロミル、エルマノス・バルソが手がけるホワイトハニーのロットです。",
+                                   "レッドカラントやネクタリンを思わせる華やかさに、少しバナナのようなやわらかな熟度感が重なります。",
+                                   "勤勉に、実直に品質を高めてきた生産背景が伝わるような、クリーンで心地よい味わいをぜひお楽しみください。"
+                               ],
+                      "tags":  [
+                                   "INFO",
+                                   "PRODUCT"
+                               ],
+                      "externalUrl":  "./#coffee-lineup/costa-rica-hermanos-valso-white-honey",
+                      "externalLabel":  "詳細はこちらからご覧ください",
+                      "purchaseUrl":  "https://techspresso.base.shop/p/00001",
+                      "purchaseLabel":  "購入はこちらから",
+                      "pinned":  false,
+                      "active":  true
+                  },
+                  {
                       "slug":  "new-bean-peru",
                       "date":  "2026.06.02",
                       "category":  [
@@ -73,9 +100,9 @@
                                ],
                       "externalUrl":  "./#coffee-lineup/peru-classic-puno-washed",
                       "externalLabel":  "詳細はこちらからご覧ください",
-                      "purchaseUrl":  "https://techspresso.base.shop/items/145927607",
-                      "purchaseLabel":  "購入はこちらから",
-                      "purchaseNote":  "オンラインショップでお求めいただけます",
+                      "purchaseNote":  "現在こちらの豆は注文をお受けしていません",
+                      "secondaryUrl":  "https://techspresso.base.shop/",
+                      "secondaryLabel":  "他の豆はこちらから",
                       "pinned":  false,
                       "active":  true
                   },
