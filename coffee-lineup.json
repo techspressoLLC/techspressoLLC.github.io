@@ -14,7 +14,7 @@
       "variety": "Catuai",
       "elevation": "1800-1900m",
       "process": "White Honey",
-      "roastLevel": "中煎り",
+      "roastLevel": "中深煎り",
       "tastingNotes": [
         "Red Currant",
         "Nectarine",
@@ -187,6 +187,36 @@
         "./pic/beans/202605-Bur/Bur05.jpg",
         "./pic/beans/202605-Bur/Bur06.jpg",
         "./pic/beans/202605-Bur/Bur07.jpg"
+      ]
+    },
+    {
+      "id": "nicaragua-los-altiplanos-pacamara-washed",
+      "active": false,
+      "name": "Nicaragua Los Altiplanos Pacamara Washed",
+      "subtitle": "大自然に囲まれた農園で育まれた、伝統と誇りを感じるクリーンな一杯。",
+      "country": "Nicaragua",
+      "farm": "Los Altiplanos",
+      "area": "Jinotega, La Salvadora",
+      "origin": "ニカラグア / ヒノテガ, ラ・サルバドーラ",
+      "variety": "Pacamara",
+      "elevation": "1200-1300m",
+      "process": "Washed",
+      "roastLevel": "中煎り",
+      "tastingNotes": [
+        "Clean Cup",
+        "Gentle Sweetness",
+        "Balanced Finish"
+      ],
+      "recommendedBrew": "Paper Drip",
+      "description": "ロス・アルティプラノス農園は、100年以上にわたりコーヒー生産に携わってきた家系のリカルド氏が営む農園です。ヒノテガのダタンリ-エル・ディアブロ自然保護区の山間部に位置し、豊かな森や渓流に囲まれた環境の中でコーヒーが育てられています。2021年にはCup of Excellenceでの入賞実績もあり、伝統を受け継ぎながら品質向上を重ねてきた農園です。丁寧に育てられたパカマラをウォッシュドで仕上げ、中深煎りで落ち着いた甘さとクリーンな余韻を感じられる一杯に仕上げました。",
+      "images": [
+        "./pic/beans/202607-Nic/Nic01.jpg",
+        "./pic/beans/202607-Nic/Nic02.jpg",
+        "./pic/beans/202607-Nic/Nic03.jpg",
+        "./pic/beans/202607-Nic/Nic04.jpg",
+        "./pic/beans/202607-Nic/Nic05.jpg",
+        "./pic/beans/202607-Nic/Nic06.jpg",
+        "./pic/beans/202607-Nic/Nic07.jpg"
       ]
     }
   ]
