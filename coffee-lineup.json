@@ -20,18 +20,18 @@
         "Nectarine",
         "Ripe Banana"
       ],
-      "recommendedBrew": "Paper Drip / AeroPress",
+      "recommendedBrew": "Paper Drip",
       "purchaseUrl": "https://techspresso.base.shop/p/00001",
       "purchaseLabel": "購入はこちらから",
       "description": "2017年に設立されたエルマノス・バルソ マイクロミルは、タラス地域で家族経営を続ける小さなミルです。長年バラブランカ農園でコーヒー生産を続けてきたエルネスト一家が、自分たちの努力で品質と価値を高めたいという思いから立ち上げました。レッドカラントやネクタリンを思わせる華やかさに、少しバナナのようなやわらかな熟度感が重なり、勤勉に、実直に作られた背景が伝わるようなクリーンで心地よい味わいです。",
       "images": [
-        "./pic/beans/Cos202607/Cos01.jpg",
-        "./pic/beans/Cos202607/Cos02.jpg",
-        "./pic/beans/Cos202607/Cos03.jpg",
-        "./pic/beans/Cos202607/Cos04.jpg",
-        "./pic/beans/Cos202607/Cos05.jpg",
-        "./pic/beans/Cos202607/Cos06.jpg",
-        "./pic/beans/Cos202607/Cos07.jpg"
+        "./pic/beans/202607-Cos/Cos01.jpg",
+        "./pic/beans/202607-Cos/Cos02.jpg",
+        "./pic/beans/202607-Cos/Cos03.jpg",
+        "./pic/beans/202607-Cos/Cos04.jpg",
+        "./pic/beans/202607-Cos/Cos05.jpg",
+        "./pic/beans/202607-Cos/Cos06.jpg",
+        "./pic/beans/202607-Cos/Cos07.jpg"
       ]
     },
     {
@@ -52,20 +52,20 @@
         "Orange",
         "Fresh Acidity"
       ],
-      "recommendedBrew": "Pour Over / AeroPress",
+      "recommendedBrew": "Paper Drip",
       "purchaseNote": "現在こちらの豆は注文をお受けしていません",
       "secondaryUrl": "https://techspresso.base.shop/",
       "secondaryLabel": "他の豆はこちらから",
       "description": "ペルー南部、ボリビア国境に近いプーノ県サンディアのアルト・イナンバリで育まれたコーヒーです。グリーンアップルやオレンジを思わせるフレッシュで軽やかなフレーバーと、爽やかなアシディティが印象的です。地域の伝統や文化をつなぐコーヒーとして受け継がれてきたロットで、華やかさとエキゾチックさをあわせ持つ味わいに仕上げました。",
       "images": [
-        "./pic/beans/Per202606/Per01.jpg",
-        "./pic/beans/Per202606/Per02.jpg",
-        "./pic/beans/Per202606/Per03.jpg",
-        "./pic/beans/Per202606/Per04.jpg",
-        "./pic/beans/Per202606/Per05.jpg",
-        "./pic/beans/Per202606/Per06.jpg",
-        "./pic/beans/Per202606/Per07.jpg",
-        "./pic/beans/Per202606/Per08.jpg"
+        "./pic/beans/202606-Per/Per01.jpg",
+        "./pic/beans/202606-Per/Per02.jpg",
+        "./pic/beans/202606-Per/Per03.jpg",
+        "./pic/beans/202606-Per/Per04.jpg",
+        "./pic/beans/202606-Per/Per05.jpg",
+        "./pic/beans/202606-Per/Per06.jpg",
+        "./pic/beans/202606-Per/Per07.jpg",
+        "./pic/beans/202606-Per/Per08.jpg"
       ]
     },
     {
@@ -98,9 +98,9 @@
         "煎り止め: 10:00"
       ],
       "images": [
-        "./pic/beans/col202602/col01.jpg",
-        "./pic/beans/col202602/col02.jpg",
-        "./pic/beans/col202602/col03.jpg"
+        "./pic/beans/202602-col/col01.jpg",
+        "./pic/beans/202602-col/col02.jpg",
+        "./pic/beans/202602-col/col03.jpg"
       ]
     },
     {
@@ -127,10 +127,10 @@
       "secondaryLabel": "他の豆はこちらから",
       "description": "インティブカ地方サンフアンの生産地で育ったカトゥアイです。はちみつのような甘さと、もう一杯飲みたくなるような爽やかな後味が魅力です。",
       "images": [
-        "./pic/beans/Hon202604/Hon01.jpg",
-        "./pic/beans/Hon202604/Hon02.jpg",
-        "./pic/beans/Hon202604/Hon03.jpg",
-        "./pic/beans/Hon202604/Hon04.jpg"
+        "./pic/beans/202604-Hon/Hon01.jpg",
+        "./pic/beans/202604-Hon/Hon02.jpg",
+        "./pic/beans/202604-Hon/Hon03.jpg",
+        "./pic/beans/202604-Hon/Hon04.jpg"
       ]
     },
     {
@@ -151,7 +151,7 @@
         "Plum",
         "Clean Acidity"
       ],
-      "recommendedBrew": "Paper Drip / AeroPress",
+      "recommendedBrew": "Paper Drip",
       "purchaseNote": "現在こちらの豆は注文をお受けしていません",
       "secondaryUrl": "https://techspresso.base.shop/",
       "secondaryLabel": "他の豆はこちらから",
@@ -180,13 +180,13 @@
         }
       },
       "images": [
-        "./pic/beans/Bur202605/Bur01.jpg",
-        "./pic/beans/Bur202605/Bur02.jpg",
-        "./pic/beans/Bur202605/Bur03.jpg",
-        "./pic/beans/Bur202605/Bur04.jpg",
-        "./pic/beans/Bur202605/Bur05.jpg",
-        "./pic/beans/Bur202605/Bur06.jpg",
-        "./pic/beans/Bur202605/Bur07.jpg"
+        "./pic/beans/202605-Bur/Bur01.jpg",
+        "./pic/beans/202605-Bur/Bur02.jpg",
+        "./pic/beans/202605-Bur/Bur03.jpg",
+        "./pic/beans/202605-Bur/Bur04.jpg",
+        "./pic/beans/202605-Bur/Bur05.jpg",
+        "./pic/beans/202605-Bur/Bur06.jpg",
+        "./pic/beans/202605-Bur/Bur07.jpg"
       ]
     }
   ]
