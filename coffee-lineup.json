@@ -1,10 +1,43 @@
 {
   "enabled": true,
-  "defaultBeanId": "costa-rica-hermanos-valso-white-honey",
+  "defaultBeanId": "ethiopia-sidamo-bensa-chantawane-washed",
   "items": [
     {
-      "id": "costa-rica-hermanos-valso-white-honey",
+      "id": "ethiopia-sidamo-bensa-chantawane-washed",
       "active": true,
+      "name": "Ethiopia Sidamo Bensa Chantawane Washed",
+      "subtitle": "シダモ高地ならではの華やかさと、透明感のある複雑な風味を楽しめる一杯。",
+      "country": "Ethiopia",
+      "farm": "Chantawane Washing Station",
+      "area": "Sidamo, Bensa, Chantawane",
+      "origin": "エチオピア / シダモ県ベンサ, シャンタワネ",
+      "variety": "74158, Ethiopian Heirloom",
+      "elevation": "2000-2250m",
+      "process": "Washed",
+      "roastLevel": "中煎り",
+      "tastingNotes": [
+        "Floral",
+        "Citrus",
+        "Tea-like"
+      ],
+      "recommendedBrew": "Paper Drip",
+      "purchaseUrl": "https://techspresso.base.shop/p/00001",
+      "purchaseLabel": "購入はこちらから",
+      "description": "シダモ県ベンサ、標高2000〜2250mのシャンタワネに位置するウォッシングステーションのロットです。周辺の990軒の小規模農家から届く完熟チェリーを丁寧に選別し、48〜72時間の発酵と水洗処理を経て、シェードを備えたアフリカンベッドで約10日間かけてゆっくり乾燥。強い日差しと冷涼な山風をコントロールする工夫が、シダモらしい華やかさ、柑橘を思わせる明るさ、紅茶のような透明感と複雑な余韻を引き出しています。",
+      "images": [
+        "./pic/beans/202608-Eth/Eth01.jpg",
+        "./pic/beans/202608-Eth/Eth02.jpg",
+        "./pic/beans/202608-Eth/Eth03.jpg",
+        "./pic/beans/202608-Eth/Eth04.jpg",
+        "./pic/beans/202608-Eth/Eth05.jpg",
+        "./pic/beans/202608-Eth/Eth06.jpg",
+        "./pic/beans/202608-Eth/Eth07.jpg",
+        "./pic/beans/202608-Eth/Eth08.jpg"
+      ]
+    },
+    {
+      "id": "costa-rica-hermanos-valso-white-honey",
+      "active": false,
       "name": "Costa Rica Hermanos Valso White Honey",
       "subtitle": "家族経営のマイクロミルが丁寧につくる、華やかさとやわらかな熟度感が心地よい一杯。",
       "country": "Costa Rica",
@@ -21,8 +54,9 @@
         "Ripe Banana"
       ],
       "recommendedBrew": "Paper Drip",
-      "purchaseUrl": "https://techspresso.base.shop/p/00001",
-      "purchaseLabel": "購入はこちらから",
+      "purchaseNote": "現在こちらの豆は注文をお受けしていません",
+      "secondaryUrl": "https://techspresso.base.shop/",
+      "secondaryLabel": "他の豆はこちらから",
       "description": "2017年に設立されたエルマノス・バルソ マイクロミルは、タラス地域で家族経営を続ける小さなミルです。長年バラブランカ農園でコーヒー生産を続けてきたエルネスト一家が、自分たちの努力で品質と価値を高めたいという思いから立ち上げました。レッドカラントやネクタリンを思わせる華やかさに、少しバナナのようなやわらかな熟度感が重なり、勤勉に、実直に作られた背景が伝わるようなクリーンで心地よい味わいです。",
       "images": [
         "./pic/beans/202607-Cos/Cos01.jpg",

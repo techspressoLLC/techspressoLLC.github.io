@@ -15,6 +15,13 @@ const DEFAULT_BEAN_THEME = {
 };
 
 const BEAN_THEMES = {
+    "ethiopia-sidamo-bensa-chantawane-washed": {
+        accent: "#b7ddd1",
+        accentStrong: "#4f9f87",
+        accentSoft: "#edf8f4",
+        accentText: "#387866",
+        accentTextStrong: "#245044"
+    },
     "costa-rica-hermanos-valso-white-honey": {
         accent: "#d7e8b8",
         accentStrong: "#b8c96e",

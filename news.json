@@ -2,6 +2,57 @@
     "enabled":  true,
     "items":  [
                   {
+                      "slug":  "new-bean-ethiopia-chantawane",
+                      "date":  "2026.07.21",
+                      "category":  [
+                                       "NEWS"
+                                   ],
+                      "title":  "エチオピア シャンタワネの豆を入荷しました",
+                      "excerpt":  "Ethiopia Sidamo Bensa Chantawane Washed を入荷しました。",
+                      "cover":  "./pic/beans/202608-Eth/Eth06.jpg",
+                      "coverPosition":  "50% 50%",
+                      "body":  [
+                                   "Ethiopia Sidamo Bensa Chantawane Washed を入荷しました。",
+                                   "シダモ県ベンサ、標高2000〜2250mの高地に位置するシャンタワネ・ウォッシングステーションのウォッシュドロットです。",
+                                   "周辺の990軒の小規模農家から届く完熟チェリーを丁寧に選別し、シェードを備えたアフリカンベッドでゆっくりと乾燥させています。",
+                                   "シダモらしい華やかさに、柑橘を思わせる明るさと紅茶のような透明感が重なる、複雑でクリーンな味わいをぜひお楽しみください。"
+                               ],
+                      "tags":  [
+                                   "INFO",
+                                   "PRODUCT"
+                               ],
+                      "externalUrl":  "./#coffee-lineup/ethiopia-sidamo-bensa-chantawane-washed",
+                      "externalLabel":  "詳細はこちらからご覧ください",
+                      "purchaseUrl":  "https://techspresso.base.shop/p/00001",
+                      "purchaseLabel":  "購入はこちらから",
+                      "pinned":  false,
+                      "active":  true
+                  },
+                  {
+                      "slug":  "crowdfunding-completed-20260630",
+                      "date":  "2026.07.01",
+                      "category":  [
+                                       "NEWS",
+                                       "IMPORTANT"
+                                   ],
+                      "title":  "クラウドファンディングが終了しました",
+                      "excerpt":  "焙煎機導入に向けたクラウドファンディングが終了しました。温かいご支援をありがとうございました。",
+                      "cover":  "./pic/crowdfunding/project-main.jpg",
+                      "coverPosition":  "50% 42%",
+                      "body":  [
+                                   "2026年6月30日をもって、焙煎機導入に向けたクラウドファンディングが終了しました。",
+                                   "41人の皆さまから総額405,000円のご支援をいただきました。応援してくださった皆さま、情報を広めてくださった皆さまに、心より感謝申し上げます。",
+                                   "お預かりした支援金は、TECHSPRESSOのコーヒーをより良い形でお届けするため、焙煎機の導入に向けて大切に活用いたします。",
+                                   "これからも活動の歩みをお伝えしてまいります。引き続きTECHSPRESSOをよろしくお願いいたします。"
+                               ],
+                      "tags":  [
+                                   "INFO",
+                                   "CROWDFUNDING"
+                               ],
+                      "pinned":  false,
+                      "active":  true
+                  },
+                  {
                       "slug":  "popup-cove-hatanodai-report-20260612",
                       "date":  "2026.06.15",
                       "category":  [
@@ -73,8 +124,9 @@
                                ],
                       "externalUrl":  "./#coffee-lineup/costa-rica-hermanos-valso-white-honey",
                       "externalLabel":  "詳細はこちらからご覧ください",
-                      "purchaseUrl":  "https://techspresso.base.shop/p/00001",
-                      "purchaseLabel":  "購入はこちらから",
+                      "purchaseNote":  "現在こちらの豆は注文をお受けしていません",
+                      "secondaryUrl":  "https://techspresso.base.shop/",
+                      "secondaryLabel":  "他の豆はこちらから",
                       "pinned":  false,
                       "active":  true
                   },
@@ -161,7 +213,7 @@
                       "externalUrl":  "https://camp-fire.jp/projects/883887/view?fbclid=PAZnRzaARi7fRleHRuA2FlbQIxMQBzcnRjBmFwcF9pZA8xMjQwMjQ1NzQyODc0MTQAAafPkexSzzyr2JdprKX8k9KzLGvLu1ad_fiGtXvuJrdOihpWrMYFyhrk-znM5Q_aem_3IwHg7crnTg_0SVi3gZSYw&utm_id=97760_v0_s00_e0_tv6_a1denni1hcu1kl&utm_source=ig&utm_medium=social&utm_content=link_in_bio",
                       "externalLabel":  "詳細はこちらから",
                       "pinned":  false,
-                      "active":  true
+                      "active":  false
                   },
                   {
                       "slug":  "corporate-registration",
