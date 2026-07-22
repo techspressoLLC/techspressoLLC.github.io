@@ -15,7 +15,7 @@ const DEFAULT_BEAN_THEME = {
 };
 
 const BEAN_THEMES = {
-    "ethiopia-sidamo-bensa-chantawane-washed": {
+    "ethiopia-g1-sidamo-bensa-shantawane-washed": {
         accent: "#b7ddd1",
         accentStrong: "#4f9f87",
         accentSoft: "#edf8f4",

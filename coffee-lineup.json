@@ -1,15 +1,15 @@
 {
   "enabled": true,
-  "defaultBeanId": "ethiopia-sidamo-bensa-chantawane-washed",
+  "defaultBeanId": "ethiopia-g1-sidamo-bensa-shantawane-washed",
   "items": [
     {
-      "id": "ethiopia-sidamo-bensa-chantawane-washed",
+      "id": "ethiopia-g1-sidamo-bensa-shantawane-washed",
       "active": true,
-      "name": "Ethiopia Sidamo Bensa Chantawane Washed",
+      "name": "Ethiopia G-1 Sidamo Bensa Shantawane Washed",
       "subtitle": "シダモ高地ならではの華やかさと、透明感のある複雑な風味を楽しめる一杯。",
       "country": "Ethiopia",
-      "farm": "Chantawane Washing Station",
-      "area": "Sidamo, Bensa, Chantawane",
+      "farm": "Shantawane Washing Station",
+      "area": "Sidamo, Bensa, Shantawane",
       "origin": "エチオピア / シダモ県ベンサ, シャンタワネ",
       "variety": "74158, Ethiopian Heirloom",
       "elevation": "2000-2250m",
@@ -23,7 +23,7 @@
       "recommendedBrew": "Paper Drip",
       "purchaseUrl": "https://techspresso.base.shop/p/00001",
       "purchaseLabel": "購入はこちらから",
-      "description": "シダモ県ベンサ、標高2000〜2250mのシャンタワネに位置するウォッシングステーションのロットです。周辺の990軒の小規模農家から届く完熟チェリーを丁寧に選別し、48〜72時間の発酵と水洗処理を経て、シェードを備えたアフリカンベッドで約10日間かけてゆっくり乾燥。強い日差しと冷涼な山風をコントロールする工夫が、シダモらしい華やかさ、柑橘を思わせる明るさ、紅茶のような透明感と複雑な余韻を引き出しています。",
+      "description": "シダモ県ベンサ、標高2000〜2250mのシャンタワネに位置するウォッシングステーションのロットです。品種の74158は、1960年代に広がったコーヒーベリー病を背景に、ジンマ農業研究センター（JARC）がエチオピア原生品種をもとに研究を進め、1974年に選抜・開発した耐病性の高い系統の一つです。周辺の990軒の小規模農家から届く完熟チェリーを丁寧に選別し、48〜72時間の発酵と水洗処理を経て、シェードを備えたアフリカンベッドで約10日間かけてゆっくり乾燥。強い日差しと冷涼な山風をコントロールする工夫が、シダモらしい華やかさ、柑橘を思わせる明るさ、紅茶のような透明感と複雑な余韻を引き出しています。",
       "images": [
         "./pic/beans/202608-Eth/Eth01.jpg",
         "./pic/beans/202608-Eth/Eth02.jpg",

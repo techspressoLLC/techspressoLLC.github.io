@@ -19,7 +19,7 @@ function navigateTo(pageId) {
     }
 }
 
-const CROWDFUNDING_ENABLED = true;
+const CROWDFUNDING_ENABLED = false;
 
 function getFixedOffset() {
     const header = document.getElementById('header');
@@ -854,6 +854,11 @@ const handleHashRoute = async () => {
 
     if (hash === '#event') {
         navigateTo('event');
+        return;
+    }
+
+    if (hash === '#supporters') {
+        navigateTo('supporters');
         return;
     }
 

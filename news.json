@@ -2,18 +2,19 @@
     "enabled":  true,
     "items":  [
                   {
-                      "slug":  "new-bean-ethiopia-chantawane",
+                      "slug":  "new-bean-ethiopia-shantawane",
                       "date":  "2026.07.21",
                       "category":  [
                                        "NEWS"
                                    ],
                       "title":  "エチオピア シャンタワネの豆を入荷しました",
-                      "excerpt":  "Ethiopia Sidamo Bensa Chantawane Washed を入荷しました。",
+                      "excerpt":  "Ethiopia G-1 Sidamo Bensa Shantawane Washed を入荷しました。",
                       "cover":  "./pic/beans/202608-Eth/Eth06.jpg",
                       "coverPosition":  "50% 50%",
                       "body":  [
-                                   "Ethiopia Sidamo Bensa Chantawane Washed を入荷しました。",
+                                   "Ethiopia G-1 Sidamo Bensa Shantawane Washed を入荷しました。",
                                    "シダモ県ベンサ、標高2000〜2250mの高地に位置するシャンタワネ・ウォッシングステーションのウォッシュドロットです。",
+                                   "品種の74158は、コーヒーベリー病への対策として、ジンマ農業研究センター（JARC）がエチオピア原生品種をもとに研究し、1974年に選抜・開発した耐病性の高い系統の一つです。",
                                    "周辺の990軒の小規模農家から届く完熟チェリーを丁寧に選別し、シェードを備えたアフリカンベッドでゆっくりと乾燥させています。",
                                    "シダモらしい華やかさに、柑橘を思わせる明るさと紅茶のような透明感が重なる、複雑でクリーンな味わいをぜひお楽しみください。"
                                ],
@@ -21,7 +22,7 @@
                                    "INFO",
                                    "PRODUCT"
                                ],
-                      "externalUrl":  "./#coffee-lineup/ethiopia-sidamo-bensa-chantawane-washed",
+                      "externalUrl":  "./#coffee-lineup/ethiopia-g1-sidamo-bensa-shantawane-washed",
                       "externalLabel":  "詳細はこちらからご覧ください",
                       "purchaseUrl":  "https://techspresso.base.shop/p/00001",
                       "purchaseLabel":  "購入はこちらから",
@@ -49,6 +50,8 @@
                                    "INFO",
                                    "CROWDFUNDING"
                                ],
+                      "externalUrl":  "./#supporters",
+                      "externalLabel":  "ご支援者一覧はこちら",
                       "pinned":  false,
                       "active":  true
                   },
