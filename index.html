@@ -170,25 +170,25 @@
     </header>
 
     <!-- Secondary navigation: Promotions -->
-    <div id="crowdfunding-bar" data-crowdfunding-ui class="fixed left-0 right-0 z-40">
+    <div id="supporters-bar" data-supporters-promotion-ui class="fixed left-0 right-0 z-40">
         <div class="container mx-auto px-4 md:px-6">
                 <div
-                    class="flex items-center gap-2 sm:gap-3 rounded-[2rem] sm:rounded-full border border-slate-200 bg-white/95 px-2.5 sm:px-3 py-2 shadow-lg shadow-blue-200/40 backdrop-blur">
+                    class="flex items-center gap-2 sm:gap-3 rounded-[2rem] sm:rounded-full border border-sky-200 bg-sky-50/95 px-2.5 sm:px-3 py-2 shadow-lg shadow-sky-200/50 backdrop-blur">
                     <div class="flex-1 min-w-0">
-                        <a href="javascript:void(0)" onclick="goToHomeSection('crowdfunding');"
-                            class="flex min-w-0 items-center justify-between gap-2 rounded-[1.2rem] border border-blue-200 bg-gradient-to-r from-slate-900 to-blue-800 px-3 sm:px-4 py-2 sm:py-2.5 text-white shadow-sm transition hover:shadow-md">
+                        <a href="javascript:void(0)" onclick="navigateTo('supporters');"
+                            class="flex min-w-0 items-center justify-between gap-2 rounded-[1.2rem] border border-sky-200 bg-gradient-to-r from-sky-100 to-blue-200 px-3 sm:px-4 py-2 sm:py-2.5 text-slate-900 shadow-sm transition hover:shadow-md">
                             <div class="min-w-0 text-left">
-                                <p class="text-[8px] sm:text-[9px] font-black uppercase tracking-[0.25em] text-blue-100">Project</p>
-                                <p class="mt-0.5 truncate text-[10px] sm:text-[11px] font-black uppercase tracking-[0.12em]">Crowd Funding</p>
+                                <p class="text-[8px] sm:text-[9px] font-black uppercase tracking-[0.25em] text-blue-700">Thank You</p>
+                                <p class="mt-0.5 truncate text-[10px] sm:text-[11px] font-black uppercase tracking-[0.12em]">Our Supporters</p>
                             </div>
                             <span
-                                class="inline-flex shrink-0 items-center justify-center rounded-full bg-white px-2.5 sm:px-3 py-1 text-[8px] sm:text-[9px] font-black uppercase tracking-[0.18em] text-slate-900">
+                                class="inline-flex shrink-0 items-center justify-center rounded-full bg-white/90 px-2.5 sm:px-3 py-1 text-[8px] sm:text-[9px] font-black uppercase tracking-[0.18em] text-blue-800">
                                 View
                             </span>
                         </a>
                     </div>
-                    <button id="crowdfunding-hide" type="button"
-                        class="inline-grid shrink-0 grid-cols-[16px_auto_16px] items-center rounded-full border border-slate-200 bg-slate-900 px-3 sm:px-4 py-2 text-[8px] sm:text-[9px] font-black uppercase tracking-[0.2em] text-white hover:bg-blue-700 transition whitespace-nowrap"
+                    <button id="supporters-hide" type="button"
+                        class="inline-grid shrink-0 grid-cols-[16px_auto_16px] items-center rounded-full border border-blue-600 bg-blue-600 px-3 sm:px-4 py-2 text-[8px] sm:text-[9px] font-black uppercase tracking-[0.2em] text-white hover:bg-blue-700 transition whitespace-nowrap"
                         aria-label="Hide promotion bar">
                             <svg class="w-4 h-4 opacity-70" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                                 <path d="M18 6L6 18M6 6l12 12"></path>
@@ -200,13 +200,13 @@
             </div>
         </div>
     </div>
-    <button id="crowdfunding-show" data-crowdfunding-ui type="button"
-        class="fixed right-4 z-40 hidden items-center gap-2 rounded-full bg-slate-900 text-white px-4 py-2 text-[9px] font-black uppercase tracking-[0.25em] shadow-lg shadow-blue-200/60 hover:bg-blue-700 transition"
+    <button id="supporters-show" data-supporters-promotion-ui type="button"
+        class="fixed right-4 z-40 hidden items-center gap-2 rounded-full bg-blue-600 text-white px-4 py-2 text-[9px] font-black uppercase tracking-[0.25em] shadow-lg shadow-sky-200/60 hover:bg-blue-700 transition"
         aria-label="Show promotion bar">
         <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
             <path d="M12 5l7 7-7 7-1.4-1.4 4.6-4.6H5v-2h10.2l-4.6-4.6L12 5z"></path>
         </svg>
-        promotion
+        supporters
     </button>
 
     <main class="min-h-screen pt-32 md:pt-32">

@@ -20,10 +20,11 @@ function navigateTo(pageId) {
 }
 
 const CROWDFUNDING_ENABLED = false;
+const SUPPORTERS_PROMOTION_ENABLED = true;
 
 function getFixedOffset() {
     const header = document.getElementById('header');
-    const bar = document.getElementById('crowdfunding-bar');
+    const bar = document.getElementById('supporters-bar');
     const headerHeight = header ? header.getBoundingClientRect().height : 0;
     const barHeight = bar && !bar.classList.contains('hidden') ? bar.getBoundingClientRect().height : 0;
     return headerHeight + barHeight + 16;
@@ -80,8 +81,8 @@ function applyCrowdfundingVisibility() {
 
 function updateCrowdfundingOffsets() {
     const header = document.getElementById('header');
-    const bar = document.getElementById('crowdfunding-bar');
-    const showButton = document.getElementById('crowdfunding-show');
+    const bar = document.getElementById('supporters-bar');
+    const showButton = document.getElementById('supporters-show');
     const main = document.querySelector('main');
     if (!header || !bar || !showButton || !main) return;
 
@@ -93,6 +94,15 @@ function updateCrowdfundingOffsets() {
     bar.style.top = `${topOffset}px`;
     showButton.style.top = `${topOffset}px`;
     main.style.paddingTop = `${headerHeight + barHeight + 16}px`;
+}
+
+function applySupportersPromotionVisibility() {
+    document.querySelectorAll('[data-supporters-promotion-ui]').forEach((element) => {
+        element.classList.toggle('hidden', !SUPPORTERS_PROMOTION_ENABLED || element.id === 'supporters-show');
+        if (element.id === 'supporters-show') {
+            element.classList.remove('flex');
+        }
+    });
 }
 
 const menuToggle = document.getElementById('menu-toggle');
@@ -111,7 +121,6 @@ const closeMobileMenuOnOutsideClick = (event) => {
     mobileMenu.classList.remove('active');
 };
 
-const NEWS_LIMIT = 10;
 const NEWS_JSON_PATH = './news.json';
 // Switch to 'popup-cove-hatanodai' to restore the previous event page.
 const EVENT_CONTENT_VARIANT = 'coming-soon';
@@ -299,7 +308,7 @@ const renderNewsList = () => {
     }
 
     const sorted = sortNewsItems(newsItems);
-    const filtered = applyFilters(sorted).slice(0, NEWS_LIMIT);
+    const filtered = applyFilters(sorted);
     if (!filtered.length) {
         const empty = document.createElement('p');
         empty.className = 'text-xs text-slate-400 tracking-wide';
@@ -400,6 +409,9 @@ const renderImageGallery = (gallery, title, container) => {
         frame.className = isContained
             ? 'flex items-start justify-center'
             : 'rounded-[2rem] overflow-hidden border border-slate-100 shadow-sm aspect-[4/3]';
+        if (item.fullWidth) {
+            frame.classList.add('sm:col-span-2');
+        }
         if (typeof item.background === 'string' && item.background) {
             frame.style.background = item.background;
         }
@@ -926,22 +938,23 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    const crowdfundingBar = document.getElementById('crowdfunding-bar');
-    const hideCrowdfunding = document.getElementById('crowdfunding-hide');
-    const showCrowdfunding = document.getElementById('crowdfunding-show');
+    const supportersBar = document.getElementById('supporters-bar');
+    const hideSupporters = document.getElementById('supporters-hide');
+    const showSupporters = document.getElementById('supporters-show');
     applyCrowdfundingVisibility();
+    applySupportersPromotionVisibility();
 
-    if (CROWDFUNDING_ENABLED && crowdfundingBar && hideCrowdfunding && showCrowdfunding) {
-        hideCrowdfunding.addEventListener('click', () => {
-            crowdfundingBar.classList.add('hidden');
-            showCrowdfunding.classList.remove('hidden');
-            showCrowdfunding.classList.add('flex');
+    if (SUPPORTERS_PROMOTION_ENABLED && supportersBar && hideSupporters && showSupporters) {
+        hideSupporters.addEventListener('click', () => {
+            supportersBar.classList.add('hidden');
+            showSupporters.classList.remove('hidden');
+            showSupporters.classList.add('flex');
             updateCrowdfundingOffsets();
         });
-        showCrowdfunding.addEventListener('click', () => {
-            crowdfundingBar.classList.remove('hidden');
-            showCrowdfunding.classList.add('hidden');
-            showCrowdfunding.classList.remove('flex');
+        showSupporters.addEventListener('click', () => {
+            supportersBar.classList.remove('hidden');
+            showSupporters.classList.add('hidden');
+            showSupporters.classList.remove('flex');
             updateCrowdfundingOffsets();
         });
     }
