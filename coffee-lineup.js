@@ -450,6 +450,8 @@ const renderCoffeeLineupList = () => {
     const listContainer = document.getElementById("coffee-lineup-list");
     if (!listContainer) return;
 
+    const previousArchive = listContainer.querySelector("[data-coffee-archive-scroll]");
+    const previousArchiveScrollTop = previousArchive ? previousArchive.scrollTop : 0;
     listContainer.textContent = "";
     const activeBeans = coffeeBeans.filter((bean) => bean.active !== false);
     const archivedBeans = coffeeBeans.filter((bean) => bean.active === false);
@@ -468,6 +470,23 @@ const renderCoffeeLineupList = () => {
         heading.textContent = label;
         heading.style.color = isArchive ? "#94a3b8" : "#8c6a12";
         section.appendChild(heading);
+
+        const beanList = document.createElement("div");
+        beanList.className = "space-y-3";
+        if (isArchive) {
+            beanList.dataset.coffeeArchiveScroll = "";
+            beanList.classList.add(
+                "max-h-[22rem]",
+                "sm:max-h-[28rem]",
+                "overflow-y-auto",
+                "overscroll-contain",
+                "pr-2",
+                "pb-2"
+            );
+            beanList.tabIndex = 0;
+            beanList.setAttribute("role", "region");
+            beanList.setAttribute("aria-label", "過去の豆一覧");
+        }
 
         beans.forEach((bean) => {
         const button = document.createElement("button");
@@ -506,14 +525,20 @@ const renderCoffeeLineupList = () => {
             renderCoffeeLineupList();
             renderCoffeeLineupDetail(selectedCoffeeBeanId);
         });
-        section.appendChild(button);
+        beanList.appendChild(button);
         });
 
+        section.appendChild(beanList);
         listContainer.appendChild(section);
     };
 
     renderSection("お取り扱い中", activeBeans);
     renderSection("過去の豆はこちら", archivedBeans, true);
+
+    const currentArchive = listContainer.querySelector("[data-coffee-archive-scroll]");
+    if (currentArchive) {
+        currentArchive.scrollTop = previousArchiveScrollTop;
+    }
 };
 
 window.selectCoffeeBeanById = (beanId) => {
