@@ -15,6 +15,13 @@ const DEFAULT_BEAN_THEME = {
 };
 
 const BEAN_THEMES = {
+    "techspresso-autumn-blend-2026": {
+        accent: "#d6b37a",
+        accentStrong: "#a96f2b",
+        accentSoft: "#fbf3e5",
+        accentText: "#8a5a25",
+        accentTextStrong: "#593817"
+    },
     "ethiopia-g1-sidamo-bensa-shantawane-washed": {
         accent: "#b7ddd1",
         accentStrong: "#4f9f87",
