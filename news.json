@@ -2,6 +2,35 @@
     "enabled":  true,
     "items":  [
                   {
+                      "slug":  "techspresso-autumn-blend-2026",
+                      "date":  "2026.09.03",
+                      "category":  [
+                                       "NEWS"
+                                   ],
+                      "title":  "秋限定「TECHSPRESSO AUTUMN BLEND 2026」を発売しました",
+                      "excerpt":  "香ばしいマロンを感じさせる、心温まる秋限定ブレンドができました。",
+                      "cover":  "./pic/shop/carousel-07-beans.jpg",
+                      "coverPosition":  "50% 50%",
+                      "body":  [
+                                   "スペシャルティコーヒーの新ブレンド豆「TECHSPRESSO AUTUMN BLEND 2026」を発売しました。",
+                                   "ホンジュラス、コスタリカ、エチオピアの3種類を選び、この季節のために仕立てたTECHSPRESSO初のオータムブレンドです。",
+                                   "やわらかな甘さに香ばしいマロンを思わせる風味、中深煎りならではのほどよいコクが重なります。",
+                                   "朝のはじまりにも、ゆっくり過ごす午後にも。秋の時間にそっと寄り添う味わいを、ぜひお楽しみください。"
+                               ],
+                      "tags":  [
+                                   "INFO",
+                                   "PRODUCT",
+                                   "SEASONAL",
+                                   "BLEND"
+                               ],
+                      "externalUrl":  "./#coffee-lineup/techspresso-autumn-blend-2026",
+                      "externalLabel":  "詳細はこちらからご覧ください",
+                      "purchaseUrl":  "https://techspresso.base.shop/p/00001",
+                      "purchaseLabel":  "購入はこちらから",
+                      "pinned":  false,
+                      "active":  true
+                  },
+                  {
                       "slug":  "new-bean-ethiopia-shantawane",
                       "date":  "2026.07.21",
                       "category":  [
@@ -24,8 +53,9 @@
                                ],
                       "externalUrl":  "./#coffee-lineup/ethiopia-g1-sidamo-bensa-shantawane-washed",
                       "externalLabel":  "詳細はこちらからご覧ください",
-                      "purchaseUrl":  "https://techspresso.base.shop/p/00001",
-                      "purchaseLabel":  "購入はこちらから",
+                      "purchaseNote":  "現在こちらの豆は注文をお受けしていません",
+                      "secondaryUrl":  "https://techspresso.base.shop/",
+                      "secondaryLabel":  "他の豆はこちらから",
                       "pinned":  false,
                       "active":  true
                   },

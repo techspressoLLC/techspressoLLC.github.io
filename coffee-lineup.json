@@ -1,10 +1,38 @@
 {
   "enabled": true,
-  "defaultBeanId": "ethiopia-g1-sidamo-bensa-shantawane-washed",
+  "defaultBeanId": "techspresso-autumn-blend-2026",
   "items": [
     {
-      "id": "ethiopia-g1-sidamo-bensa-shantawane-washed",
+      "id": "techspresso-autumn-blend-2026",
       "active": true,
+      "name": "TECHSPRESSO AUTUMN BLEND 2026",
+      "subtitle": "香ばしいマロンを感じさせる、やわらかな甘さとほどよいコクの秋限定ブレンド。",
+      "country": "Honduras, Costa Rica, Ethiopia",
+      "farm": "Intibucá, Tarrazú, Sidamo",
+      "area": "Latin America, Africa",
+      "origin": "ホンジュラス、コスタリカ、エチオピア",
+      "variety": "Catuai, 74158, Ethiopian Heirloom",
+      "elevation": "1800-2250m",
+      "process": "Washed",
+      "roastLevel": "中深煎り",
+      "tastingNotes": [
+        "Roasted Chestnut",
+        "Soft Sweetness",
+        "Comforting Body"
+      ],
+      "recommendedBrew": "Paper Drip",
+      "purchaseUrl": "https://techspresso.base.shop/p/00001",
+      "purchaseLabel": "購入はこちらから",
+      "description": "涼しい風に少しずつ秋を感じる季節に向けて、TECHSPRESSOで扱うシングルオリジンからホンジュラス、コスタリカ、エチオピアの3種類を選びました。やわらかな甘さに香ばしいマロンを思わせる風味、中深煎りならではのほどよいコクが重なり、ほっと心がほどけるような味わいです。朝のはじまりにも、ゆっくり過ごす午後にも。秋の時間にそっと寄り添う、TECHSPRESSO初のオータムブレンドです。",
+      "images": [
+        "./pic/beans/202604-Hon/Hon01.jpg",
+        "./pic/beans/202607-Cos/Cos01.jpg",
+        "./pic/beans/202608-Eth/Eth01.jpg"
+      ]
+    },
+    {
+      "id": "ethiopia-g1-sidamo-bensa-shantawane-washed",
+      "active": false,
       "name": "Ethiopia G-1 Sidamo Bensa Shantawane Washed",
       "subtitle": "シダモ高地ならではの華やかさと、透明感のある複雑な風味を楽しめる一杯。",
       "country": "Ethiopia",
@@ -21,8 +49,9 @@
         "Tea-like"
       ],
       "recommendedBrew": "Paper Drip",
-      "purchaseUrl": "https://techspresso.base.shop/p/00001",
-      "purchaseLabel": "購入はこちらから",
+      "purchaseNote": "現在こちらの豆は注文をお受けしていません",
+      "secondaryUrl": "https://techspresso.base.shop/",
+      "secondaryLabel": "他の豆はこちらから",
       "description": "シダモ県ベンサ、標高2000〜2250mのシャンタワネに位置するウォッシングステーションのロットです。品種の74158は、1960年代に広がったコーヒーベリー病を背景に、ジンマ農業研究センター（JARC）がエチオピア原生品種をもとに研究を進め、1974年に選抜・開発した耐病性の高い系統の一つです。周辺の990軒の小規模農家から届く完熟チェリーを丁寧に選別し、48〜72時間の発酵と水洗処理を経て、シェードを備えたアフリカンベッドで約10日間かけてゆっくり乾燥。強い日差しと冷涼な山風をコントロールする工夫が、シダモらしい華やかさ、柑橘を思わせる明るさ、紅茶のような透明感と複雑な余韻を引き出しています。",
       "images": [
         "./pic/beans/202608-Eth/Eth01.jpg",
