@@ -2,6 +2,33 @@
     "enabled":  true,
     "items":  [
                   {
+                      "slug":  "new-bean-guatemala-florencia-bourbon",
+                      "date":  "2026.10.10",
+                      "category":  [
+                                       "NEWS"
+                                   ],
+                      "title":  "グアテマラ フロレンシア農園の豆を入荷しました",
+                      "excerpt":  "6代にわたり受け継がれてきた、明るい果実味と甘さが調和するブルボンです。",
+                      "cover":  "./pic/beans/202610-Gua/Gua02.jpg",
+                      "coverPosition":  "50% 50%",
+                      "body":  [
+                                   "Guatemala Florencia Bourbon を入荷しました。",
+                                   "首都グアテマラ・シティの東約40km、アマティトランに位置するフロレンシア農園で、19世紀初頭の開園以来6代にわたって受け継がれてきたブルボンです。",
+                                   "2008年と2009年には2年連続でグァテマラ カップ・オブ・エクセレンスを受賞。社会と環境への責任を大切にしながら、農園を愛する従業員たちが高品質なコーヒーづくりを続けています。",
+                                   "オレンジやレッドアップルを思わせる爽やかな風味、明るい酸、キャラメルやミルクチョコレートのような甘さが調和した、クリーンでバランスのよい味わいをお楽しみください。"
+                               ],
+                      "tags":  [
+                                   "INFO",
+                                   "PRODUCT"
+                               ],
+                      "externalUrl":  "./#coffee-lineup/guatemala-florencia-bourbon",
+                      "externalLabel":  "詳細はこちらからご覧ください",
+                      "purchaseUrl":  "https://techspresso.base.shop/p/00001",
+                      "purchaseLabel":  "購入はこちらから",
+                      "pinned":  false,
+                      "active":  true
+                  },
+                  {
                       "slug":  "techspresso-autumn-blend-2026",
                       "date":  "2026.09.03",
                       "category":  [
@@ -25,8 +52,9 @@
                                ],
                       "externalUrl":  "./#coffee-lineup/techspresso-autumn-blend-2026",
                       "externalLabel":  "詳細はこちらからご覧ください",
-                      "purchaseUrl":  "https://techspresso.base.shop/p/00001",
-                      "purchaseLabel":  "購入はこちらから",
+                      "purchaseNote":  "現在こちらの豆は注文をお受けしていません",
+                      "secondaryUrl":  "https://techspresso.base.shop/",
+                      "secondaryLabel":  "他の豆はこちらから",
                       "pinned":  false,
                       "active":  true
                   },

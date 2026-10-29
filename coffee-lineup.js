@@ -15,6 +15,13 @@ const DEFAULT_BEAN_THEME = {
 };
 
 const BEAN_THEMES = {
+    "guatemala-florencia-bourbon": {
+        accent: "#c9ddaf",
+        accentStrong: "#789854",
+        accentSoft: "#f3f8ec",
+        accentText: "#58733a",
+        accentTextStrong: "#344824"
+    },
     "techspresso-autumn-blend-2026": {
         accent: "#d6b37a",
         accentStrong: "#a96f2b",

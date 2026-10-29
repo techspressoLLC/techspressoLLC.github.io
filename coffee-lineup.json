@@ -1,10 +1,40 @@
 {
   "enabled": true,
-  "defaultBeanId": "techspresso-autumn-blend-2026",
+  "defaultBeanId": "guatemala-florencia-bourbon",
   "items": [
     {
-      "id": "techspresso-autumn-blend-2026",
+      "id": "guatemala-florencia-bourbon",
       "active": true,
+      "name": "Guatemala Florencia Bourbon",
+      "subtitle": "オレンジやレッドアップルの明るさに、キャラメルのような甘さが重なるバランスのよい一杯。",
+      "country": "Guatemala",
+      "farm": "Florencia Farm",
+      "area": "Amatitlan",
+      "origin": "グアテマラ / アマティトラン",
+      "variety": "Bourbon",
+      "elevation": "1570m",
+      "process": "Fully Washed",
+      "roastLevel": "中煎り",
+      "tastingNotes": [
+        "Orange",
+        "Red Apple",
+        "Caramel"
+      ],
+      "recommendedBrew": "Paper Drip",
+      "purchaseUrl": "https://techspresso.base.shop/p/00001",
+      "purchaseLabel": "購入はこちらから",
+      "description": "首都グアテマラ・シティの東約40km、アマティトランに位置するフロレンシア農園のブルボンです。19世紀初頭の開園以来、6代にわたってコーヒー栽培を続け、2008年と2009年には2年連続でグァテマラ カップ・オブ・エクセレンスを受賞しました。農園開設当初から受け継がれるブルボン品種を、農園を愛する約40人の従業員が育てています。オレンジやレッドアップルを思わせる爽やかな風味と明るい酸、キャラメルやミルクチョコレートのような甘さが調和した、クリーンで親しみやすい味わいです。",
+      "images": [
+        "./pic/beans/202610-Gua/Gua01.jpg",
+        "./pic/beans/202610-Gua/Gua02.jpg",
+        "./pic/beans/202610-Gua/Gua03.jpg",
+        "./pic/beans/202610-Gua/Gua04.jpg",
+        "./pic/beans/202610-Gua/Gua05.jpg"
+      ]
+    },
+    {
+      "id": "techspresso-autumn-blend-2026",
+      "active": false,
       "name": "TECHSPRESSO AUTUMN BLEND 2026",
       "subtitle": "香ばしいマロンを感じさせる、やわらかな甘さとほどよいコクの秋限定ブレンド。",
       "country": "Honduras, Costa Rica, Ethiopia",
@@ -21,8 +51,9 @@
         "Comforting Body"
       ],
       "recommendedBrew": "Paper Drip",
-      "purchaseUrl": "https://techspresso.base.shop/p/00001",
-      "purchaseLabel": "購入はこちらから",
+      "purchaseNote": "現在こちらの豆は注文をお受けしていません",
+      "secondaryUrl": "https://techspresso.base.shop/",
+      "secondaryLabel": "他の豆はこちらから",
       "description": "涼しい風に少しずつ秋を感じる季節に向けて、TECHSPRESSOで扱うシングルオリジンからホンジュラス、コスタリカ、エチオピアの3種類を選びました。やわらかな甘さに香ばしいマロンを思わせる風味、中深煎りならではのほどよいコクが重なり、ほっと心がほどけるような味わいです。朝のはじまりにも、ゆっくり過ごす午後にも。秋の時間にそっと寄り添う、TECHSPRESSO初のオータムブレンドです。",
       "images": [
         "./pic/beans/202604-Hon/Hon01.jpg",
