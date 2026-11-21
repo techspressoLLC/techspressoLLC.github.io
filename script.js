@@ -123,7 +123,7 @@ const closeMobileMenuOnOutsideClick = (event) => {
 
 const NEWS_JSON_PATH = './news.json';
 // Switch to 'popup-cove-hatanodai' to restore the previous event page.
-const EVENT_CONTENT_VARIANT = 'coming-soon';
+const EVENT_CONTENT_VARIANT = 'popup-cove-hatanodai-20261211';
 const EVENT_CONTENT_PATH = `./partials/event/${EVENT_CONTENT_VARIANT}.html`;
 const isDiscordWebView = /Discord/i.test(navigator.userAgent);
 

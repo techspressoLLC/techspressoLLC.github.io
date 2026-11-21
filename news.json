@@ -2,6 +2,37 @@
     "enabled":  true,
     "items":  [
                   {
+                      "slug": "popup-cove-hatanodai-20261211",
+                      "date": "2026.11.21",
+                      "category": [
+                          "NEWS",
+                          "EVENT"
+                      ],
+                      "title": "12月11日（金）、旗の台でPOP UPを開催します",
+                      "excerpt": "cove coffee stand 旗の台で、TECHSPRESSOのコーヒーをお楽しみいただけます。",
+                      "cover": "./pic/news/popup-20260925/coffee-service.jpg",
+                      "coverPosition": "50% 50%",
+                      "body": [
+                          "12月11日（金）、cove coffee stand 旗の台に出店します。冬のひとときに、TECHSPRESSOのコーヒーで温まりませんか。",
+                          "会場は旗の台駅東口から徒歩約5分です。開催時間は決まり次第お知らせします。"
+                      ],
+                      "place": "cove coffee stand 旗の台",
+                      "address": "東京都品川区旗の台4丁目6-2",
+                      "access": "旗の台駅 東口から徒歩約5分 / 東急大井町線・東急池上線",
+                      "schedule": "2026年12月11日（金）",
+                      "mapTitle": "Google Map for cove coffee stand 旗の台",
+                      "mapEmbedUrl": "https://www.google.com/maps?q=%E6%9D%B1%E4%BA%AC%E9%83%BD%E5%93%81%E5%B7%9D%E5%8C%BA%E6%97%97%E3%81%AE%E5%8F%B04%E4%B8%81%E7%9B%AE6-2&z=16&output=embed",
+                      "mapOpenUrl": "https://www.google.com/maps/search/?api=1&query=%E6%9D%B1%E4%BA%AC%E9%83%BD%E5%93%81%E5%B7%9D%E5%8C%BA%E6%97%97%E3%81%AE%E5%8F%B04%E4%B8%81%E7%9B%AE6-2",
+                      "tags": [
+                          "EVENT",
+                          "POP UP"
+                      ],
+                      "externalUrl": "./#event",
+                      "externalLabel": "POP UPの詳細を見る",
+                      "pinned": false,
+                      "active": true
+                  },
+                  {
                     "slug": "new-bean-techspresso-christmas-blend-2026",
                     "date": "2026.11.21",
                     "category": [
