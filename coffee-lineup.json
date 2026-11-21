@@ -1,10 +1,38 @@
 {
   "enabled": true,
-  "defaultBeanId": "guatemala-florencia-bourbon",
+  "defaultBeanId": "techspresso-christmas-blend-2026",
   "items": [
     {
-      "id": "guatemala-florencia-bourbon",
+      "id": "techspresso-christmas-blend-2026",
       "active": true,
+      "name": "TECHSPRESSO CHRISTMAS BLEND 2026",
+      "subtitle": "深いコクにやさしい甘さと華やかな余韻が重なる、冬限定の中深煎りブレンド。",
+      "country": "Guatemala, Peru, Burundi",
+      "farm": "Florencia, smallholder farmers in Inambari, Yandaro washing station",
+      "area": "Amatitlán, Inambari, Kayanza",
+      "origin": "グアテマラ、ペルー、ブルンジ",
+      "variety": "Caturra, Bourbon, Typica",
+      "elevation": "1400-1900m",
+      "process": "Washed",
+      "roastLevel": "中深煎り",
+      "tastingNotes": [
+        "Rich Body",
+        "Gentle Sweetness",
+        "Floral Finish"
+      ],
+      "recommendedBrew": "Paper Drip",
+      "purchaseUrl": "https://techspresso.base.shop/items/165529225",
+      "purchaseLabel": "購入はこちらから",
+      "description": "グアテマラのフロレンシア農園、ペルーのイナンバリの小規模農家、ブルンジのヤンダロ・ウォッシングステーションの豆を合わせました。中深煎りの豊かなコクに、やわらかな甘みと華やかな余韻が続きます。クリスマスのお菓子と一緒に、ゆっくりとお楽しみください。",
+      "images": [
+        "./pic/beans/202611-Chr/Chr01.jpg",
+        "./pic/beans/202611-Chr/Chr02.jpg",
+        "./pic/beans/202611-Chr/Chr03.jpg"
+      ]
+    },
+    {
+      "id": "guatemala-florencia-bourbon",
+      "active": false,
       "name": "Guatemala Florencia Bourbon",
       "subtitle": "オレンジや赤りんごの爽やかな果実味に、ミルクチョコレートのようなやさしい甘さが重なる一杯。",
       "country": "Guatemala",
@@ -21,8 +49,9 @@
         "Milk Chocolate"
       ],
       "recommendedBrew": "Paper Drip",
-      "purchaseUrl": "https://techspresso.base.shop/p/00001",
-      "purchaseLabel": "購入はこちらから",
+      "purchaseNote": "現在こちらの豆は注文をお受けしていません",
+      "secondaryUrl": "https://techspresso.base.shop/",
+      "secondaryLabel": "他の豆はこちらから",
       "description": "首都グアテマラ・シティの東約40km、アマティトランに位置するフロレンシア農園のブルボンです。19世紀初頭の開園以来、6代にわたってコーヒー栽培を続け、2008年と2009年には2年連続でグァテマラ カップ・オブ・エクセレンスを受賞しました。農園開設当初から受け継がれるブルボン品種を、農園を愛する約40人の従業員が育てています。オレンジや赤りんごを思わせる爽やかな果実味に、ミルクチョコレートのようなやさしい甘さが重なります。明るい酸味となめらかな口当たりが心地よい、中煎りのコーヒーです。",
       "images": [
         "./pic/beans/202610-Gua/Gua01.jpg",

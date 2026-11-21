@@ -2,6 +2,57 @@
     "enabled":  true,
     "items":  [
                   {
+                    "slug": "new-bean-techspresso-christmas-blend-2026",
+                    "date": "2026.11.21",
+                    "category": [
+                      "NEWS"
+                    ],
+                    "title": "冬限定「TECHSPRESSO CHRISTMAS BLEND 2026」を発売しました",
+                    "excerpt": "深いコクにやさしい甘さと華やかな余韻が重なる、冬限定の中深煎りブレンド。",
+                    "cover": "./pic/beans/202611-Chr/Chr02.jpg",
+                    "coverPosition": "50% 50%",
+                    "body": [
+                      "季節限定の「TECHSPRESSO CHRISTMAS BLEND 2026」をオンラインショップで発売しました。グアテマラ、ペルー、ブルンジの豆を合わせた、100g入りのスペシャルティコーヒーです。",
+                      "中深煎りのしっかりとしたコクに、やさしい甘さと華やかな余韻が重なります。クリスマスのお菓子を囲むひとときに、ぜひお楽しみください。"
+                    ],
+                    "tags": [
+                      "INFO",
+                      "PRODUCT"
+                    ],
+                    "externalUrl": "./#coffee-lineup/techspresso-christmas-blend-2026",
+                    "externalLabel": "詳細はこちらからご覧ください",
+                    "purchaseUrl": "https://techspresso.base.shop/items/165529225",
+                    "purchaseLabel": "購入はこちらから",
+                    "pinned": false,
+                    "active": true
+                  },
+                  {
+                      "slug":  "kodaisai-techspresso-for-students-20261010-11",
+                      "date":  "2026.10.11",
+                      "category":  [
+                                       "NEWS",
+                                       "EVENT"
+                                   ],
+                      "title":  "TECHSPRESSO FOR STUDENTSが工大祭に出店しました",
+                      "excerpt":  "私たちの原点であるコーヒーサークルが、TECHSPRESSO焙煎の豆を使ったコーヒーを工大祭で提供しました。",
+                      "cover":  "./pic/news/kodaisai-20261010-11/students-booth.jpg",
+                      "coverPosition":  "50% 56%",
+                      "body":  [
+                                   "2026年10月10日・11日に開催された工大祭に、TECHSPRESSO FOR STUDENTSが出店しました。",
+                                   "TECHSPRESSO FOR STUDENTSは、TECHSPRESSO合同会社の設立メンバーが東京科学大学で立ち上げた、私たちの活動の原点となるコーヒーサークルです。2024年の工大祭への初出店を経て、現在も学生主体でコーヒーを通じたコミュニティづくりに取り組んでいます。",
+                                   "今回の工大祭では、TECHSPRESSO合同会社が焙煎したコーヒー豆を、サークルの学生たちが一杯ずつ来場者の皆さまへ届けてくれました。会社とサークル、それぞれの活動が再び工大祭でつながったことをうれしく思います。",
+                                   "ブースへ足を運んでくださった皆さま、そしてコーヒーを届けてくれたTECHSPRESSO FOR STUDENTSの皆さん、ありがとうございました。"
+                               ],
+                      "tags":  [
+                                   "EVENT",
+                                   "REPORT",
+                                   "STUDENTS"
+                               ],
+                      "externalUrl":  "",
+                      "pinned":  false,
+                      "active":  true
+                  },
+                  {
                       "slug":  "new-bean-guatemala-florencia-bourbon",
                       "date":  "2026.10.10",
                       "category":  [
@@ -23,8 +74,34 @@
                                ],
                       "externalUrl":  "./#coffee-lineup/guatemala-florencia-bourbon",
                       "externalLabel":  "詳細はこちらからご覧ください",
-                      "purchaseUrl":  "https://techspresso.base.shop/p/00001",
-                      "purchaseLabel":  "購入はこちらから",
+                      "purchaseNote": "現在こちらの豆は注文をお受けしていません",
+                      "secondaryUrl": "https://techspresso.base.shop/",
+                      "secondaryLabel": "他の豆はこちらから",
+                      "pinned":  false,
+                      "active":  true
+                  },
+                  {
+                      "slug":  "popup-report-20260925",
+                      "date":  "2026.09.25",
+                      "category":  [
+                                       "NEWS",
+                                       "EVENT"
+                                   ],
+                      "title":  "9月25日にPOP UPを行いました",
+                      "excerpt":  "2026年9月25日に、コーヒーをお楽しみいただくPOP UPを行いました。",
+                      "cover":  "./pic/news/popup-20260925/coffee-service.jpg",
+                      "coverPosition":  "50% 62%",
+                      "body":  [
+                                   "2026年9月25日に、TECHSPRESSOのコーヒーをお届けするPOP UPを行いました。",
+                                   "当日は多くの方にお立ち寄りいただき、コーヒーを通じて直接交流する時間となりました。",
+                                   "お立ち寄りくださった皆さま、ありがとうございました。これからもコーヒーを通じて直接お会いできる機会を大切にしてまいります。"
+                               ],
+                      "tags":  [
+                                   "EVENT",
+                                   "POP UP",
+                                   "REPORT"
+                               ],
+                      "externalUrl":  "",
                       "pinned":  false,
                       "active":  true
                   },
